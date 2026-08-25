@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Migration kuration/ von Schema v1 auf v2 — in place, idempotent, netzfrei.
+"""Migration curation/ von Schema v1 auf v2 — in place, idempotent, netzfrei.
 
 Fuenf Aenderungen (siehe README, Abschnitt Record-Schema):
 
@@ -28,8 +28,8 @@ import re
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-KURATION = os.path.join(REPO, "kuration")
-GRUPPEN_DATEI = os.path.join(KURATION, "gruppen.json")
+CURATION = os.path.join(REPO, "curation")
+GRUPPEN_DATEI = os.path.join(CURATION, "groups.json")
 
 # --- Verifikationsstand des ersten Laufs (2026-08-25) ---------------------
 # Web-Abruf: Link tatsaechlich geoeffnet und bestaetigt.
@@ -182,7 +182,7 @@ def main():
     nur_pruefen = "--pruefen" in sys.argv
     notizen, geaendert = [], 0
 
-    for pfad in sorted(glob.glob(os.path.join(KURATION, "*.json"))):
+    for pfad in sorted(glob.glob(os.path.join(CURATION, "*.json"))):
         if os.path.abspath(pfad) == os.path.abspath(GRUPPEN_DATEI):
             continue
         with open(pfad, encoding="utf-8") as f:

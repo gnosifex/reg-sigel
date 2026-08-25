@@ -1,360 +1,204 @@
-# Sigel-Register
+# reg-sigel — Register of Regulatory Source Sigla
 
-**Ein Register der Kurzformen, unter denen Regulatorik zitiert wird — und der
-Belege, dass sie so tatsächlich geschrieben werden.** Wer „MaRisk“, „RTS RMF“
-oder „EBA/GL/2019/02“ liest, soll nachschlagen können, welches Dokument
-gemeint ist, in welcher Fassung und wie verbindlich — und woher die Kurzform
-stammt. Jeder Eintrag löst auf ein zitierfähiges Dokument mit
-Identitätsanker auf; jede Schreibform trägt, soweit erhoben, die Fundstellen,
-an denen sie belegt ist.
+**A curated register of the short forms under which financial regulation is cited — and of the evidence that they are really written that way.** For every siglum the register records the short form itself, the official reference form, an identity anchor that survives amendment, the version the entry currently pledges, a rank of bindingness, and aliases backed by evidence. Anyone who reads "MaRisk", "RTS RMF" or "EBA/GL/2019/02" can look up which document is meant, in which version, how binding it is, and where the short form comes from.
 
-Der fertige Bestand steht in [`dist/SIGEL.md`](dist/SIGEL.md) (Tabellen),
-[`dist/sigel.json`](dist/sigel.json) (maschinenlesbar) und als statische
-Seite unter [`docs/index.html`](docs/index.html).
+The scope is the source vocabulary of EU, UK and US financial regulation and the adjacent IT and information-security regulation — EU regulations and directives, delegated and implementing acts, European supervisory guidelines, national law and supervisory practice, and the standards cited alongside them.
 
-## Gegenstand und Grenzen
+The built register lives in [`dist/SIGEL.md`](dist/SIGEL.md) (tables), [`dist/sigel.json`](dist/sigel.json) (machine-readable) and as a static page at [`docs/index.html`](docs/index.html).
 
-**Das Register ist kuratiert und wachsend, nicht vollständig.** Es sammelt,
-was im Umfeld der EU- und deutschen Finanzregulatorik und der angrenzenden
-IT- und Informationssicherheits-Regulatorik zitiert wird: EU-Verordnungen und
--Richtlinien, delegierte und Durchführungsrechtsakte, europäische
-Aufsichtsleitlinien, deutsche Gesetze und Aufsichtspraxis sowie die
-Standards, die dort als Referenz herangezogen werden. Ein
-Vollständigkeitsversprechen gibt es nicht und kann es nicht geben — der
-Bestand wächst mit Meldungen und Kuration.
+Browse the registry in your browser: **https://gnosifex.github.io/reg-sigel/**
 
-**Wie fest ein Eintrag sitzt, sagt der Eintrag selbst.** Das Register
-behauptet nicht pauschal Verlässlichkeit, sondern legt sie je Eintrag offen:
-`identitaet` nennt den Anker auf das Dokument, `haerte` die Bindung der
-Kurzform an ihre Quelle, `geprueft` den Prüfstand jeder einzelnen Behauptung
-und `statistik` die Zahl der Fundstellen, die `raw/` für jede Schreibform
-führt. Ein Eintrag ohne Evidenz ist als solcher erkennbar.
+The data comes from a non-public regulatory corpus. This is its third public spin-off, alongside [esa-qa-mirror](https://github.com/gnosifex/esa-qa-mirror) — a Markdown mirror of the supervisory Q&As — and [dora-graph](https://github.com/gnosifex/dora-graph) — an animated map of the DORA regulation and its surrounding documents.
 
-Das Register beschreibt Rechtstexte und Normen, es enthält sie nicht.
+## AI agents are a core audience, and that is why the format looks like this
 
-## Vier Bausteine
+The register is written for two readers at once: a person looking up a citation, and a machine resolving one. Everything about the format follows from the second reader.
 
-- **`raw/`** — Evidenzschicht: verbatim festgehaltene Funde (Fundstelle,
-  Abrufdatum, Methode), append-only. **Evidenz kommt ausschließlich aus
-  Originalquellen** — Publikationen der Herausgeber, Regulatoren und
-  Marktteilnehmer, nie aus Eigentexten des Registerbetreibers: Eigenzitate
-  belegen keine Praxis (Zirkularität). **Wortgetreue lokale Spiegel zählen
-  als ihre Originalquelle:** Der Betreiber hält einen Korpus gespiegelter
-  Originalpublikationen mit Herkunfts-URL und Verbindlichkeitsrang im
-  Frontmatter; durchsucht werden nur die Record-Bodys, die Fundstelle ist die
-  Original-URL, `rang_quellen` hält den Rang der Quelldokumente fest.
-  Eigentexte solcher Bestände (Antworten, Wiki, Analysen, Frontmatter,
-  Sidecars) sind ausgeschlossen. Aliasse ohne externe Evidenz sind zulässig
-  und tragen eine leere `evidenz`-Liste — der Build warnt, bis Discovery sie
-  belegt. Jeder raw-Record nennt in `herausgeber` die publizierende Stelle
-  (BaFin, EZB, BBK, EBA …); der Build aggregiert daraus je Register-Eintrag
-  die Spalte **Belegt durch** und das JSON-Feld `belegt_durch` — sichtbar,
-  bei welchen Häusern eine Form des Sigels verifiziert ist.
-- **`kuration/`** — Entscheidungsschicht: ein Record je Quelle, von Hand
-  gepflegt; hier fällt jede Entscheidung über Sigel, Identität und Aliasse.
-- **`tools/build.py`** — deterministischer Build: validiert `kuration/` gegen
-  `raw/` und schreibt sortiert nach `dist/` und `docs/`.
-- **`tools/watch.py`** — Fassungsüberwachung: fragt für jeden Record mit
-  CELEX-Anker den Cellar-Bestand ab und meldet, wo die registrierte
-  Konsolidierung überholt ist. Liest nur; nachgezogen wird von Hand.
-- **`tools/intake.py`** — Ingest gemeldeter Sigel: prüft eine Meldung gegen
-  ihre Quelle (`--vorpruefung`) und erzeugt daraus Records
-  (`--uebernehmen`). Siehe [Meldung und automatischer
-  Ingest](#meldung-und-automatischer-ingest).
+- **The build is deterministic.** `tools/build.py` reads `curation/` and `raw/` and writes byte-identical output for identical input, with no network access. CI proves it by building twice and comparing.
+- **The machine-readable artifact is stable.** `dist/sigel.json` carries a `meta` block and a `sigel` array of records, sorted by `id`, with a fixed field set. It is committed, so any change to it is visible in the diff.
+- **Every claim carries its own verification status.** A link, an identity anchor and a hardness grade each carry `geprueft` — date and method, or `null`. An agent can therefore tell a fetched-and-confirmed link from a constructed one instead of trusting the whole file uniformly.
+- **Identity and version are separate fields**, so an agent can resolve a siglum to a document that stays the same across amendments, and separately to the version this register currently pledges.
+- **Aliases are enumerated and evidenced**, so a string found in the wild can be matched back to one record rather than guessed at.
 
-Datenformat ist JSON; das Schema ist YAML-fähig, ein Wechsel änderte nur den
-Serializer.
-
-## Record-Schema
-
-| Feld | Bedeutung |
-|---|---|
-| `id` | kebab-case-Slug aus dem Sigel; zugleich Dateiname |
-| `sigel` | kanonische Kurzform (lebt vor allem in Rang-3–7-Texten) |
-| `sprache` | Sprache der kanonischen Form (`de` oder `en`) |
-| `referenzform` | amtliche Referenzform — wie Rechtsakte die Quelle zitieren (Verordnungsnummer, GL-ID); rankt identisch mit dem Sigel, denn der Rang gehört zur Zielquelle, nicht zur Schreibform |
-| `name` | Vollbezeichnung |
-| `haerte` | Bindung der Kurzform an ihre Quelle (vier Stufen, siehe unten) |
-| `haerte_geprueft` | `{datum, methode}` — Methode ist immer `einschaetzung` |
-| `gruppe` | Gruppen-ID aus `kuration/gruppen.json` |
-| `identitaet` | `{typ, wert, geprueft}` — Anker auf das Dokument, **nicht auf die Fassung** |
-| `fassung` | `{stand, konsolidierung, text}` |
-| `links` | Liste `{label, url, geprueft}` |
-| `aliasse` | Liste `{form, sprache, evidenz: [raw-ids]}` — jede Nebenform belegt |
-| `ersetzt` / `ersetzt_durch` | Rechtsnachfolge als Listen von Record-IDs |
-| `status` | Reifegrad des Records |
-
-### Jede Schreibform trägt ihre Sprache
-
-`sprache` steht am Record für die kanonische Form und an jedem Alias für die
-Nebenform; zulässig sind `de` und `en`. So bleiben deutsche und englische
-Kurzform derselben Quelle unterscheidbar, ohne dass die Sprache aus der Form
-geraten werden müsste — die DSGVO heißt englisch `GDPR`, und beide Formen
-belegen dasselbe Dokument. Wo eine Form in beiden Sprachen gleich lautet
-(`DORA`, `CRD IV`), gibt es nichts zu unterscheiden: Sie steht einmal, in der
-Sprache ihres Records.
-
-### Identität und Fassung sind getrennt
-
-`identitaet` benennt das Dokument über seine Lebenszeit hinweg, `fassung`
-den Stand, auf den sich der Eintrag heute bezieht. Bei EU-Recht heißt das:
-`identitaet.wert` trägt die **Basis-CELEX** (Sektor 3, `32013L0036`), die
-konsolidierte CELEX (`02013L0036-20260711`) steht in
-`fassung.konsolidierung`. So bleibt der Anker stabil, wenn eine neue
-Konsolidierung erscheint — nachzuziehen ist dann allein die Fassung.
-
-`fassung.text` ist die Fassungsangabe im Wortlaut der Quelle;
-`fassung.stand` das Stichdatum in ISO, aber **nur wo es aus dem Text
-eindeutig hervorgeht** (Muster `Stand …`, `vom …`, `Fassung …`). Ein
-nacktes Datum ohne Schlüsselwort bleibt `null` — es könnte Erlass-,
-Anwendungs- oder Aufhebungsdatum sein.
-
-### Fünf Ankertypen, keiner davon offen
-
-| `typ` | Wert | Bestand |
-|---|---|---|
-| `celex` | Basis-CELEX, Sektor 3 | EU-Rechtsakte und Fassungsgenerationen |
-| `jurabk` | juris-Abkürzung (`ao_1977`, `hgb`, `kredwg`, `zag_2018`) | deutsche Gesetze |
-| `doc_ref` | Dokumentkennzeichen des Herausgebers (`EBA/GL/2019/02`) | Leitlinien und Rechtsakte ohne CELEX-Anker |
-| `version` | Versionslabel (`v8.1`, `C5:2026`, `V3.1a`) | Standards ohne Dokumentnummer |
-| `offen` | `null` | derzeit keiner |
-
-`version` ist der schwächste Anker: Er identifiziert die Fassung, nicht das
-Dokument, und wandert bei jedem Release mit. Herausgeber ohne
-Dokumentkennzeichen (CVSS, EPSS, CIS Controls, PCI DSS, BSI C5, SDM,
-ENISA TIG) lassen keinen besseren zu.
-
-### Der Härtegrad sagt, wie fest die Kurzform sitzt
-
-`haerte` unterscheidet vier Stufen: **`amtlich`** — vom Normgeber oder
-Herausgeber förmlich vergeben (juris-Abkürzung, Dokumentkennzeichen,
-Normnummer); **`herausgeberueblich`** — nicht vergeben, aber vom Herausgeber
-selbst in seinen Publikationen geführt; **`verkehrsueblich`** — breite Praxis
-ohne amtliche Vergabe; **`hausform`** — Konvention allein dieses Registers.
-Die Einstufung ist **kuratierte Einschätzung, bis Discovery-Evidenz sie
-misst** — deshalb trägt `haerte_geprueft` die Methode `einschaetzung` und
-nicht `web-abruf`.
-
-**Kanonisch ist nie eine Hausform, wenn eine extern belegte Form existiert:**
-Trägt eine amtliche oder herausgeberübliche Form die Quelle — die BaFin etwa
-führt in ihren DORA-Publikationen eine Abkürzungslegende mit „RTS RMF“,
-„RTS TPPol“, „RTS CCI“, „RTS CTIR“, „ITS RoI“ und „ITS TIR“ —, dann ist sie
-das Sigel; abweichende Eigenkonventionen laufen als Aliasse.
-
-### Konsolidierte EU-Fassungen bekommen ihren Link gerechnet
-
-Ein Record mit `identitaet.typ: celex` und gesetzter `fassung.konsolidierung`
-erhält **erst in der Ausgabe** den EUR-Lex-Link auf genau diese Fassung
-(`methode: abgeleitet-aus-fassung`, ohne Prüfdatum — er ist gerechnet, nicht
-abgerufen); URL-gleiche kuratierte Links unterdrücken ihn. `kuration/` bleibt
-davon unberührt. Ohne `konsolidierung` entsteht keiner: Die
-Basis-CELEX-Seite zeigt die Ursprungsfassung, nicht die registrierte.
-
-### Jede Behauptung trägt ihren Prüfstand
-
-`geprueft` steht an jedem Link **und** an jedem Identitätsanker, als
-`{datum, methode}` oder `null` (ungeprüft). Vier Methoden:
-
-- **`web-abruf`** — Ziel geöffnet und bestätigt.
-- **`konstruiert`** — mechanisch aus einer Kennung gebaut, nie abgerufen;
-  plausibel, aber unbelegt.
-- **`seed-doksigel`** — aus dem kuratierten Seed des Betreibers übernommen
-  (Stand 2026-08-24), Prüfstand der Quelle.
-- **`spiegel-provenienz`** — URL aus dem Provenienz-Frontmatter eines
-  wortgetreuen lokalen Spiegels übernommen, wo sie beim Abruf gegen das
-  Dokument verifiziert wurde; belegt durch den Spiegel, nicht durch einen
-  eigenen Abruf.
-
-Der Unterschied ist der Zweck des Felds: Ein konstruierter EUR-Lex-Link
-sieht wie ein geprüfter aus, ist aber keiner.
-
-### Die Nutzungsstatistik zählt Fundstellen, nicht Dokumente
-
-Jeder Record der Ausgabe trägt `statistik` — je Schreibform die Zahl der
-Fundstellen, die `raw/` dafür führt (kanonisches Sigel und jede
-Alias-Form). Gezählt wird über alle Evidenzdateien hinweg nach Form; ein
-leeres Objekt heißt „keine Fundstelle“, nicht „nicht erhoben“. `meta`
-nennt mit `fundstellen_gesamt` die Gesamtzahl der Belege im Bestand. Das
-Feld entsteht wie die abgeleiteten Links erst in der Ausgabe — `kuration/`
-bleibt Handpflege — und erscheint bewusst nicht in `SIGEL.md`: Die
-Belegdichte sagt etwas über den Erschließungsstand des Registers, nichts
-über die Quelle.
-
-### Der Rang trägt die Verbindlichkeits-Hierarchie
-
-`rang` trägt die Verbindlichkeitsstufe: **1** bindendes Recht der eigenen
-Rechtsordnung (EU-Verordnungen, Richtlinien, nationale Gesetze) · **2**
-delegierte und Durchführungsrechtsakte · **3** Leitlinien und konsultierte
-Rundschreiben (MaRisk, BAIT) · **4–7** Q&As, vorbereitendes Material,
-aufsichtliche Mitteilungen, rollende Webkommunikation (im Bestand derzeit
-unbesetzt) · **null** („—“) Standards und Praktiken ohne Rechtsbindung. Die
-Zahlen sind identisch mit denen des Korpus-Rangmodells, dem die
-Spiegel-Evidenz entstammt, und mit dem öffentlichen
-[dora-graph](https://github.com/gnosifex/dora-graph) — Register und Graph
-sind damit interoperabel. Rang und Gliederung schneiden sich bewusst:
-`gruppe` ordnet nach Herausgeber und Wirkmechanismus, `rang` nach
-Bindungswirkung — Rang 1 liegt in drei Gruppen.
-
-## Gliederung nach absteigender Verbindlichkeit
-
-`kuration/gruppen.json` führt die Gruppen als geordnete Liste, jede mit
-Titel und einer tragenden Aussage; die Reihenfolge dort ist die Reihenfolge
-der Ausgabe und folgt der abnehmenden regulatorischen Verbindlichkeit — von
-EU-Verordnungen über delegierte Rechtsakte, Richtlinien, europäische und
-nationale Aufsichtsvorgaben bis zu freiwilligen Standards. Jeder Record
-nennt seine Gruppe in `gruppe`; der Build lehnt unbekannte Gruppen und leere
-Gruppen ab. Eine Ein-Mann-Gruppe ist zulässig, wenn sie einen eigenen
-Wirkmechanismus trägt (`eu-richtlinien`).
-
-## Triage-Grundsatz
-
-Registereintrag wird nur, was auf ein **zitierfähiges Dokument mit
-Identitätsanker** auflöst. Reine Fachbegriffs-Abkürzungen (SBOM, IKT, ISMS)
-bezeichnen keine Quelle und werden nie aufgenommen.
-
-**Generationslabels sind eigene Einträge.** Wer `CRD V` oder `CRR III`
-schreibt, meint eine bestimmte Fassung des Basisakts, nicht den Akt in
-seinem heutigen Stand — das Label ist also selbst ein Sigel und bekommt
-einen eigenen Record. Er trägt die **Basis-CELEX des Akts** als Identität
-(`CRD IV`–`CRD VI` → `32013L0036`, `CRR II`/`CRR III` → `32013R0575`),
-nennt in `fassung.text` den Änderungsrechtsakt, der die Generation
-begründet, und verlinkt ihn. `fassung.konsolidierung` bleibt dabei leer:
-Eine Generation gilt über mehrere konsolidierte Fassungen hinweg, keine
-einzelne davon *ist* die Generation. Die Generationen einer Familie sind über
-`ersetzt`/`ersetzt_durch` verkettet; die Stamm-Records `CRD` und `CRR`
-bleiben als Akt-Einträge auf dem heutigen Stand daneben stehen und
-verketten nicht. Schreibvarianten (`CRDIV`, `CRD 4`) sind Aliasse des
-jeweiligen Generations-Records, sobald Discovery sie belegt.
-
-**Jede Sigel-Meldung nennt ihre Quelle.** Wer einen neuen Eintrag meldet,
-nennt die Originalfundstelle als URL; eine Meldung ohne Quelle wird nicht
-aufgenommen. Die Prüfung gegen genau diese Quelle ist der Aufnahme-Handgriff
-und erzeugt zugleich den ersten raw-Evidenz-Record des neuen Eintrags.
-
-## Meldung und automatischer Ingest
-
-**Gemeldet wird per Issue, geprüft von der Action, aufgenommen von einer
-täglichen Routine, gemergt nur bei grüner CI — ohne Human-in-the-loop.** Die
-Aufnahme-Regel des Registers ist eine Quellen-Regel, und eine Quellen-Regel
-ist maschinell vollziehbar: Kommt die gemeldete Kurzform in der genannten
-Originalfundstelle wörtlich vor und ist diese Fundstelle eine freigegebene
-Prüfquelle, ist der Eintrag belegt; fehlt eines von beidem, ist er es nicht.
+For machines, fetch the raw JSON directly: `https://raw.githubusercontent.com/gnosifex/reg-sigel/main/dist/sigel.json`
 
 ```sh
-gh issue create --repo gnosifex/reg-sigel --template sigel-meldung.yml
+curl -s https://raw.githubusercontent.com/gnosifex/reg-sigel/main/dist/sigel.json | jq '.sigel[] | select(.sigel == "DORA")'
 ```
 
-### Zwei Felder sind die ganze Angriffsfläche
+## The field names are German; this is what they mean
 
-Das Meldeformular fragt **Kurzform** (höchstens 25 Zeichen) und
-**Quelle-URL** (höchstens 200 Zeichen) ab, sonst nichts. Damit ist der
-gesamte Fremdtext, der je in die Verarbeitung gelangt, auf **225 geprüfte
-Zeichen** begrenzt; alles Weitere — amtliche Referenzform, Vollbezeichnung,
-Identitätsanker, Herausgeber, Gruppe, Rang — stammt aus der verifizierten
-Quelle, aus `kuration/pruefquellen.json` oder aus der Kuration. Eine
-Überschreitung der Längen ist eine Ablehnung mit Nennung von Feld, Ist-Länge
-und Limit, kein Rückfragen.
+Field names are data, not prose — they are never translated, in either direction. The word *Sigel* itself (cf. Latin *siglum*, plural *sigla*) means a registered short form used to cite a source; it is the object this register is about.
 
-### Vier Stufen, jede mit eigener Zuständigkeit
+| Field | Meaning |
+|---|---|
+| `id` | kebab-case slug derived from the siglum; also the file name |
+| `sigel` | the canonical short form (it lives mostly in rank 3–7 texts) |
+| `sprache` | language of the canonical form (`de` or `en`) |
+| `referenzform` | official reference form — how legal acts cite the source (regulation number, guideline ID) |
+| `name` | full title of the document |
+| `haerte` | hardness: how firmly the short form is bound to its source (four grades, below) |
+| `haerte_geprueft` | `{datum, methode}` for the hardness grade; `methode` is always `einschaetzung` (curated judgement) |
+| `gruppe` | group ID from `curation/groups.json` |
+| `rang` | rank of bindingness, 1–7 or `null` |
+| `identitaet` | `{typ, wert, geprueft}` — anchor on the document, **not** on the version |
+| `fassung` | `{stand, konsolidierung, text}` — the version this entry pledges |
+| `links` | list of `{label, url, geprueft}` |
+| `aliasse` | list of `{form, sprache, evidenz}` — every secondary spelling with its evidence |
+| `ersetzt` / `ersetzt_durch` | legal succession: "replaces" / "replaced by", as lists of record IDs |
+| `status` | maturity of the record (e.g. `pilot-seed`, `auto-intake`) |
+| `statistik` | output only: per spelling, the number of attestations `raw/` holds for it |
+| `belegt_durch` | output only: the publishers in whose publications a form of this siglum is attested |
 
-**Stufe 1 — Meldung.** Das Issue-Formular
-`.github/ISSUE_TEMPLATE/sigel-meldung.yml` fragt die beiden Pflichtfelder ab.
+Nested and neighbouring names: `geprueft` = verification status (`datum` date, `methode` method) · `fassung.stand` = as-of date, `fassung.konsolidierung` = consolidated CELEX ID, `fassung.text` = the version statement in the source's own wording · `aliasse[].form` = the spelling, `aliasse[].evidenz` = list of raw record IDs · `herausgeber` = publisher · `quelle` = source · `abgerufen` = retrieved on · `fundstellen` = attestations (the URLs where a form occurs) · `kontext` = surrounding text of a find · `rang_quellen` = ranks of the source documents behind a find · `titel` / `aussage` = a group's title and its load-bearing statement · `domain`, `typ`, `aufgenommen`, `freigabe` = the four descriptive fields of a trusted source.
 
-**Stufe 2 — Vorprüfung durch die Action.**
-`.github/workflows/intake.yml` läuft bei jedem geöffneten oder bearbeiteten
-Issue mit Label `sigel-meldung` und ruft `tools/intake.py --vorpruefung`.
-Die prüft deterministisch (Pflichtfelder, Längen, Sigel- und URL-Syntax,
-Kollision gegen `kuration/`), ruft die Quelle ab — HTML direkt, PDF über
-`pdftotext` — und sucht die Kurzform wortgenau. Ergebnis ist das
-**Artefakt**: ein Bot-Kommentar mit dem Marker `<!-- intake-artefakt v1 -->`,
-dem Prüfbericht und dem Prüfergebnis als JSON, samt den Kontextzeilen, die
-die Action selbst aus dem abgerufenen Quelltext geschnitten hat. Die Action
-**schreibt nichts** ins Repo und braucht kein Push-Recht.
+Closed value vocabularies: `haerte` ∈ `amtlich` (official), `herausgeberueblich` (publisher's own usage), `verkehrsueblich` (established practice), `hausform` (house convention) · `geprueft.methode` ∈ `web-abruf` (fetched), `konstruiert` (constructed), `seed-doksigel` (from the maintainer's curated seed), `spiegel-provenienz` (from mirror provenance), plus `abgeleitet-aus-fassung` (derived from the version) on generated links and `einschaetzung` (judgement) on hardness · `identitaet.typ` ∈ `celex`, `jurabk`, `doc_ref`, `version`, `offen` (open) · watch findings are `veraltet` (outdated) or `unpruefbar` (not checkable).
 
-Sie entscheidet dreierlei:
+## The register is curated and growing, not complete
 
-- **bestanden** → Label `vorgeprueft-ok`, Issue bleibt offen;
-- **formal mangelhaft, Kurzform in der Quelle nicht belegt, oder Quelle nicht
-  auf der Prüfquellen-Liste** → Label `abgelehnt` und Close;
-- **Kollision mit einem bestehenden Record** → Label `wartet-maintainer`.
+It collects what is actually cited in and around EU and German financial regulation and the adjacent IT and information-security regulation, and its trusted-source base extends to UK and US supervisors. There is no promise of completeness and there cannot be one — the stock grows through reports and curation.
 
-**Beleg und freigegebene Domain sind zusammen die Bedingung.** Eine fremde
-Domain ist kein Wartefall, sondern eine Ablehnung mit Verweis auf den
-Prüfquellen-Prozess; `wartet-maintainer` bleibt damit dem einen Fall
-vorbehalten, in dem Bestehendes berührt würde.
+**How firmly an entry sits is stated by the entry itself.** The register does not claim reliability wholesale; it discloses it per entry: `identitaet` names the anchor on the document, `haerte` the binding of the short form to its source, `geprueft` the verification status of each individual claim, and `statistik` the number of attestations `raw/` holds for each spelling. An entry without evidence is recognisable as such.
 
-**Stufe 3 — Aufnahme durch die tägliche Routine.** Ein geplanter
-Claude-Code-Agent arbeitet nach `tools/routine-intake.md` alle offenen
-`vorgeprueft-ok`-Issues ab. Er liest dabei **ausschließlich das Artefakt** —
-den jüngsten Kommentar mit dem Marker, dessen Autor `github-actions[bot]`
-ist —, niemals Issue-Titel, -Body oder Kommentare Dritter. Der Grund ist die
-Herkunft der Texte: Der Rohtext ist angreifergesteuert, das Artefakt ist
-syntaxgeprüft, längenbegrenzt und an der Quelle verifiziert.
+The register describes legal texts and standards; it does not contain them.
 
-Die Routine leistet, was Urteilskraft verlangt: Triage (ist das überhaupt ein
-Quellen-Sigel?), Ermittlung von Referenzform, Vollbezeichnung und
-Identitätsanker aus der Quelle, begründete Zuordnung von Gruppe und Rang.
-Dann ruft sie `python tools/intake.py --uebernehmen --artefakt …` mit genau
-diesen Zuarbeiten. Das Skript erzeugt den kuration-Record
-(`status: auto-intake`, `haerte: verkehrsueblich` als Einschätzung) und den
-raw-Evidenz-Record aus dem eigenen Abruf und ruft `build.py` — **nur bei
-Exit 0 wird committet**, der Build ist das letzte Gate. Lässt sich der
-Identitätsanker nicht sicher ermitteln, wird nicht geraten:
-`wartet-maintainer`.
+## Four building blocks
 
-**Stufe 4 — Merge nur bei grüner CI.** Die Routine arbeitet auf einem Branch
-`intake/<datum>`, eröffnet einen Pull Request und aktiviert Auto-Merge. Sie
-committet nie auf `main` und mergt nie selbst. Zusammengeführt wird erst,
-wenn `intake-guard` und `build` grün sind.
+- **`raw/`** — the evidence layer: verbatim finds (attestation, retrieval date, method), append-only. **Evidence comes only from original sources** — publications of issuers, regulators and market participants, never from the register operator's own texts: self-citation proves no practice (circularity). **Verbatim local mirrors count as their original source:** the operator keeps a corpus of mirrored original publications carrying origin URL and bindingness rank in the front matter; only record bodies are searched, the attestation is the original URL, and `rang_quellen` records the rank of the source documents. Own texts within such holdings (answers, wiki, analyses, front matter, sidecars) are excluded. Aliases without external evidence are permitted and carry an empty `evidenz` list — the build warns until discovery attests them. Every raw record names the publishing body in `herausgeber` (BaFin, ECB, Bundesbank, EBA, …); the build aggregates this per register entry into the **Belegt durch** column and the `belegt_durch` JSON field.
+- **`curation/`** — the decision layer: one record per source, maintained by hand; every decision about siglum, identity and aliases is taken here.
+- **`tools/build.py`** — the deterministic build: validates `curation/` against `raw/` and writes sorted output to `dist/` and `docs/`.
+- **`tools/watch.py`** — version surveillance: queries the Cellar holdings for every record with a CELEX anchor and reports where the registered consolidation is out of date. Read-only; updates are made by hand.
+- **`tools/intake.py`** — ingest of reported sigla: checks a report against its source (`--vorpruefung`) and creates records from it (`--uebernehmen`). See [Reporting and automatic ingest](#reporting-and-automatic-ingest).
 
-### Der Guard macht die Leitplanke zur Bedingung
+The data format is JSON; the schema is YAML-capable, and a switch would change only the serializer.
 
-`tools/intake_guard.py` prüft auf jedem Pull Request den Diff gegen die Basis
-und lässt genau dreierlei durch:
+## Record schema
 
-- neue Dateien unter `kuration/` (außer `gruppen.json` und
-  `pruefquellen.json`) und unter `raw/`,
-- **feldweise reine Ergänzungen** an bestehenden kuration-Records: neue
-  Alias-Einträge und neue Evidenz-IDs in bestehenden Aliassen, sonst kein
-  Feld geändert,
-- den neu gebauten Stand von `dist/` und `docs/`.
+The mandatory fields are listed in the glossary above. What follows are the rules that the field list alone does not carry.
 
-Alles andere — `tools/`, `.github/`, `README.md`, `gruppen.json`,
-`pruefquellen.json`, Änderungen an bestehenden Feldern, Umbenennungen,
-Löschungen — beendet den Lauf mit Exit 1 und einer Befundliste.
+### Every spelling carries its language
 
-Das ist der Unterschied zwischen einer Zusage und einer Bedingung: Ein
-Auftragstext ist eine Bitte, die ein hinreichend geschickt formulierter
-Fremdtext untergraben könnte. Der Guard fragt nicht, was gemeint war, sondern
-was im Diff steht. Lokal prüfbar:
+`sprache` stands on the record for the canonical form and on every alias for the secondary form; permitted values are `de` and `en`. German and English short forms of the same source stay distinguishable without having to guess the language from the form — the German DSGVO is GDPR in English, and both forms attest the same document. Where a form is identical in both languages (`DORA`, `CRD IV`) there is nothing to distinguish: it appears once, in the language of its record.
+
+### Identity and version are separate
+
+`identitaet` names the document across its lifetime, `fassung` the state the entry refers to today. For EU law that means `identitaet.wert` carries the **base CELEX** (sector 3, `32013L0036`), while the consolidated CELEX (`02013L0036-20260711`) sits in `fassung.konsolidierung`. The anchor therefore survives a new consolidation — only the version has to be updated.
+
+`fassung.text` is the version statement in the source's own wording; `fassung.stand` is the as-of date in ISO form, but **only where the text states it unambiguously** (patterns "Stand …", "vom …", "Fassung …"). A bare date without a keyword stays `null` — it could be the date of adoption, application or repeal.
+
+### Five anchor types, none of them open
+
+| `typ` | Value | Population |
+|---|---|---|
+| `celex` | base CELEX, sector 3 | EU legal acts and generation labels |
+| `jurabk` | juris abbreviation (`ao_1977`, `hgb`, `kredwg`, `zag_2018`) | German statutes |
+| `doc_ref` | the publisher's document reference (`EBA/GL/2019/02`) | guidelines and acts without a CELEX anchor |
+| `version` | version label (`v8.1`, `C5:2026`, `V3.1a`) | standards without a document number |
+| `offen` | `null` | currently none |
+
+`version` is the weakest anchor: it identifies the version, not the document, and moves with every release. Publishers that issue no document reference (CVSS, EPSS, CIS Controls, PCI DSS, BSI C5, SDM, ENISA TIG) permit nothing better.
+
+### Hardness says how firmly the short form sits
+
+`haerte` distinguishes four grades: **`amtlich`** — formally assigned by the legislator or publisher (juris abbreviation, document reference, standard number); **`herausgeberueblich`** — not assigned, but used by the publisher itself in its own publications; **`verkehrsueblich`** — broad practice without official assignment; **`hausform`** — a convention of this register alone. The grading is **curated judgement until discovery evidence measures it** — which is why `haerte_geprueft` carries the method `einschaetzung` and not `web-abruf`.
+
+**A house form is never canonical while an externally attested form exists.** Where an official or publisher-used form is carried by the source — BaFin, for instance, runs an abbreviation legend in its DORA publications with "RTS RMF", "RTS TPPol", "RTS CCI", "RTS CTIR", "ITS RoI" and "ITS TIR" — that form is the siglum; divergent in-house conventions run as aliases.
+
+### Consolidated EU versions get their link computed
+
+A record with `identitaet.typ: celex` and a set `fassung.konsolidierung` receives the EUR-Lex link to exactly that version **only in the output** (`methode: abgeleitet-aus-fassung`, without a check date — it is computed, not fetched); a curated link with the same URL suppresses it. `curation/` is untouched by this. Without `konsolidierung` no link is generated: the base CELEX page shows the original version, not the registered one.
+
+### Every claim carries its verification status
+
+`geprueft` sits on every link **and** on every identity anchor, as `{datum, methode}` or `null` (unverified). Four methods:
+
+- **`web-abruf`** — target opened and confirmed.
+- **`konstruiert`** — built mechanically from an identifier, never fetched; plausible but unproven.
+- **`seed-doksigel`** — taken from the operator's curated seed (as of 2026-08-24), with the source's verification status.
+- **`spiegel-provenienz`** — URL taken from the provenance front matter of a verbatim local mirror, where it was verified against the document at retrieval time; attested by the mirror, not by a fetch of our own.
+
+The point of the field is exactly this difference: a constructed EUR-Lex link looks like a verified one and is not.
+
+### The usage statistic counts attestations, not documents
+
+Every output record carries `statistik` — per spelling, the number of attestations `raw/` holds for it (canonical siglum and each alias form). Counting runs across all evidence files by form; an empty object means "no attestation", not "not surveyed". `meta.fundstellen_gesamt` gives the total number of attestations in the holdings. Like the derived links, the field arises only in the output — `curation/` stays hand-maintained — and it deliberately does not appear in `SIGEL.md`: evidence density says something about how far this register has surveyed a source, nothing about the source itself.
+
+### The rank carries the hierarchy of bindingness
+
+`rang` carries the level of bindingness: **1** binding law of one's own legal order (EU regulations, directives, national statutes) · **2** delegated and implementing acts · **3** guidelines and consulted circulars (MaRisk, BAIT) · **4–7** Q&As, preparatory material, supervisory communications, rolling web communication (currently unpopulated) · **`null`** ("—") standards and practices without legal binding. The numbers are identical to those of the corpus rank model from which the mirror evidence comes, and to the public [dora-graph](https://github.com/gnosifex/dora-graph) — register and graph are interoperable. Rank and grouping intersect deliberately: `gruppe` orders by publisher and mechanism of effect, `rang` by binding force — rank 1 sits in three groups.
+
+## Grouping follows descending bindingness
+
+`curation/groups.json` holds the groups as an ordered list, each with a title and a load-bearing statement; the order there is the order of the output and follows decreasing regulatory bindingness — from EU regulations through delegated acts, directives, European and national supervisory requirements, down to voluntary standards. Every record names its group in `gruppe`; the build rejects unknown groups and empty groups. A one-member group is permitted if it carries a mechanism of effect of its own (`eu-richtlinien`).
+
+## Triage: only citable documents get in
+
+A register entry is created only for what resolves to a **citable document with an identity anchor**. Pure subject-matter abbreviations (SBOM, ICT, ISMS) denote no source and are never admitted.
+
+**Generation labels are entries in their own right.** Whoever writes `CRD V` or `CRR III` means a particular version of the base act, not the act as it stands today — the label is therefore a siglum itself and gets its own record. It carries the **base CELEX of the act** as identity (`CRD IV`–`CRD VI` → `32013L0036`, `CRR II`/`CRR III` → `32013R0575`), names in `fassung.text` the amending act that constitutes the generation, and links it. `fassung.konsolidierung` stays empty: a generation spans several consolidated versions, and no single one of them *is* the generation. The generations of a family are chained through `ersetzt`/`ersetzt_durch`; the stem records `CRD` and `CRR` stand alongside as act entries at today's state and do not chain. Spelling variants (`CRDIV`, `CRD 4`) are aliases of the respective generation record as soon as discovery attests them.
+
+**Every report names its source.** Whoever reports a new entry names the original attestation as a URL; a report without a source is not admitted. Checking against exactly that source is the act of admission, and it produces the new entry's first raw evidence record at the same time.
+
+## Reporting and automatic ingest
+
+**Reported by issue, checked by the Action, admitted by a daily routine, merged only on green CI — with no human in the loop.** The admission rule of this register is a source rule, and a source rule is machine-executable: if the reported short form occurs verbatim in the named original attestation and that attestation is a released trusted source, the entry is attested; if either is missing, it is not.
+
+```sh
+gh issue create --repo gnosifex/reg-sigel --template siglum-report.yml
+```
+
+### Two fields are the entire attack surface
+
+The report form asks for **short form** (at most 25 characters) and **source URL** (at most 200 characters), and nothing else. All foreign text that ever enters processing is thereby capped at **225 validated characters**; everything else — official reference form, full title, identity anchor, publisher, group, rank — comes from the verified source, from `curation/trusted-sources.json`, or from curation. Exceeding the limits is a rejection naming field, actual length and limit.
+
+### Four stages, each with its own responsibility
+
+**Stage 1 — the report.** The issue form `.github/ISSUE_TEMPLATE/siglum-report.yml` asks for the two mandatory fields.
+
+**Stage 2 — pre-check by the Action.** `.github/workflows/intake.yml` runs on every opened or edited issue labelled `sigel-meldung` and calls `tools/intake.py --vorpruefung`. That check is deterministic (mandatory fields, lengths, siglum and URL syntax, collision against `curation/`), fetches the source — HTML directly, PDF through `pdftotext` — and searches for the short form verbatim. The result is the **artifact**: a bot comment carrying the marker `<!-- intake-artefakt v1 -->`, the check report and the outcome as JSON, together with the context lines the Action itself cut from the fetched source text. The Action **writes nothing** to the repository and needs no push rights.
+
+It decides three ways:
+
+- **passed** → label `vorgeprueft-ok`, issue stays open;
+- **formally deficient, short form not attested in the source, or source not on the trusted-source list** → label `abgelehnt` and close;
+- **collision with an existing record** → label `wartet-maintainer`.
+
+**Attestation and released domain are jointly the condition.** A source outside the trusted list is rejected, with a pointer to the trusted-source process; the `wartet-maintainer` label applies only when an existing record would be affected.
+
+**Stage 3 — admission by the daily routine.** A scheduled Claude Code agent works through all open `vorgeprueft-ok` issues following `tools/routine-intake.md`. It reads **only the artifact** — the most recent comment carrying the marker whose author is `github-actions[bot]` — never the issue title, body, or third-party comments. The reason is the provenance of the text: the raw text is attacker-controlled, the artifact is syntax-checked, length-limited and verified against the source.
+
+The routine supplies what requires judgement: triage (is this a source siglum at all?), determination of reference form, full title and identity anchor from the source, and a reasoned assignment of group and rank. It then calls `python tools/intake.py --uebernehmen --artefakt …` with exactly those inputs. The script creates the curation record (`status: auto-intake`, `haerte: verkehrsueblich` as a judgement) and the raw evidence record from its own fetch, then calls `build.py` — **only on exit 0 is anything committed**, the build being the last gate. Where the identity anchor cannot be established with confidence, nothing is guessed: `wartet-maintainer`.
+
+**Stage 4 — merge only on green CI.** The routine works on a branch `intake/<date>`, opens a pull request and enables auto-merge. It never commits to `main` and never merges itself. Merging happens only once `intake-guard` and `build` are green.
+
+### The guard turns the guardrail into a condition
+
+`tools/intake_guard.py` checks the diff against the base on every pull request and lets exactly three things through:
+
+- new files under `curation/` (except `groups.json` and `trusted-sources.json`) and under `raw/`,
+- **field-wise pure additions** to existing curation records: new alias entries and new evidence IDs in existing aliases, with no other field changed,
+- the freshly built state of `dist/` and `docs/`.
+
+Everything else — `tools/`, `.github/`, `README.md`, `groups.json`, `trusted-sources.json`, changes to existing fields, renames, deletions — ends the run with exit 1 and a list of findings.
+
+That is the difference between a promise and a condition: an instruction text is a request, and a sufficiently clever piece of foreign text could subvert it. The guard does not ask what was meant, it asks what is in the diff. Checkable locally:
 
 ```sh
 python3 tools/intake_guard.py --selbsttest
 python3 tools/intake_guard.py --basis origin/main
 ```
 
-### Sieben Schutzgeländer tragen die Automatik
+### Seven guardrails carry the automation
 
-- **Quelle-Pflicht.** Keine Fundstelle, keine Aufnahme — und die Fundstelle
-  wird abgerufen, nicht geglaubt.
-- **Minimale Angriffsfläche.** 225 geprüfte Zeichen Melder-Input; alles
-  Weitere stammt aus verifizierten Quellen oder aus der Kuration.
-- **Das Artefakt statt des Rohtexts.** Die Routine verarbeitet nie, was ein
-  Fremder geschrieben hat, sondern nur, was die Action daraus geprüft hat.
-- **Additiv-only, doppelt.** Das Skript vergleicht die geänderte Datei
-  feldweise gegen das Original und bricht ab, wenn sich außerhalb von
-  `aliasse` etwas gerührt hat; der Guard prüft dasselbe noch einmal am Diff.
-- **Prüfquellen-Liste.** Nur Fundstellen der kuratierten Domains gelten als
-  Beleg (siehe nächster Abschnitt).
-- **`status: auto-intake` und die Ratenbremse.** Automatisch entstandene
-  Records sind an ihrem Status erkennbar; mehr als zehn
-  `auto-intake`-Commits am selben Tag, und die Aufnahme schaltet auf
-  `wartet-maintainer`.
-- **Das Issue ist der Audit-Trail.** Meldung, Artefakt, Entscheidung und
-  Commit-Betreff stehen an einem Ort und sind öffentlich nachlesbar.
+- **Source mandatory.** No attestation, no admission — and the attestation is fetched, not believed.
+- **Minimal attack surface.** 225 validated characters of reporter input; everything else comes from verified sources or from curation.
+- **The artifact instead of the raw text.** The routine never processes what a stranger wrote, only what the Action checked out of it.
+- **Additive-only, twice over.** The script compares the changed file field by field against the original and aborts if anything moved outside `aliasse`; the guard checks the same thing again on the diff.
+- **The trusted-source list.** Only attestations on curated domains count as evidence (see below).
+- **`status: auto-intake` and the rate brake.** Automatically created records are recognisable by their status; more than ten `auto-intake` commits on the same day, and admission switches to `wartet-maintainer`.
+- **The issue is the audit trail.** Report, artifact, decision and commit subject sit in one place and are publicly readable.
 
-Lokal prüfbar ist die Kette mit den Fixtures unter `tools/tests/` — einer für
-den tragenden Fall, drei für die Ablehnungsgründe:
+The chain is checkable locally with the fixtures under `tools/tests/` — one for the load-bearing case, three for the rejection grounds:
 
 ```sh
 ISSUE_NUMBER=1 python3 tools/intake.py --vorpruefung \
@@ -367,144 +211,64 @@ ISSUE_NUMBER=1 python3 tools/intake.py --vorpruefung \
     --body-datei tools/tests/meldung-fremde-domain.md
 ```
 
-`--dry-run` lässt `--uebernehmen` auf einer Kopie des Repos im
-Temp-Verzeichnis arbeiten und den Bestand unberührt.
+`--dry-run` makes `--uebernehmen` work on a copy of the repository in a temporary directory and leaves the holdings untouched.
 
-### Die Prüfquellen-Liste ist die einzige Stufe mit Human-in-the-loop
+### The trusted-source list is the only stage with a human in the loop
 
-`kuration/pruefquellen.json` führt die Domains, deren Publikationen der
-Ingest als Beleg akzeptiert — je Eintrag `domain`, `herausgeber`, `typ`
-(`eu-behoerde`, `eu-amtsveroeffentlichung`, `nationale-aufsicht`,
-`notenbank`, `us-aufsicht`, `gesetzesportal`, `normungsorganisation`),
-`aufgenommen` und `freigabe`. Sie ist Konfiguration wie `gruppen.json`, kein
-Record; der Build validiert Pflichtfelder und Eindeutigkeit der Domains mit.
-Subdomains gelten mit der Domain als erfasst.
+`curation/trusted-sources.json` holds the domains whose publications the ingest accepts as evidence — per entry `domain`, `herausgeber` (publisher), `typ` (`eu-behoerde`, `eu-amtsveroeffentlichung`, `nationale-aufsicht`, `notenbank`, `us-aufsicht`, `gesetzesportal`, `normungsorganisation`), `aufgenommen` (added on) and `freigabe` (release). It is configuration like `groups.json`, not a record; the build validates mandatory fields and uniqueness of domains along with everything else. Subdomains are covered by their domain.
 
-Der Bestand ist eine **Vorbelegung des Maintainers**
-(`freigabe: maintainer-seed`) über die EU-Behörden und
--Amtsveröffentlichungen, die nationalen Aufsichten und Notenbanken der
-EU-Mitgliedstaaten, das Vereinigte Königreich und die US-Bankenaufsicht sowie
-die einschlägigen Normungsorganisationen. **Die Domains sind dabei nicht
-einzeln verifiziert** — der Seed ist eine Setzung, kein Prüfbefund;
-Korrekturen laufen über denselben Prüfquellen-Prozess wie Erweiterungen.
+The current holdings are a **maintainer seed** (`freigabe: maintainer-seed`) spanning the EU authorities and official EU publication services, the national supervisors and central banks of the EU member states, the United Kingdom and the US banking supervisors, plus the relevant standards bodies. **The domains are not individually verified** — the seed is a setting, not a check finding; corrections run through the same trusted-source process as extensions.
 
-**Erweitert und korrigiert wird die Liste nur vom Maintainer.**
-Vorgeschlagen wird per Issue
-(`.github/ISSUE_TEMPLATE/pruefquelle-vorschlag.yml`, Label
-`pruefquelle-vorschlag`); die Action kennzeichnet solche Issues mit
-`wartet-maintainer` und tut sonst nichts. **Die tägliche Routine rührt sie
-nicht an** — auch nicht vorprüfend oder kommentierend. Abgearbeitet werden
-sie ausschließlich in einer Maintainer-Session, die zwei Fragen belegt
-beantwortet: Ist die Domain die offizielle Präsenz des behaupteten
-Herausgebers, und publiziert dieser Regulatorik oder Standards? Der Grund für
-die Trennung ist einzeilig: Wer die Prüfquellen kontrolliert, kontrolliert
-das Register — die Objektebene ist automatisiert, die Vertrauensebene nicht.
+**Only the maintainer extends or corrects the list.** Proposals are made by issue (`.github/ISSUE_TEMPLATE/trusted-source-proposal.yml`, label `pruefquelle-vorschlag`); the Action marks such issues `wartet-maintainer` and does nothing else. **The daily routine does not touch them** — not even to pre-check or comment. They are worked only in a maintainer session, which answers two questions with evidence: is the domain the official presence of the claimed publisher, and does that publisher issue regulation or standards? The reason for the separation is one line long: whoever controls the trusted sources controls the register — the object level is automated, the trust level is not.
 
-## Offene Modellierungsfragen
+## Open modelling questions
 
-**Rechtsnachfolge greift bislang nur innerhalb der CRD-/CRR-Familien.**
-`ersetzt` und `ersetzt_durch` verketten die Generationen-Records; alle
-übrigen Records führen die Felder leer. Die abgelösten und ablösenden
-Dokumente, die deren Fassungstexte nennen — MaRisk RS 06/2024,
-EBA/GL/2026/06 —, sind selbst keine Records: Aufgenommen wird eine Fassung
-nur, wenn sie ein eigenes verkehrsübliches Sigel trägt, und das gilt für
-Rundschreiben-Vorgänger nicht.
+**Legal succession so far reaches only inside the CRD and CRR families.** `ersetzt` and `ersetzt_durch` chain the generation records; all other records leave the fields empty. The superseding and superseded documents named in their version texts — MaRisk RS 06/2024, EBA/GL/2026/06 — are not records themselves: a version is admitted only if it carries an established siglum of its own, and that does not hold for predecessor circulars.
 
-**Die Bankenrichtlinien vor CRD IV fehlen.** `CRD I`–`CRD III` bezeichnen
-Fassungen der Vorgänger-Basisakte 2006/48/EG und 2006/49/EG, nicht der
-Richtlinie 2013/36/EU; sie brauchen deshalb eigene Identitätsanker und
-sind bewusst noch nicht angelegt. Wer sie ergänzt, hängt sie über
-`ersetzt_durch` an `crd-iv`.
+**The banking directives before CRD IV are missing.** `CRD I`–`CRD III` denote versions of the predecessor base acts 2006/48/EC and 2006/49/EC, not of Directive 2013/36/EU; they therefore need identity anchors of their own and are deliberately not yet created. Whoever adds them attaches them to `crd-iv` through `ersetzt_durch`.
 
-**`version` als Anker bleibt ein Behelf** — siehe oben; ein Wechsel auf
-einen echten Dokumentanker ist nur möglich, wenn ein Herausgeber einen
-vergibt.
+**`version` as an anchor remains a makeshift** — see above; a switch to a real document anchor is possible only if a publisher issues one.
 
-**Fassungsüberwachung erreicht nur einen Teil des Bestands.** `watch` deckt
-die Records mit CELEX-Anker ab; für `doc_ref`, `jurabk` und `version` gibt es
-keine vergleichbare Fassungsliste, sie bleiben Handkontrolle.
+**Version surveillance reaches only part of the holdings.** `watch` covers the records with a CELEX anchor; for `doc_ref`, `jurabk` and `version` there is no comparable version list, and they stay under manual control.
 
-## Fassungen prüfen
+## Checking versions
 
 ```sh
-python3 tools/watch.py [--json <pfad>]
+python3 tools/watch.py [--json <path>]
 ```
 
-`watch` fragt für jeden Record mit `identitaet.typ: celex` die
-konsolidierten Fassungen des Basisakts ab und vergleicht die jüngste mit
-`fassung.konsolidierung`. Es **schreibt nie** nach `kuration/` oder
-`dist/`: Ein Befund ist ein Auftrag an die Handpflege. Exit 1, sobald ein
-Record `veraltet` ist; `unpruefbar` bleibt Warnung.
+`watch` queries the consolidated versions of the base act for every record with `identitaet.typ: celex` and compares the most recent one with `fassung.konsolidierung`. It **never writes** to `curation/` or `dist/`: a finding is an instruction to the hand-maintained layer. Exit 1 as soon as a record is `veraltet` (outdated); `unpruefbar` (not checkable) stays a warning.
 
-**Zwei Wege, in dieser Reihenfolge.** Standard ist eine SPARQL-Abfrage an
-`https://publications.europa.eu/webapi/rdf/sparql`, die zum
-Konsolidierungspräfix (`32013L0036` → `02013L0036-`) alle CELEX-Kennungen
-liefert — Antworten im Kilobyte-Bereich. Fällt sie aus, holt `watch` das
-Notice-XML des Basisakts (`Accept: application/xml;notice=branch`, rund
-1–3 MB) und zieht die Kennungen per Regex. Der Notice-Weg braucht
-zusätzlich `Accept-Language: deu`; ohne den Kopf antwortet das Cellar mit
-HTTP 400. Der Website-Weg zu EUR-Lex bleibt per Web-Abruf gesperrt.
+**Two routes, in this order.** The default is a SPARQL query to `https://publications.europa.eu/webapi/rdf/sparql`, which returns all CELEX identifiers for the consolidation prefix (`32013L0036` → `02013L0036-`) — responses in the kilobyte range. If it fails, `watch` fetches the notice XML of the base act (`Accept: application/xml;notice=branch`, some 1–3 MB) and extracts the identifiers by regex. The notice route additionally needs `Accept-Language: deu`; without that header the Cellar answers HTTP 400. The website route to EUR-Lex remains blocked for automated fetching.
 
-**Grenzen.** Abgefragt wird sequenziell, höchstens ein Request je Sekunde,
-mit ehrlichem User-Agent. `watch` prüft, ob eine *jüngere Konsolidierung
-existiert* — nicht, ob sie inhaltlich einschlägig ist; die Entscheidung,
-ob ein Record nachgezogen wird, bleibt kuratorisch. Führt ein Record keine
-Konsolidierung, das Cellar aber schon, gilt er als `veraltet`. Steht die
-registrierte Fassung nicht in der Cellar-Liste, gilt er als `unpruefbar` —
-das ist ein Datenbefund und kein Netzfehler.
+**Limits.** Queries run sequentially, at most one request per second, with an honest user agent. `watch` checks whether *a more recent consolidation exists* — not whether it is materially relevant; the decision to update a record stays curatorial. If a record carries no consolidation but the Cellar does, it counts as `veraltet`. If the registered version is absent from the Cellar list, it counts as `unpruefbar` — that is a data finding, not a network error.
 
-## Bauen
+## Building
 
 ```sh
-python3 tools/build.py    # wiederholbar; Exit 1 bei Validierungsfehlern
+python3 tools/build.py    # repeatable; exit 1 on validation errors
 ```
 
-Der Build prüft Eindeutigkeit von `id` und `sigel`, die Sprache jeder
-Schreibform, Kollisionsfreiheit der Alias-Formen gegen fremde Sigel, die
-Auflösbarkeit jeder `evidenz`-Referenz nach `raw/`, die Struktur von
-`fassung` und jedem `geprueft`-Block, den Härtegrad gegen die Werteliste, die
-Gruppenzuordnung gegen `gruppen.json` sowie die Auflösbarkeit von
-`ersetzt`/`ersetzt_durch` auf existierende Record-IDs. Dazu prüft er
-`pruefquellen.json` auf vollständige Einträge und eindeutige, wohlgeformte
-Domains — `gruppen.json` und `pruefquellen.json` sind Konfiguration der
-Kurationsschicht und werden nie als Record gelesen. `identitaet.typ: offen`
-ist eine Warnung, kein Fehler. Kein Netzzugriff; Recherche ändert nur
-`kuration/`. `dist/` und `docs/` sind committet, damit Diffs die Wirkung
-einer Kurations-Änderung zeigen.
+The build checks uniqueness of `id` and `sigel`, the language of every spelling, freedom from collision between alias forms and foreign sigla, the resolvability of every `evidenz` reference into `raw/`, the structure of `fassung` and of every `geprueft` block, the hardness grade against its value list, the group assignment against `groups.json`, and the resolvability of `ersetzt`/`ersetzt_durch` onto existing record IDs. It also checks `trusted-sources.json` for complete entries and unique, well-formed domains — `groups.json` and `trusted-sources.json` are configuration of the curation layer and are never read as records. `identitaet.typ: offen` is a warning, not an error. No network access; research changes only `curation/`. `dist/` and `docs/` are committed so that diffs show the effect of a curation change.
 
-Daneben liegen die Migrationsskripte (`migrate_v2.py`, `migrate_haerte.py`,
-`migrate_gruppen.py`, `seed_aus_sigeltabelle.py`). Sie bleiben im Repo, weil sie
-die ausführbare Beschreibung je einer Schemaänderung sind, und laufen auf
-migrierten Beständen als No-op. Keines seedet neu — die Kurationsstände sind
-handbearbeitet.
+Alongside these lie the migration scripts (`migrate_v2.py`, `migrate_haerte.py`, `migrate_gruppen.py`, `seed_aus_sigeltabelle.py`). They stay in the repository because each is the executable description of one schema change, and they run as no-ops on migrated holdings. None of them re-seeds — the curation state is hand-edited.
 
-### Die statische Seite ist dieselbe Tabelle, ohne Renderer
+### The static page is the same table without a renderer
 
-`docs/index.html` entsteht im selben Lauf: eine einzelne Datei, kein Skript,
-kein externes Asset — Titel, Kernaussage, je Gruppe Überschrift, Aussage und
-Tabelle mit klickbaren Quelle-Links, dazu Stand und Lizenz in der Fußzeile.
-Was der Browser lädt, steht vollständig in dieser Datei; die Tabellen
-scrollen waagerecht in ihrem eigenen Rahmen, statt die Seite zu sprengen.
-Lokal ansehen:
+`docs/index.html` is produced in the same run: a single file, no script, no external asset — title, core statement, then per group a heading, a statement and a table with clickable source links, plus date and licence in the footer. What the browser loads is fully contained in that file; the tables scroll horizontally inside their own frame instead of breaking the page. To view it locally:
 
 ```sh
 python3 -m http.server --directory docs 8000
 ```
 
-## CI hält den committeten Ausgabestand ehrlich
+## CI keeps the committed output honest
 
-`.github/workflows/build.yml` läuft bei `push` und `pull_request`, baut,
-prüft mit `git diff --exit-code dist/`, dass der committete Ausgabestand der
-Kuration entspricht, und beweist mit einem zweiten Lauf plus Byte-Vergleich
-den Determinismus. `.github/workflows/intake-guard.yml` läuft auf Pull
-Requests und setzt die Ingest-Leitplanken durch. `watch` läuft **nicht** in
-CI: Er braucht Netz zum Cellar, und ein fremder Dienst gehörte sonst in den
-Erfolgspfad des Builds.
+`.github/workflows/build.yml` runs on `push` and `pull_request`, builds, verifies with `git diff --exit-code dist/` that the committed output matches curation, and proves determinism with a second run plus a byte comparison. `.github/workflows/intake-guard.yml` runs on pull requests and enforces the ingest guardrails. `watch` does **not** run in CI: it needs network access to the Cellar, and a third-party service has no business in the success path of the build.
 
-## Lizenz
+## Licence — reuse and mirroring are welcome
 
-CC BY 4.0 — Namensnennung „gnosifex“, Lizenztext unter
-[creativecommons.org/licenses/by/4.0](https://creativecommons.org/licenses/by/4.0/legalcode.de),
-Bedingungen und Geltungsbereich in [LICENSE](LICENSE). Die zitierten
-Rechtstexte und Normen selbst sind davon nicht erfasst — das Register
-beschreibt sie, es enthält sie nicht.
+The register is published under **CC BY 4.0** with attribution to **"gnosifex"**. Licence text at [creativecommons.org/licenses/by/4.0](https://creativecommons.org/licenses/by/4.0/legalcode); terms and scope in [LICENSE](LICENSE).
+
+**Reuse, redistribution and mirroring into other repositories are explicitly welcome and covered by the licence.** You may copy and redistribute the material in any medium or format, and remix, transform and build upon it, including commercially — provided you give attribution: name the author ("gnosifex"), link the licence, and indicate whether changes were made. Suggested attribution: `Quellen-Sigel-Register, gnosifex, CC BY 4.0, https://creativecommons.org/licenses/by/4.0/`
+
+The cited legal texts and standards themselves are not covered by this licence — the register describes them, it does not contain them. For those, the terms of their respective publishers apply.

@@ -31,7 +31,7 @@ TESTS = os.path.join(REPO, "tools", "tests")
 # Konfiguration der Kurationsschicht — sie traegt keine Records und wird nie
 # vom Ingest angefasst. Wer die Pruefquellen kontrolliert, kontrolliert das
 # Register.
-KONFIG_DATEIEN = ("kuration/gruppen.json", "kuration/pruefquellen.json")
+KONFIG_DATEIEN = ("curation/groups.json", "curation/trusted-sources.json")
 # Erzeugnisse des Builds. Sie duerfen sich aendern, weil `build.py` sie
 # schreibt; ob sie zur Kuration passen, prueft der Build-Workflow.
 GENERATE = ("dist/sigel.json", "dist/SIGEL.md", "docs/index.html")
@@ -144,7 +144,7 @@ def datei_pruefen(status, pfad, altpfad, basis, spitze):
         return [f"`{pfad}`: bestehende Evidenz geändert — `raw/` ist "
                 f"append-only."]
 
-    if pfad.startswith("kuration/"):
+    if pfad.startswith("curation/"):
         if status == "A":
             return []
         vorher_roh = datei_bei(basis, pfad)
@@ -158,7 +158,7 @@ def datei_pruefen(status, pfad, altpfad, basis, spitze):
         befunde = additiv_pruefen(vorher, nachher)
         return [f"`{pfad}`: {b}" for b in befunde]
 
-    return [f"`{pfad}`: liegt außerhalb von `kuration/`, `raw/`, `dist/` und "
+    return [f"`{pfad}`: liegt außerhalb von `curation/`, `raw/`, `dist/` und "
             f"`docs/` — der Ingest fasst nichts davon an."]
 
 
@@ -237,9 +237,9 @@ def main():
               "nicht vornehmen darf:", file=sys.stderr)
         for b in befunde:
             print(f"  - {b}", file=sys.stderr)
-        print("\nErlaubt sind allein: neue Dateien unter `kuration/` (außer "
-              "gruppen.json und pruefquellen.json) und `raw/`, rein additive "
-              "Ergänzungen an bestehenden kuration-Records (neue Aliasse, "
+        print("\nErlaubt sind allein: neue Dateien unter `curation/` (außer "
+              "groups.json und trusted-sources.json) und `raw/`, rein additive "
+              "Ergänzungen an bestehenden curation-Records (neue Aliasse, "
               "neue Evidenz-IDs) sowie der neu gebaute Stand von `dist/` und "
               "`docs/`.", file=sys.stderr)
         return 1

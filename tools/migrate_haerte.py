@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Traegt den Haertegrad in jeden kuration-Record ein — idempotent, netzfrei.
+"""Traegt den Haertegrad in jeden curation-Record ein — idempotent, netzfrei.
 
 Der Haertegrad sagt, wie fest die Kurzform an ihre Quelle gebunden ist:
 `amtlich` (vom Normgeber/Herausgeber foermlich vergeben), `herausgeberueblich`
@@ -22,8 +22,8 @@ import os
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-KURATION = os.path.join(REPO, "kuration")
-GRUPPEN_DATEI = os.path.join(KURATION, "gruppen.json")
+CURATION = os.path.join(REPO, "curation")
+GRUPPEN_DATEI = os.path.join(CURATION, "groups.json")
 
 GEPRUEFT = {"datum": "2026-08-25", "methode": "einschaetzung"}
 
@@ -110,7 +110,7 @@ def main():
     nur_pruefen = "--pruefen" in sys.argv
     notizen, geaendert = [], 0
 
-    for pfad in sorted(glob.glob(os.path.join(KURATION, "*.json"))):
+    for pfad in sorted(glob.glob(os.path.join(CURATION, "*.json"))):
         if os.path.abspath(pfad) == os.path.abspath(GRUPPEN_DATEI):
             continue
         with open(pfad, encoding="utf-8") as f:

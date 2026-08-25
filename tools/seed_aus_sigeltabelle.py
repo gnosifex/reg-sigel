@@ -22,7 +22,7 @@ import re
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-KURATION = os.path.join(REPO, "kuration")
+CURATION = os.path.join(REPO, "curation")
 
 RE_CELEX = re.compile(r"CELEX[:\s]+([0-9A-Za-z\-]+)")
 RE_LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
@@ -95,11 +95,11 @@ def main():
         print("FEHLER: keine Tabellenzeilen gefunden", file=sys.stderr)
         return 1
 
-    os.makedirs(KURATION, exist_ok=True)
+    os.makedirs(CURATION, exist_ok=True)
     neu = uebersprungen = 0
     for sigel, name, fassung, link in rows:
         rid = slug(sigel)
-        ziel = os.path.join(KURATION, rid + ".json")
+        ziel = os.path.join(CURATION, rid + ".json")
         if os.path.exists(ziel) and not args.force:
             uebersprungen += 1
             continue

@@ -14,7 +14,7 @@ Zwei Wege, in dieser Reihenfolge:
     Basis-CELEX — Fallback, rund 3 MB je Akt, Konsolidierungs-CELEX per
     Regex.
 
-`watch` liest nur. Es aendert nie `kuration/` oder `dist/`; ein Befund ist
+`watch` liest nur. Es aendert nie `curation/` oder `dist/`; ein Befund ist
 ein Auftrag an die Handpflege, kein automatischer Nachzug.
 
 Aufruf:
@@ -36,8 +36,8 @@ import urllib.parse
 import urllib.request
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-KURATION = os.path.join(REPO, "kuration")
-GRUPPEN_DATEI = os.path.join(KURATION, "gruppen.json")
+CURATION = os.path.join(REPO, "curation")
+GRUPPEN_DATEI = os.path.join(CURATION, "groups.json")
 
 SPARQL_ENDPUNKT = "https://publications.europa.eu/webapi/rdf/sparql"
 NOTICE_URL = "http://publications.europa.eu/resource/celex/{}"
@@ -169,7 +169,7 @@ def einstufen(registriert, gefunden, weg, fehler):
 
 def records_lesen():
     out = []
-    for pfad in sorted(glob.glob(os.path.join(KURATION, "*.json"))):
+    for pfad in sorted(glob.glob(os.path.join(CURATION, "*.json"))):
         if os.path.abspath(pfad) == os.path.abspath(GRUPPEN_DATEI):
             continue
         with open(pfad, encoding="utf-8") as f:
@@ -254,7 +254,7 @@ def main():
     stand = time.strftime("%Y-%m-%d")
     records = records_lesen()
     if not records:
-        print("FEHLER: keine Records in kuration/", file=sys.stderr)
+        print("FEHLER: keine Records in curation/", file=sys.stderr)
         return 1
 
     befunde, nicht_abgedeckt = pruefen(records)

@@ -1,11 +1,10 @@
 name: intake-guard
 
-# Die Leitplanke des automatischen Ingests, durchgesetzt statt zugesagt.
-# Die Aufnahme-Routine arbeitet auf einem Branch und eröffnet einen Pull
-# Request; gemergt wird er nur, wenn dieser Guard und der Build grün sind.
-# Der Guard liest den Diff gegen die Basis und lehnt alles ab, was die
-# Routine nicht anlegen darf — unabhängig davon, was in ihrem Auftragstext
-# steht.
+# The guard rail of the automatic ingest, enforced rather than promised. The
+# intake routine works on a branch and opens a pull request; that request is
+# merged only when this guard and the build are green. The guard reads the
+# diff against the base and refuses everything the routine is not allowed to
+# create — independently of what its task text says.
 
 on:
   pull_request:
@@ -19,18 +18,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Der Guard vergleicht gegen den Mergepunkt; dafür braucht er die
-          # Historie beider Seiten, nicht nur die Spitze.
+          # The guard compares against the merge base, so it needs the history
+          # of both sides, not just the tip.
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Selbsttest der Leitplanke
+      - name: Self-test of the guard rail
         run: python tools/intake_guard.py --selbsttest
 
-      - name: Diff gegen die Basis prüfen
+      - name: Check the diff against the base
         env:
           BASIS: ${{ github.event.pull_request.base.sha }}
           SPITZE: ${{ github.event.pull_request.head.sha }}

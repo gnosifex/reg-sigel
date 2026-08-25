@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministischer Build: kuration/ + raw/ -> dist/sigel.json und dist/SIGEL.md
+"""Deterministischer Build: curation/ + raw/ -> dist/sigel.json und dist/SIGEL.md
 
 Kein Netzzugriff. Validierungsfehler beenden den Lauf mit Exit-Code 1;
 Warnungen (offene Identität) sind kein Fehler.
@@ -15,9 +15,9 @@ import re
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-KURATION = os.path.join(REPO, "kuration")
-GRUPPEN_DATEI = os.path.join(KURATION, "gruppen.json")
-PRUEFQUELLEN_DATEI = os.path.join(KURATION, "pruefquellen.json")
+CURATION = os.path.join(REPO, "curation")
+GRUPPEN_DATEI = os.path.join(CURATION, "groups.json")
+PRUEFQUELLEN_DATEI = os.path.join(CURATION, "trusted-sources.json")
 # Konfigurationsdateien der Kurationsschicht — sie tragen keine Sigel und
 # werden deshalb nie als Record gelesen.
 KONFIG_DATEIEN = (GRUPPEN_DATEI, PRUEFQUELLEN_DATEI)
@@ -28,7 +28,7 @@ DOCS = os.path.join(REPO, "docs")
 STAND = "2026-08-25"
 QUELLE_SEED = "kuratierter Seed des Betreibers, Stand 2026-08-24"
 REPO_URL = "https://github.com/gnosifex/reg-sigel"
-LIZENZ_URL = "https://creativecommons.org/licenses/by/4.0/legalcode.de"
+LIZENZ_URL = "https://creativecommons.org/licenses/by/4.0/"
 KERNAUSSAGE = ("Das Register ordnet seine Quellen nach absteigender "
                "regulatorischer Verbindlichkeit — von unmittelbar geltendem "
                "EU-Recht über europäische und nationale Aufsichtsvorgaben bis "
@@ -97,7 +97,7 @@ def geprueft_pruefen(datei, wo, wert, fehler, methoden=PRUEF_METHODEN,
 def records_lesen():
     out = []
     konfig = {os.path.abspath(p) for p in KONFIG_DATEIEN}
-    for pfad in sorted(glob.glob(os.path.join(KURATION, "*.json"))):
+    for pfad in sorted(glob.glob(os.path.join(CURATION, "*.json"))):
         if os.path.abspath(pfad) in konfig:
             continue
         with open(pfad, encoding="utf-8") as f:
@@ -123,29 +123,29 @@ def pruefquellen_pruefen(pruefquellen, fehler):
     for i, q in enumerate(pruefquellen):
         for feld in PRUEFQUELLEN_FELDER:
             if not q.get(feld):
-                fehler.append(f"pruefquellen.json: Eintrag {i} ohne '{feld}'")
+                fehler.append(f"trusted-sources.json: Eintrag {i} ohne '{feld}'")
         unbekannt = set(q) - set(PRUEFQUELLEN_FELDER)
         if unbekannt:
-            fehler.append(f"pruefquellen.json: Eintrag {i} hat unbekannte "
+            fehler.append(f"trusted-sources.json: Eintrag {i} hat unbekannte "
                           f"Felder {sorted(unbekannt)}")
         domain = (q.get("domain") or "").lower()
         if not domain:
             continue
         if domain != q.get("domain"):
-            fehler.append(f"pruefquellen.json: Domain '{q['domain']}' ist "
+            fehler.append(f"trusted-sources.json: Domain '{q['domain']}' ist "
                           f"nicht kleingeschrieben")
         if not DOMAIN.match(domain):
-            fehler.append(f"pruefquellen.json: '{domain}' ist keine "
+            fehler.append(f"trusted-sources.json: '{domain}' ist keine "
                           f"Domain (kein Schema, kein Pfad)")
         if domain in gesehen:
-            fehler.append(f"pruefquellen.json: Domain '{domain}' doppelt "
+            fehler.append(f"trusted-sources.json: Domain '{domain}' doppelt "
                           f"(auch Eintrag {gesehen[domain]})")
         else:
             gesehen[domain] = i
         datum = q.get("aufgenommen")
         if datum is not None and not (isinstance(datum, str)
                                       and ISO_DATUM.match(str(datum))):
-            fehler.append(f"pruefquellen.json: aufgenommen '{datum}' ist "
+            fehler.append(f"trusted-sources.json: aufgenommen '{datum}' ist "
                           f"kein ISO-Datum")
 
 
@@ -211,10 +211,10 @@ def validieren(records, bekannte_raw, gruppen):
     for i, g in enumerate(gruppen):
         for feld in ("id", "titel", "aussage"):
             if not g.get(feld):
-                fehler.append(f"gruppen.json: Gruppe {i} ohne '{feld}'")
+                fehler.append(f"groups.json: Gruppe {i} ohne '{feld}'")
         gid = g.get("id")
         if gid in gruppen_ids:
-            fehler.append(f"gruppen.json: Gruppen-ID '{gid}' doppelt")
+            fehler.append(f"groups.json: Gruppen-ID '{gid}' doppelt")
         elif gid:
             gruppen_ids.append(gid)
     belegt = {gid: 0 for gid in gruppen_ids}
@@ -257,7 +257,7 @@ def validieren(records, bekannte_raw, gruppen):
         # Gliederung: jeder Record haengt an genau einer bekannten Gruppe
         gruppe = r.get("gruppe")
         if gruppe not in belegt:
-            fehler.append(f"{datei}: gruppe '{gruppe}' ist in gruppen.json "
+            fehler.append(f"{datei}: gruppe '{gruppe}' ist in groups.json "
                           f"nicht definiert")
         else:
             belegt[gruppe] += 1
@@ -305,7 +305,7 @@ def validieren(records, bekannte_raw, gruppen):
     # Eine leere Gruppe ist eine Gliederung ohne Gegenstand
     for gid, anzahl in belegt.items():
         if anzahl == 0:
-            fehler.append(f"gruppen.json: Gruppe '{gid}' ist leer")
+            fehler.append(f"groups.json: Gruppe '{gid}' ist leer")
 
     # Rechtsnachfolge muss auf existierende Records aufloesen
     for datei, r in records:
@@ -353,7 +353,7 @@ def mit_abgeleiteten_links(record):
 
     Ein CELEX-Record mit konsolidierter Fassung bekommt den EUR-Lex-Link auf
     genau diese Fassung dazugerechnet. Das geschieht erst hier, in der
-    Ausgabe — `kuration/` bleibt Handpflege und traegt keinen generierten
+    Ausgabe — `curation/` bleibt Handpflege und traegt keinen generierten
     Link. Ohne `konsolidierung` entsteht keiner: Die Basis-CELEX-Seite zeigt
     die Ursprungsfassung, nicht die registrierte.
     """
@@ -416,7 +416,7 @@ def md_schreiben(records, gruppen):
         "",
         f"Generiert von `tools/build.py` — Stand {STAND}, "
         f"Seed-Quelle: {QUELLE_SEED}. Nicht von Hand editieren; "
-        "Änderungen gehören nach `kuration/`.",
+        "Änderungen gehören nach `curation/`.",
         "",
         KERNAUSSAGE,
     ]
@@ -440,7 +440,19 @@ def md_schreiben(records, gruppen):
 # `docs/index.html` ist dieselbe Tabelle wie `dist/SIGEL.md`, nur lesbar
 # ohne Markdown-Renderer: eine Datei, kein Skript, kein externes Asset — was
 # der Browser laedt, steht vollstaendig in dieser Datei. Deterministisch wie
-# jede andere Build-Ausgabe.
+# jede andere Build-Ausgabe. Das Geruest der Seite ist englisch, der
+# Registerinhalt bleibt in der Sprache seiner Quellen.
+
+TITEL_EN = "Source Siglum Registry"
+KERNAUSSAGE_EN = ("The registry orders its sources by descending regulatory "
+                  "bindingness — from directly applicable EU law through "
+                  "European and national supervisory requirements to "
+                  "voluntary standards.")
+SPRACHHINWEIS_EN = ("Group headings, statements and record content are given "
+                    "in the language of the sources they describe, which for "
+                    "this registry is largely German; the field names of the "
+                    "machine-readable data are German as well and are "
+                    "explained in the README.")
 
 CSS = """\
 :root { color-scheme: light dark;
@@ -476,9 +488,9 @@ footer { margin-top: 3rem; padding-top: 1.25rem;
   border-top: 1px solid var(--linie); color: var(--leise); font-size: .9rem; }
 """
 
-SPALTEN = ("Sigel", "Amtliche Referenz", "Vollbezeichnung", "Rang",
-           "Härte", "Identität", "Fassung", "Quelle", "Aliasse",
-           "Belegt durch")
+SPALTEN = ("Siglum", "Official reference", "Full title", "Rank",
+           "Hardness", "Identity", "Version", "Source", "Aliases",
+           "Attested by")
 # Spalten, deren Inhalt Fliesstext ist und deshalb umbrechen darf.
 WEITE_SPALTEN = (2, 6, 8)
 
@@ -514,22 +526,23 @@ def html_schreiben(records, gruppen, fundstellen_gesamt):
     kopfzeile = "".join(f"<th>{h(s)}</th>" for s in SPALTEN)
     teile = [
         "<!DOCTYPE html>",
-        '<html lang="de">',
+        '<html lang="en">',
         "<head>",
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, '
         'initial-scale=1">',
-        "<title>Sigel-Register</title>",
-        f'<meta name="description" content="{h(KERNAUSSAGE)}">',
+        f"<title>{h(TITEL_EN)}</title>",
+        f'<meta name="description" content="{h(KERNAUSSAGE_EN)}">',
         f"<style>{CSS}</style>",
         "</head>",
         "<body>",
         "<main>",
-        "<h1>Sigel-Register</h1>",
-        f'<p class="kern">{h(KERNAUSSAGE)}</p>',
-        f'<p class="leise">Stand {h(STAND)} — {len(records)} Einträge, '
-        f'{fundstellen_gesamt} Fundstellen. Kuratiert und wachsend; '
-        f'ein Vollständigkeitsversprechen gibt das Register nicht.</p>',
+        f"<h1>{h(TITEL_EN)}</h1>",
+        f'<p class="kern">{h(KERNAUSSAGE_EN)}</p>',
+        f'<p class="leise">As of {h(STAND)} — {len(records)} entries, '
+        f'{fundstellen_gesamt} attestations. Curated and growing; the '
+        f'registry makes no promise of completeness. '
+        f'{h(SPRACHHINWEIS_EN)}</p>',
     ]
     for g in gruppen:
         teile += [
@@ -544,12 +557,13 @@ def html_schreiben(records, gruppen, fundstellen_gesamt):
         teile += ["    </tbody>", "  </table>", "</div>"]
     teile += [
         "<footer>",
-        f'<p>Stand {h(STAND)}. Erzeugt von <code>tools/build.py</code> aus '
-        f'<code>kuration/</code> und <code>raw/</code> — nicht von Hand '
-        f'editieren.</p>',
-        f'<p>Lizenz <a href="{LIZENZ_URL}">CC BY 4.0</a>, Namensnennung '
-        f'„gnosifex“. Die zitierten Rechtstexte und Normen selbst sind davon '
-        f'nicht erfasst. Quellcode und Daten: '
+        f'<p>As of {h(STAND)}. Generated by <code>tools/build.py</code> from '
+        f'<code>curation/</code> and <code>raw/</code> — do not edit by '
+        f'hand.</p>',
+        f'<p>Licensed <a href="{LIZENZ_URL}">CC BY 4.0</a>, attribution '
+        f'"gnosifex"; reuse, redistribution and mirroring are welcome under '
+        f'that licence. The cited legal texts and standards themselves are '
+        f'not covered by it. Source code and data: '
         f'<a href="{REPO_URL}">{h(REPO_URL)}</a>.</p>',
         "</footer>",
         "</main>",
@@ -563,7 +577,7 @@ def html_schreiben(records, gruppen, fundstellen_gesamt):
 def main():
     records = records_lesen()
     if not records:
-        print("FEHLER: keine Records in kuration/", file=sys.stderr)
+        print("FEHLER: keine Records in curation/", file=sys.stderr)
         return 1
 
     gruppen = gruppen_lesen()

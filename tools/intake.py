@@ -5,13 +5,13 @@ Der Weg ist dreistufig und die beiden Modi teilen ihn auf:
 
 * ``--vorpruefung`` laeuft in der Action. Sie prueft deterministisch
   (Pflichtfelder, Feldlaengen, Syntax), ruft die gemeldete Quelle ab und
-  belegt den Wortlaut, haelt die Domain gegen `kuration/pruefquellen.json`
+  belegt den Wortlaut, haelt die Domain gegen `curation/trusted-sources.json`
   — und **schreibt nichts**. Ergebnis ist das **Artefakt**: ein
   maschinenlesbares JSON plus menschlicher Pruefbericht.
 * ``--uebernehmen`` laeuft in der taeglichen Aufnahme-Routine. Ihre
   Eingabe ist **das Artefakt, nie der Issue-Text**: Der Rohtext ist
   angreifergesteuert, das Artefakt ist geprueft und quellenverifiziert.
-  Sie erzeugt den kuration- und den raw-Record, **additiv-only**, und ruft
+  Sie erzeugt den curation- und den raw-Record, **additiv-only**, und ruft
   ``build.py`` als letztes Gate. Committet wird nicht hier.
 
 Aufruf:
@@ -50,14 +50,14 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # --- Meldeformular ---------------------------------------------------------
 # Zwei Felder, mehr nicht. Alles Weitere — Referenzform, Vollbezeichnung,
 # Identitaetsanker, Herausgeber, Einordnung — ermittelt die Kette selbst aus
-# der verifizierten Quelle bzw. aus `kuration/pruefquellen.json`. Was ein
+# der verifizierten Quelle bzw. aus `curation/trusted-sources.json`. Was ein
 # Fremder schreiben darf, ist damit auf das Noetigste zusammengezogen: eine
 # Kurzform und die URL, an der sie steht.
 # Die Schluessel sind die Labels des Issue-Formulars; GitHub schreibt sie als
 # "### <Label>" in den Body. Wer ein Label im Formular aendert, aendert es hier.
 FELDER = {
-    "sigel": "Kurzform (Sigel)",
-    "quelle": "Quelle-URL",
+    "sigel": "Short form (siglum)",
+    "quelle": "Source URL",
 }
 PFLICHTFELDER = tuple(FELDER)
 LEERMARKER = ("_No response_", "_Keine Angabe_", "_No response_.")
@@ -87,7 +87,7 @@ ANKER_SYNTAX = {
 SIGEL_SYNTAX = re.compile(r"^[^\n\r|]{2,25}$")
 
 # Die Domain-Allowlist steht nicht im Code, sondern in
-# `kuration/pruefquellen.json` — sie ist kuratierte Vertrauensentscheidung
+# `curation/trusted-sources.json` — sie ist kuratierte Vertrauensentscheidung
 # und wird wie die Gliederung gepflegt, nicht wie eine Konstante.
 
 # Wie viele Fundstellen-Ausschnitte das Artefakt traegt. Die Ausschnitte
@@ -160,12 +160,12 @@ def felder_lesen(body):
     return felder
 
 
-KONFIG_DATEIEN = ("gruppen.json", "pruefquellen.json")
+KONFIG_DATEIEN = ("groups.json", "trusted-sources.json")
 
 
-def records_lesen(kuration):
+def records_lesen(curation):
     out = []
-    for pfad in sorted(glob.glob(os.path.join(kuration, "*.json"))):
+    for pfad in sorted(glob.glob(os.path.join(curation, "*.json"))):
         if os.path.basename(pfad) in KONFIG_DATEIEN:
             continue
         with open(pfad, encoding="utf-8") as f:
@@ -173,14 +173,14 @@ def records_lesen(kuration):
     return out
 
 
-def gruppen_lesen(kuration):
-    with open(os.path.join(kuration, "gruppen.json"), encoding="utf-8") as f:
+def gruppen_lesen(curation):
+    with open(os.path.join(curation, "groups.json"), encoding="utf-8") as f:
         return [g["id"] for g in json.load(f)["gruppen"]]
 
 
-def pruefquellen_lesen(kuration):
+def pruefquellen_lesen(curation):
     """Die kuratierte Liste vertrauenswuerdiger Pruefquellen."""
-    with open(os.path.join(kuration, "pruefquellen.json"),
+    with open(os.path.join(curation, "trusted-sources.json"),
               encoding="utf-8") as f:
         return json.load(f)["pruefquellen"]
 
@@ -192,50 +192,50 @@ def deterministisch_pruefen(felder):
     fehler = []
     for schluessel in PFLICHTFELDER:
         if not felder.get(schluessel):
-            fehler.append(f"Pflichtfeld „{FELDER[schluessel]}“ fehlt.")
+            fehler.append(f"Required field `{FELDER[schluessel]}` is missing.")
     if fehler:
         return fehler
 
     for schluessel, grenze in FELD_LIMITS.items():
         wert = felder.get(schluessel) or ""
         if len(wert) > grenze:
-            fehler.append(f"Feld „{FELDER[schluessel]}“ ist {len(wert)} "
-                          f"Zeichen lang, erlaubt sind {grenze}.")
+            fehler.append(f"Field `{FELDER[schluessel]}` is {len(wert)} "
+                          f"characters long; the limit is {grenze}.")
     if fehler:
         return fehler
 
     sigel = felder["sigel"]
     if not SIGEL_SYNTAX.match(sigel):
-        fehler.append(f"Kurzform „{sigel}“ ist keine zulaessige Sigel-Form "
-                      f"(2–25 Zeichen, keine Zeilenumbrueche, kein `|`).")
+        fehler.append(f"Short form `{sigel}` is not a permitted siglum form "
+                      f"(2–25 characters, no line breaks, no `|`).")
 
     url = felder["quelle"]
     zerlegt = urllib.parse.urlsplit(url)
     if zerlegt.scheme not in ("http", "https") or not zerlegt.netloc:
-        fehler.append(f"Quelle-URL „{url}“ ist keine absolute http(s)-URL.")
+        fehler.append(f"Source URL `{url}` is not an absolute http(s) URL.")
     return fehler
 
 
 def anker_pruefen(typ, wert):
     """Syntax des Identitaetsankers — geliefert von der Routine, nicht vom Melder."""
     if typ not in ANKER_TYPEN:
-        return (f"Identitätsanker-Typ `{typ}` ist keiner der vier "
-                f"zulaessigen Typen ({', '.join(ANKER_TYPEN)}).")
+        return (f"Identity anchor type `{typ}` is not one of the four "
+                f"permitted types ({', '.join(ANKER_TYPEN)}).")
     if not wert:
-        return "Identitätsanker-Wert fehlt."
+        return "Identity anchor value is missing."
     if typ == "celex":
         if CELEX_KONSOLIDIERT.match(wert):
             basis = "3" + wert[1:].split("-")[0]
-            return (f"`{wert}` ist eine konsolidierte CELEX. Das Register "
-                    f"verankert auf die Basis-CELEX — hier vermutlich "
-                    f"`{basis}`; die Konsolidierung gehoert in "
+            return (f"`{wert}` is a consolidated CELEX number. The registry "
+                    f"anchors on the base CELEX — here presumably "
+                    f"`{basis}`; the consolidation belongs in "
                     f"`fassung.konsolidierung`.")
         if not CELEX_BASIS.match(wert):
-            return f"`{wert}` ist keine CELEX-Kennung (Muster `32013L0036`)."
+            return f"`{wert}` is not a CELEX identifier (pattern `32013L0036`)."
         return None
     if not ANKER_SYNTAX[typ].match(wert):
-        return (f"Identitätsanker-Wert `{wert}` passt nicht zur Syntax des "
-                f"Typs `{typ}`.")
+        return (f"Identity anchor value `{wert}` does not match the syntax "
+                f"of type `{typ}`.")
     return None
 
 
@@ -253,22 +253,22 @@ def zugang_bestimmen(felder, records):
     for pfad, r in records:
         if r.get("sigel") == sigel:
             return {"art": "evidenz", "ziel": r["id"], "pfad": pfad,
-                    "grund": f"Sigel `{sigel}` ist als Record `{r['id']}` "
-                             f"erfasst; die Meldung zaehlt als zusaetzliche "
-                             f"Evidenz."}
+                    "grund": f"Siglum `{sigel}` is already held as record "
+                             f"`{r['id']}`; this report counts as additional "
+                             f"evidence."}
         for alias in r.get("aliasse") or []:
             if alias.get("form") == sigel:
                 return {"art": "evidenz", "ziel": r["id"], "pfad": pfad,
-                        "grund": f"`{sigel}` ist bereits Alias des Records "
-                                 f"`{r['id']}`; die Meldung belegt ihn."}
+                        "grund": f"`{sigel}` is already an alias of record "
+                                 f"`{r['id']}`; this report substantiates it."}
 
     for pfad, r in records:
         if r.get("id") == neue_id:
             return {"art": "maintainer", "ziel": r["id"], "pfad": pfad,
-                    "grund": f"Die abgeleitete Record-ID `{neue_id}` ist "
-                             f"vergeben, das Sigel aber ein anderes."}
+                    "grund": f"The derived record ID `{neue_id}` is taken, "
+                             f"but the siglum is a different one."}
     return {"art": "neu", "ziel": neue_id, "pfad": None,
-            "grund": f"`{sigel}` ist im Bestand unbekannt — neuer Record "
+            "grund": f"`{sigel}` is unknown in the registry — new record "
                      f"`{neue_id}`."}
 
 
@@ -295,19 +295,19 @@ def abrufen(url):
             rohdaten = antwort.read(MAX_BYTES + 1)
             content_type = (antwort.headers.get("Content-Type") or "").lower()
     except urllib.error.HTTPError as e:
-        return None, None, f"HTTP {e.code} beim Abruf der Quelle."
+        return None, None, f"HTTP {e.code} while fetching the source."
     except Exception as e:                      # Netz, DNS, TLS, Timeout
-        return None, None, f"Quelle nicht abrufbar: {type(e).__name__}: {e}"
+        return None, None, f"Source not retrievable: {type(e).__name__}: {e}"
 
     if len(rohdaten) > MAX_BYTES:
-        return None, None, (f"Quelle groesser als "
-                            f"{MAX_BYTES // (1024 * 1024)} MB — nicht geprueft.")
+        return None, None, (f"Source larger than "
+                            f"{MAX_BYTES // (1024 * 1024)} MB — not checked.")
 
     ist_pdf = rohdaten[:5] == b"%PDF-" or "application/pdf" in content_type
     if ist_pdf:
         if not shutil.which("pdftotext"):
-            return None, None, ("PDF-Quelle, aber `pdftotext` ist in dieser "
-                                "Umgebung nicht verfuegbar.")
+            return None, None, ("PDF source, but `pdftotext` is not "
+                                "available in this environment.")
         with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
             tmp.write(rohdaten)
             pfad = tmp.name
@@ -318,13 +318,13 @@ def abrufen(url):
         finally:
             os.unlink(pfad)
         if lauf.returncode != 0:
-            return None, None, "pdftotext konnte die Quelle nicht lesen."
-        return lauf.stdout.decode("utf-8", "replace"), "web-abruf, pdftotext", None
+            return None, None, "pdftotext could not read the source."
+        return lauf.stdout.decode("utf-8", "replace"), "web fetch, pdftotext", None
 
     text = rohdaten.decode("utf-8", "replace")
     text = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", text)
     text = re.sub(r"(?s)<[^>]+>", " ", text)
-    return html.unescape(text), "web-abruf", None
+    return html.unescape(text), "web fetch", None
 
 
 def normalisieren(text):
@@ -388,9 +388,9 @@ def quelle_pruefen(felder):
                 "volltext": text}
     if not anzahl:
         ergebnis["fehler"] = (
-            f"Die Kurzform „{felder['sigel']}“ kommt im abgerufenen Text der "
-            f"Quelle nicht wortgenau vor ({len(text)} Zeichen geprueft, "
-            f"gross-/kleinschreibungsgenau).")
+            f"The short form `{felder['sigel']}` does not occur verbatim in "
+            f"the retrieved text of the source ({len(text)} characters "
+            f"checked, case-sensitive).")
     return ergebnis
 
 
@@ -413,12 +413,12 @@ def pruefquelle_fuer(url, pruefquellen):
 def einordnung_pruefen(gruppe, rang, gruppen):
     """Gruppe und Rang der Routine gegen die Gliederung halten."""
     if not gruppe:
-        return ("Die Routine hat keine Gruppe zugeordnet; die Einordnung "
-                "wird nicht geraten.")
+        return ("The routine assigned no group; the classification is not "
+                "guessed.")
     if gruppe not in gruppen:
-        return f"Gruppe `{gruppe}` ist in `kuration/gruppen.json` unbekannt."
+        return f"Group `{gruppe}` is unknown in `curation/groups.json`."
     if rang is not None and not 1 <= rang <= 7:
-        return f"Rang `{rang}` liegt ausserhalb 1–7."
+        return f"Rank `{rang}` is outside the range 1–7."
     return None
 
 
@@ -446,7 +446,7 @@ def raw_record(felder, herausgeber, quellbefund, nummer, autor):
     }
 
 
-def kuration_record(felder, herausgeber, quellbefund, anker, gruppe, rang,
+def curation_record(felder, herausgeber, quellbefund, anker, gruppe, rang,
                     referenzform, name, nummer):
     """Der Registereintrag aus dem Artefakt plus den Zuarbeiten der Routine."""
     geprueft = {"datum": heute(), "methode": "web-abruf"}
@@ -537,7 +537,7 @@ def build_laufen(repo):
 
 def arbeitskopie(repo):
     ziel = tempfile.mkdtemp(prefix="sigel-intake-")
-    for teil in ("kuration", "raw", "dist", "tools"):
+    for teil in ("curation", "raw", "dist", "tools"):
         quelle = os.path.join(repo, teil)
         if os.path.isdir(quelle):
             shutil.copytree(quelle, os.path.join(ziel, teil))
@@ -554,26 +554,25 @@ def bericht(ergebnis):
     Fremdkommentare des Issues.
     """
     kopf = {
-        "vorgeprueft-ok": "**Vorprüfung bestanden.**",
-        "aufgenommen": "**Aufgenommen.**",
-        "abgelehnt": "**Abgelehnt.**",
-        "wartet-maintainer": "**Wartet auf den Maintainer.**",
+        "vorgeprueft-ok": "**Pre-check passed.**",
+        "aufgenommen": "**Admitted to the registry.**",
+        "abgelehnt": "**Rejected.**",
+        "wartet-maintainer": "**Waiting for the maintainer.**",
     }[ergebnis["entscheidung"]]
     zeilen = [ARTEFAKT_MARKER, "", kopf, ""]
     for befund in ergebnis["befunde"]:
         zeilen.append(f"- {befund}")
     if ergebnis.get("dateien"):
-        zeilen += ["", "Geschriebene Dateien:"]
+        zeilen += ["", "Files written:"]
         zeilen += [f"- `{d}`" for d in ergebnis["dateien"]]
-    zeilen += ["", "<details><summary>Artefakt (JSON)</summary>", "",
+    zeilen += ["", "<details><summary>Artifact (JSON)</summary>", "",
                "```json",
                json.dumps({k: v for k, v in ergebnis.items()
                            if k != "kommentar"},
                           ensure_ascii=False, indent=2),
                "```", "", "</details>", "",
-               "_Erzeugt von `tools/intake.py`. Die Aufnahme-Routine "
-               "verarbeitet ausschliesslich dieses Artefakt, nicht den "
-               "Issue-Text._"]
+               "_Produced by `tools/intake.py`. The intake routine "
+               "processes this artifact only, never the issue text._"]
     return "\n".join(zeilen)
 
 
@@ -589,21 +588,21 @@ def artefakt_lesen(pfad):
     text = roh.strip()
     if not text.startswith("{"):
         if ARTEFAKT_MARKER not in roh:
-            raise ValueError(f"`{pfad}` traegt den Artefakt-Marker "
-                             f"`{ARTEFAKT_MARKER}` nicht.")
+            raise ValueError(f"`{pfad}` does not carry the artifact marker "
+                             f"`{ARTEFAKT_MARKER}`.")
         block = re.search(r"```json\n(.*?)\n```", roh, re.S)
         if not block:
-            raise ValueError(f"`{pfad}` enthaelt keinen json-Block.")
+            raise ValueError(f"`{pfad}` contains no json block.")
         text = block.group(1)
     daten = json.loads(text)
     if daten.get("modus") != "vorpruefung":
-        raise ValueError("Das Artefakt stammt nicht aus `--vorpruefung`.")
+        raise ValueError("The artifact does not come from `--vorpruefung`.")
     if daten.get("entscheidung") != "vorgeprueft-ok":
-        raise ValueError(f"Das Artefakt traegt die Entscheidung "
-                         f"`{daten.get('entscheidung')}`, nicht "
+        raise ValueError(f"The artifact carries the decision "
+                         f"`{daten.get('entscheidung')}`, not "
                          f"`vorgeprueft-ok`.")
     if not isinstance(daten.get("felder"), dict):
-        raise ValueError("Das Artefakt fuehrt keinen Feldbestand.")
+        raise ValueError("The artifact carries no field set.")
     return daten
 
 
@@ -683,8 +682,8 @@ def main():
     if args.rang not in (None, "", "null", "keiner"):
         if not str(args.rang).isdigit() or not 1 <= int(args.rang) <= 7:
             ergebnis["entscheidung"] = "wartet-maintainer"
-            ergebnis["befunde"].append(f"Rang-Vorgabe `{args.rang}` ist "
-                                       f"unzulaessig (1–7 oder `null`).")
+            ergebnis["befunde"].append(f"Rank input `{args.rang}` is not "
+                                       f"permitted (1–7 or `null`).")
             return abschliessen(ergebnis, args)
         vorgabe_rang = int(args.rang)
 
@@ -701,16 +700,16 @@ def main():
         ergebnis["entscheidung"] = "abgelehnt"
         ergebnis["befunde"] = fehler
         ergebnis["befunde"].append(
-            "Die Aufnahme-Regel des Registers ist eine Quellen-Regel: Ohne "
-            "vollstaendige, syntaktisch saubere Meldung samt Fundstelle wird "
-            "nicht geprueft.")
+            "The registry admits on source evidence: a report is checked only "
+            "when it is complete, syntactically clean and names the place of "
+            "occurrence.")
         return abschliessen(ergebnis, args)
 
     repo = arbeitskopie(REPO) if (args.uebernehmen and args.dry_run) else REPO
-    kuration = os.path.join(repo, "kuration")
-    records = records_lesen(kuration)
-    gruppen = gruppen_lesen(kuration)
-    pruefquellen = pruefquellen_lesen(kuration)
+    curation = os.path.join(repo, "curation")
+    records = records_lesen(curation)
+    gruppen = gruppen_lesen(curation)
+    pruefquellen = pruefquellen_lesen(curation)
 
     zugang = zugang_bestimmen(felder, records)
     ergebnis["zugang"] = zugang["art"]
@@ -729,10 +728,10 @@ def main():
         ergebnis["befunde"].append(quellbefund["fehler"])
         return abschliessen(ergebnis, args)
     ergebnis["befunde"].append(
-        f"Quelle abgerufen ({quellbefund['methode']}, "
-        f"{quellbefund['zeichen']} Zeichen); „{felder['sigel']}“ kommt "
-        f"{quellbefund['treffer']}× wortgenau vor. Erste Fundstelle: "
-        f"„{quellbefund['kontexte'][0]}“")
+        f"Source fetched ({quellbefund['methode']}, "
+        f"{quellbefund['zeichen']} characters); `{felder['sigel']}` occurs "
+        f"{quellbefund['treffer']}× verbatim. First occurrence: "
+        f"`{quellbefund['kontexte'][0]}`")
 
     # Stufe 3 — Herkunft entscheidet ueber Automatik
     quelle_eintrag = pruefquelle_fuer(felder["quelle"], pruefquellen)
@@ -742,22 +741,21 @@ def main():
         ergebnis["entscheidung"] = "abgelehnt"
         host = urllib.parse.urlsplit(felder["quelle"]).hostname
         ergebnis["befunde"].append(
-            f"`{host}` steht nicht in `kuration/pruefquellen.json`. Belegt "
-            f"ist eine Kurzform nur durch eine freigegebene Pruefquelle — "
-            f"die Meldung wird abgelehnt, nicht geparkt. Wer die Domain fuer "
-            f"eine Pruefquelle haelt, schlaegt sie mit dem Formular "
-            f"`pruefquelle-vorschlag` vor; ueber die Vertrauensebene "
-            f"entscheidet allein der Maintainer.")
+            f"`{host}` is not listed in `curation/trusted-sources.json`. A "
+            f"short form counts as substantiated only through an approved "
+            f"trusted source, so this report is rejected. To have the domain "
+            f"considered, propose it with the `trusted-source-proposal` form; "
+            f"the trust layer is decided by the maintainer alone.")
         return abschliessen(ergebnis, args)
     ergebnis["befunde"].append(
-        f"Quelle ist eine kuratierte Pruefquelle: `{quelle_eintrag['domain']}` "
+        f"Source is a curated trusted source: `{quelle_eintrag['domain']}` "
         f"({quelle_eintrag['herausgeber']}, {quelle_eintrag['typ']}).")
 
     if args.vorpruefung:
         ergebnis["entscheidung"] = "vorgeprueft-ok"
         ergebnis["befunde"].append(
-            "Die taegliche Aufnahme-Routine uebernimmt den Eintrag; "
-            "geschrieben hat die Vorpruefung nichts.")
+            "The daily intake routine will enter the record; the pre-check "
+            "itself wrote nothing.")
         return abschliessen(ergebnis, args)
 
     # --- ab hier nur --uebernehmen ---
@@ -770,17 +768,17 @@ def main():
             anker_pruefen(anker["typ"], anker["wert"]),
             einordnung_pruefen(gruppe, rang, gruppen),
             None if args.referenzform else
-            "Die Routine hat keine amtliche Referenzform ermittelt.",
+            "The routine determined no official reference form.",
             None if args.name else
-            "Die Routine hat keine Vollbezeichnung ermittelt.",
+            "The routine determined no full title.",
         ) if m]
         if maengel:
             ergebnis["entscheidung"] = "wartet-maintainer"
             ergebnis["befunde"] += maengel
             ergebnis["befunde"].append(
-                "Ein neuer Record braucht Anker, Einordnung und Bezeichnung. "
-                "Was die Routine nicht sicher an der Quelle ermitteln kann, "
-                "raet sie nicht — das entscheidet der Maintainer.")
+                "A new record needs an anchor, a classification and a title. "
+                "What the routine cannot establish reliably at the source it "
+                "does not guess — the maintainer decides it.")
             return abschliessen(ergebnis, args)
         # Traegt ein Bestandsrecord denselben Anker, ist die gemeldete
         # Kurzform dort eine weitere Schreibform, kein neues Dokument.
@@ -789,23 +787,23 @@ def main():
         if alias_record is not None:
             zugang = {"art": "alias", "ziel": alias_record["id"],
                       "pfad": alias_pfad,
-                      "grund": f"Anker `{anker['typ']}:{anker['wert']}` "
-                               f"gehoert zu Record `{alias_record['id']}`; "
-                               f"`{felder['sigel']}` wird dort Alias."}
+                      "grund": f"Anchor `{anker['typ']}:{anker['wert']}` "
+                               f"belongs to record `{alias_record['id']}`; "
+                               f"`{felder['sigel']}` becomes an alias there."}
             ergebnis["zugang"] = "alias"
             ergebnis["befunde"].append(zugang["grund"])
         else:
             ergebnis["befunde"].append(
-                f"Einordnung durch die Routine: Gruppe `{gruppe}`, Rang "
-                f"{'—' if rang is None else rang}, Anker "
+                f"Classification by the routine: group `{gruppe}`, rank "
+                f"{'—' if rang is None else rang}, anchor "
                 f"`{anker['typ']}:{anker['wert']}`.")
 
     getan = ratenbremse(REPO)
     if getan >= RATE_GRENZE:
         ergebnis["entscheidung"] = "wartet-maintainer"
         ergebnis["befunde"].append(
-            f"Ratenbremse: heute liegen bereits {getan} auto-intake-Commits "
-            f"vor (Grenze {RATE_GRENZE}).")
+            f"Rate limit: {getan} auto-intake commits already exist today "
+            f"(limit {RATE_GRENZE}).")
         return abschliessen(ergebnis, args)
 
     raw_id = f"{heute()}-intake-{nummer}-{slug(felder['sigel'])}"
@@ -813,8 +811,8 @@ def main():
     if os.path.exists(raw_pfad):
         ergebnis["entscheidung"] = "wartet-maintainer"
         ergebnis["befunde"].append(
-            f"`raw/{raw_id}.json` existiert bereits — die Meldung wurde heute "
-            f"schon verarbeitet.")
+            f"`raw/{raw_id}.json` already exists — this report was already "
+            f"processed today.")
         return abschliessen(ergebnis, args)
 
     # Rueckabwicklung vorbereiten: Originalzustaende merken
@@ -838,15 +836,15 @@ def main():
         ergebnis["dateien"].append(os.path.relpath(raw_pfad, repo))
 
         if zugang["art"] == "neu":
-            neu = kuration_record(
+            neu = curation_record(
                 felder, quelle_eintrag["herausgeber"], quellbefund, anker,
                 gruppe, rang, args.referenzform, args.name, nummer)
-            kur_pfad = os.path.join(kuration, zugang["ziel"] + ".json")
+            kur_pfad = os.path.join(curation, zugang["ziel"] + ".json")
             merken(kur_pfad)
             json_schreiben(kur_pfad, neu)
             ergebnis["dateien"].append(os.path.relpath(kur_pfad, repo))
         elif zugang["art"] == "alias":
-            ziel = os.path.join(kuration, zugang["ziel"] + ".json")
+            ziel = os.path.join(curation, zugang["ziel"] + ".json")
             merken(ziel)
             _, nachher = alias_ergaenzen(ziel, felder["sigel"], raw_id)
             if nachher is not None:
@@ -857,7 +855,7 @@ def main():
 
         code, ausgabe = build_laufen(repo)
         if code != 0:
-            raise RuntimeError(f"build.py bricht ab (Exit {code}):\n{ausgabe}")
+            raise RuntimeError(f"build.py failed (exit {code}):\n{ausgabe}")
         ergebnis["build"] = ausgabe.splitlines()[-1] if ausgabe else ""
         for name in ("sigel.json", "SIGEL.md"):
             ergebnis["dateien"].append(f"dist/{name}")
@@ -872,7 +870,7 @@ def main():
         ergebnis["entscheidung"] = "wartet-maintainer"
         ergebnis["dateien"] = []
         ergebnis["befunde"].append(
-            f"Aufnahme zurueckgenommen, der Bestand ist unveraendert: {e}")
+            f"Intake rolled back, the registry is unchanged: {e}")
         if args.dry_run and repo != REPO:
             shutil.rmtree(repo, ignore_errors=True)
         return abschliessen(ergebnis, args)
@@ -882,12 +880,12 @@ def main():
                                   f"(#{nummer})")
     if args.dry_run:
         ergebnis["befunde"].append(
-            f"Probelauf auf einer Kopie ({repo}); der Bestand ist unberuehrt.")
+            f"Dry run on a copy ({repo}); the registry is untouched.")
         shutil.rmtree(repo, ignore_errors=True)
     else:
         ergebnis["befunde"].append(
-            "Records geschrieben und `build.py` gruen — die Routine committet "
-            "den Stand.")
+            "Records written and `build.py` green — the routine commits the "
+            "result.")
     return abschliessen(ergebnis, args)
 
 

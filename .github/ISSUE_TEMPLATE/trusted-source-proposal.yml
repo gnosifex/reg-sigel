@@ -1,0 +1,54 @@
+name: Trusted source proposal
+description: Propose a domain for the curated list of trusted sources
+title: "[pruefquelle] "
+labels:
+  - pruefquelle-vorschlag
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The trusted-source list (`curation/trusted-sources.json`) decides which
+        places of occurrence the automatic ingest believes. That is why it is
+        the **only path with a human in the loop**: the daily routine checks
+        the proposal and gives a recommendation, but a domain is added by the
+        maintainer alone.
+
+  - type: input
+    id: domain
+    attributes:
+      label: Domain
+      description: The domain only — no scheme, no path. Subdomains are included.
+      placeholder: bafin.de
+    validations:
+      required: true
+
+  - type: input
+    id: herausgeber
+    attributes:
+      label: Publisher
+      description: The body whose official web presence this domain is.
+      placeholder: BaFin
+    validations:
+      required: true
+
+  - type: dropdown
+    id: typ
+    attributes:
+      label: Type
+      options:
+        - regulator
+        - normungsorganisation
+        - gesetzesportal
+        - eu-amtsveroeffentlichung
+    validations:
+      required: true
+
+  - type: textarea
+    id: begruendung
+    attributes:
+      label: Rationale
+      description: |
+        Why is this domain the official presence of that publisher, and which
+        regulation or standards does it publish there? Give URLs as evidence.
+    validations:
+      required: true

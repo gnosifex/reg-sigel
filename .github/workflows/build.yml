@@ -1,10 +1,9 @@
 name: build
 
-# Der Build ist die einzige Instanz, die dist/ und docs/ schreiben darf.
-# CI beweist
-# zweierlei: der committete dist-Stand entspricht der Kuration, und zwei
-# Laeufe liefern byte-gleiche Ausgaben. Kein watch — der braucht Netz zum
-# Cellar und laeuft deshalb von Hand.
+# The build is the only instance allowed to write dist/ and docs/. CI proves
+# two things: the committed dist state matches the curation, and two runs
+# produce byte-identical output. No watch here — it needs network access to
+# the source registries and is therefore run by hand.
 
 on:
   push:
@@ -23,10 +22,10 @@ jobs:
       - name: Build
         run: python tools/build.py
 
-      - name: Committeter Ausgabestand entspricht der Kuration
+      - name: Committed output matches the curation
         run: git diff --exit-code dist/ docs/
 
-      - name: Zweiter Lauf ist byte-gleich
+      - name: Second run is byte-identical
         run: |
           cp dist/sigel.json /tmp/sigel.json
           cp dist/SIGEL.md /tmp/SIGEL.md

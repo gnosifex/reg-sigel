@@ -1,6 +1,6 @@
 # Sigel-Register
 
-Generiert von `tools/build.py` — Stand 2026-08-25, Seed-Quelle: kuratierter Seed des Betreibers, Stand 2026-08-24. Nicht von Hand editieren; Änderungen gehören nach `kuration/`.
+Generiert von `tools/build.py` — Stand 2026-08-25, Seed-Quelle: kuratierter Seed des Betreibers, Stand 2026-08-24. Nicht von Hand editieren; Änderungen gehören nach `curation/`.
 
 Das Register ordnet seine Quellen nach absteigender regulatorischer Verbindlichkeit — von unmittelbar geltendem EU-Recht über europäische und nationale Aufsichtsvorgaben bis zu freiwilligen Standards.
 

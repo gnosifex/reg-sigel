@@ -1,0 +1,55 @@
+name: Siglum report
+description: Report a source and its short form for admission to the registry
+title: "[sigel] "
+labels:
+  - sigel-meldung
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Two fields, and that is all.** Everything else — official reference
+        form, full title, identity anchor, publisher, classification — the
+        intake chain determines from the source itself. What you write here is
+        the only foreign text that enters the processing chain; that is why it
+        is short and length-limited.
+
+        **The source is mandatory and it is fetched.** The pre-check retrieves
+        the URL you name and looks for the short form there — **case-sensitively**.
+        If it does not occur verbatim, the report is rejected.
+
+        **The source must be an approved trusted source.** Only the domains in
+        `curation/trusted-sources.json` count as evidence. A report from any
+        other domain is rejected; if you believe the domain belongs on the
+        list, propose it with the *Trusted source proposal* form.
+
+        **Source sigla only.** A registry entry is created only for what
+        resolves to a citable document with an identity anchor. Plain
+        terminology abbreviations (SBOM, ICT, ISMS) denote no source and are
+        never admitted.
+
+        **Additions only, no edits.** Reports about sigla already held run as
+        additional evidence. Renamings and corrections to existing records are
+        made by the maintainer by hand.
+
+  - type: input
+    id: sigel
+    attributes:
+      label: Short form (siglum)
+      description: |
+        Verbatim, exactly as the source writes it. **25 characters at most** —
+        longer reports are rejected automatically.
+      placeholder: MaRisk
+    validations:
+      required: true
+
+  - type: input
+    id: quelle
+    attributes:
+      label: Source URL
+      description: |
+        The original place of occurrence where the short form appears verbatim —
+        an HTML page or a PDF of the publisher. Third-party write-ups do not
+        count as evidence. **200 characters at most.**
+      placeholder: https://www.bafin.de/…
+    validations:
+      required: true

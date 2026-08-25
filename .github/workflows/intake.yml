@@ -1,16 +1,16 @@
 name: intake-vorpruefung
 
-# Die Action prueft, sie nimmt nicht auf. Sie stellt deterministisch fest,
-# ob die Meldung vollstaendig und laengenkonform ist, ob die genannte Quelle
-# die Kurzform woertlich traegt und ob sie auf der kuratierten
-# Pruefquellen-Liste steht — und postet das Ergebnis als **Artefakt**:
-# ein Bot-Kommentar mit dem Marker `<!-- intake-artefakt v1 -->` und dem
-# Pruefergebnis als JSON. Geschrieben wird nichts.
+# The Action checks, it does not admit. It determines deterministically
+# whether the report is complete and within its length limits, whether the
+# named source carries the short form verbatim, and whether that source is on
+# the curated trusted-source list — and posts the outcome as an **artifact**:
+# a bot comment carrying the marker `<!-- intake-artefakt v1 -->` and the check
+# result as JSON. Nothing is written to the registry.
 #
-# Das Artefakt ist die einzige Eingabe der taeglichen Aufnahme-Routine
-# (tools/routine-intake.md). Der Issue-Text selbst wird von ihr nie gelesen:
-# Er ist angreifergesteuert, das Artefakt ist syntaxgeprueft,
-# laengenbegrenzt und an der Quelle verifiziert.
+# The artifact is the only input of the daily intake routine
+# (tools/routine-intake.md). The routine never reads the issue text itself:
+# that text is attacker-controlled, while the artifact is syntax-checked,
+# length-limited and verified at the source.
 
 on:
   issues:
@@ -34,19 +34,19 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: PDF-Quellen lesbar machen
+      - name: Make PDF sources readable
         run: sudo apt-get update && sudo apt-get install -y poppler-utils
 
-      - name: Vorpruefung
+      - name: Pre-check
         env:
-          # Der Issue-Body ist Fremdtext und kommt ausschliesslich ueber die
-          # Umgebung ins Skript — nie in eine Shell-Zeile interpoliert.
+          # The issue body is foreign text and reaches the script only through
+          # the environment — never interpolated into a shell line.
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
         run: python tools/intake.py --vorpruefung --ergebnis ergebnis.json
 
-      - name: Ergebnis lesen
+      - name: Read the result
         id: ergebnis
         run: |
           python - <<'PY' >> "$GITHUB_OUTPUT"
@@ -59,18 +59,18 @@ jobs:
               f.write(e["kommentar"])
           PY
 
-      - name: Labels sicherstellen
+      - name: Ensure labels exist
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh label create vorgeprueft-ok --color 0E8A16 \
-            --description "Vorpruefung bestanden; Aufnahme durch die Routine" || true
+            --description "Pre-check passed; admission by the intake routine" || true
           gh label create abgelehnt --color B60205 \
-            --description "Meldung erfuellt die Aufnahme-Regel nicht" || true
+            --description "Report does not meet the admission rule" || true
           gh label create wartet-maintainer --color FBCA04 \
-            --description "Entscheidung liegt beim Maintainer" || true
+            --description "Decision rests with the maintainer" || true
 
-      - name: Artefakt ans Issue
+      - name: Post the artifact to the issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUMMER: ${{ github.event.issue.number }}
@@ -89,22 +89,22 @@ jobs:
             gh issue close "$NUMMER" --reason "not planned"
           fi
 
-  # Pruefquellen-Vorschlaege beruehrt keine Automatik — auch keine
-  # Vorpruefung. Wer die Pruefquellen kontrolliert, kontrolliert das
-  # Register; diese Ebene arbeitet allein der Maintainer in einer eigenen
-  # Session ab. Die Action tut hier nichts als kennzeichnen.
+  # Trusted-source proposals are touched by no automation at all — not even a
+  # pre-check. Whoever controls the trusted sources controls the registry, so
+  # the maintainer works this layer in a session of his own. The Action does
+  # nothing here but label.
   pruefquelle:
     if: >-
       github.event.issue.state == 'open' &&
       contains(github.event.issue.labels.*.name, 'pruefquelle-vorschlag')
     runs-on: ubuntu-latest
     steps:
-      - name: Als Maintainer-Sache kennzeichnen
+      - name: Mark as a maintainer matter
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUMMER: ${{ github.event.issue.number }}
           REPO: ${{ github.repository }}
         run: |
           gh label create wartet-maintainer --repo "$REPO" --color FBCA04 \
-            --description "Entscheidung liegt beim Maintainer" || true
+            --description "Decision rests with the maintainer" || true
           gh issue edit "$NUMMER" --repo "$REPO" --add-label wartet-maintainer

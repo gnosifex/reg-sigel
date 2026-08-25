@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Traegt die Gruppenzuordnung in jeden kuration-Record ein — idempotent.
+"""Traegt die Gruppenzuordnung in jeden curation-Record ein — idempotent.
 
 Das Register ordnet seine Quellen nach absteigender regulatorischer
 Verbindlichkeit; die Gruppen selbst stehen mit Titel und tragender Aussage in
-`kuration/gruppen.json`, ihre Reihenfolge dort ist die Ausgabereihenfolge.
+`curation/groups.json`, ihre Reihenfolge dort ist die Ausgabereihenfolge.
 Dieses Skript verteilt nur die Record-IDs auf die Gruppen.
 
 Ein Record, der bereits eine Gruppe traegt, wird nicht ueberschrieben:
@@ -21,8 +21,8 @@ import os
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-KURATION = os.path.join(REPO, "kuration")
-GRUPPEN_DATEI = os.path.join(KURATION, "gruppen.json")
+CURATION = os.path.join(REPO, "curation")
+GRUPPEN_DATEI = os.path.join(CURATION, "groups.json")
 
 # --- Zuordnung ------------------------------------------------------------
 GRUPPEN_INHALT = {
@@ -86,11 +86,11 @@ def main():
         bekannt = {g["id"] for g in json.load(f)["gruppen"]}
     unbekannt = set(GRUPPEN_INHALT) - bekannt
     if unbekannt:
-        print(f"FEHLER: Zuordnung nennt Gruppen, die gruppen.json nicht "
+        print(f"FEHLER: Zuordnung nennt Gruppen, die groups.json nicht "
               f"kennt: {sorted(unbekannt)}", file=sys.stderr)
         return 1
 
-    for pfad in sorted(glob.glob(os.path.join(KURATION, "*.json"))):
+    for pfad in sorted(glob.glob(os.path.join(CURATION, "*.json"))):
         if os.path.abspath(pfad) == os.path.abspath(GRUPPEN_DATEI):
             continue
         with open(pfad, encoding="utf-8") as f:
