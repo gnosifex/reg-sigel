@@ -34,7 +34,8 @@ TESTS = os.path.join(REPO, "tools", "tests")
 KONFIG_DATEIEN = ("curation/groups.json", "curation/trusted-sources.json")
 # Erzeugnisse des Builds. Sie duerfen sich aendern, weil `build.py` sie
 # schreibt; ob sie zur Kuration passen, prueft der Build-Workflow.
-GENERATE = ("dist/sigel.json", "dist/SIGEL.md", "docs/index.html")
+GENERATE = ("dist/sigel.json", "dist/SIGEL.md", "docs/index.html",
+            "docs/de.html")
 
 
 # --- Diff lesen ------------------------------------------------------------

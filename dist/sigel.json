@@ -9,37 +9,51 @@
       {
         "id": "eu-verordnungen",
         "titel": "EU-Verordnungen",
-        "aussage": "Unmittelbar geltendes EU-Recht — gilt ohne nationalen Umsetzungsakt."
+        "aussage": "Unmittelbar geltendes EU-Recht — gilt ohne nationalen Umsetzungsakt.",
+        "titel_en": "EU Regulations",
+        "aussage_en": "Directly applicable EU law — no national transposition required."
       },
       {
         "id": "eu-richtlinien",
         "titel": "EU-Richtlinien",
-        "aussage": "Wirken erst über die nationale Umsetzung — maßgeblich für Institute ist das Umsetzungsgesetz (CRD → KWG)."
+        "aussage": "Wirken erst über die nationale Umsetzung — maßgeblich für Institute ist das Umsetzungsgesetz (CRD → KWG).",
+        "titel_en": "EU Directives",
+        "aussage_en": "Take effect only through national transposition — for institutions, the transposing statute governs (CRD → KWG)."
       },
       {
         "id": "nationale-gesetze",
         "titel": "Deutsche Gesetze",
-        "aussage": "Verbindliches nationales Recht — gilt neben dem EU-Rahmen und setzt EU-Richtlinien um."
+        "aussage": "Verbindliches nationales Recht — gilt neben dem EU-Rahmen und setzt EU-Richtlinien um.",
+        "titel_en": "German Statutes",
+        "aussage_en": "Binding national law — applies alongside the EU framework and transposes EU directives."
       },
       {
         "id": "eu-durchfuehrung",
         "titel": "Delegierte und Durchführungsrechtsakte zur DORA",
-        "aussage": "RTS und ITS, erlassen als delegierte bzw. Durchführungsverordnungen — unmittelbar verbindlich wie die Basisverordnung."
+        "aussage": "RTS und ITS, erlassen als delegierte bzw. Durchführungsverordnungen — unmittelbar verbindlich wie die Basisverordnung.",
+        "titel_en": "Delegated and Implementing Acts under DORA",
+        "aussage_en": "RTS and ITS, adopted as delegated and implementing regulations — as directly binding as the base regulation."
       },
       {
         "id": "eu-leitlinien",
         "titel": "Europäische Aufsichtsleitlinien",
-        "aussage": "Leitlinien der EU-Behörden — nicht unmittelbar rechtsverbindlich, wirken über Comply-or-explain und Aufsichtspraxis."
+        "aussage": "Leitlinien der EU-Behörden — nicht unmittelbar rechtsverbindlich, wirken über Comply-or-explain und Aufsichtspraxis.",
+        "titel_en": "European Supervisory Guidelines",
+        "aussage_en": "Guidelines of the EU authorities — not directly legally binding; they operate through comply-or-explain and supervisory practice."
       },
       {
         "id": "nationale-aufsicht",
         "titel": "Deutsche Aufsichtspraxis",
-        "aussage": "Verwaltungsauffassung der BaFin — maßgeblich für die Aufsichtspraxis, kein Gesetzesrang."
+        "aussage": "Verwaltungsauffassung der BaFin — maßgeblich für die Aufsichtspraxis, kein Gesetzesrang.",
+        "titel_en": "German Supervisory Practice",
+        "aussage_en": "BaFin's administrative interpretation — decisive in supervisory practice, without the rank of statute."
       },
       {
         "id": "standards-praktiken",
         "titel": "Standards und führende Praktiken",
-        "aussage": "Nicht rechtsverbindlich — eigenständige Standards und Praxisrahmen, die als Referenz herangezogen werden."
+        "aussage": "Nicht rechtsverbindlich — eigenständige Standards und Praxisrahmen, die als Referenz herangezogen werden.",
+        "titel_en": "Standards and Leading Practices",
+        "aussage_en": "Not legally binding — independent standards and practice frameworks used as reference."
       }
     ]
   },

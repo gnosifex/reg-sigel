@@ -4,9 +4,9 @@
 
 The scope is the source vocabulary of EU, UK and US financial regulation and the adjacent IT and information-security regulation — EU regulations and directives, delegated and implementing acts, European supervisory guidelines, national law and supervisory practice, and the standards cited alongside them.
 
-The built register lives in [`dist/SIGEL.md`](dist/SIGEL.md) (tables), [`dist/sigel.json`](dist/sigel.json) (machine-readable) and as a static page at [`docs/index.html`](docs/index.html).
+The built register lives in [`dist/SIGEL.md`](dist/SIGEL.md) (tables), [`dist/sigel.json`](dist/sigel.json) (machine-readable) and as a static page in two languages — [`docs/index.html`](docs/index.html) (English) and [`docs/de.html`](docs/de.html) (German).
 
-Browse the registry in your browser: **https://gnosifex.github.io/reg-sigel/**
+Browse the registry in your browser: **https://gnosifex.github.io/reg-sigel/** (English) · **https://gnosifex.github.io/reg-sigel/de.html** (Deutsch)
 
 The data comes from a non-public regulatory corpus. This is its third public spin-off, alongside [esa-qa-mirror](https://github.com/gnosifex/esa-qa-mirror) — a Markdown mirror of the supervisory Q&As — and [dora-graph](https://github.com/gnosifex/dora-graph) — an animated map of the DORA regulation and its surrounding documents.
 
@@ -253,9 +253,9 @@ The build checks uniqueness of `id` and `sigel`, the language of every spelling,
 
 Alongside these lie the migration scripts (`migrate_v2.py`, `migrate_haerte.py`, `migrate_gruppen.py`, `seed_aus_sigeltabelle.py`). They stay in the repository because each is the executable description of one schema change, and they run as no-ops on migrated holdings. None of them re-seeds — the curation state is hand-edited.
 
-### The static page is the same table without a renderer
+### The static page is the same table without a renderer, in two languages
 
-`docs/index.html` is produced in the same run: a single file, no script, no external asset — title, core statement, then per group a heading, a statement and a table with clickable source links, plus date and licence in the footer. What the browser loads is fully contained in that file; the tables scroll horizontally inside their own frame instead of breaking the page. To view it locally:
+`docs/index.html` (English) and `docs/de.html` (German) are produced in the same run: each a single file, no script, no external asset — title, core statement, then per group a heading, a statement and a table with clickable source links, plus date and licence in the footer. A plain link at the top right switches between the two, which is why no JavaScript is needed. Language-dependent is the frame only — title, core statement, column heads, group titles and statements, footer, and the display labels of the hardness grade; the data cells are identical in both versions and stay in the language of their sources, as does the schema. Both come from the same build: `curation/groups.json` carries each group in both languages, and the build refuses a group that is missing one. What the browser loads is fully contained in the one file; the tables scroll horizontally inside their own frame instead of breaking the page. To view them locally:
 
 ```sh
 python3 -m http.server --directory docs 8000

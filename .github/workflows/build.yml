@@ -30,7 +30,9 @@ jobs:
           cp dist/sigel.json /tmp/sigel.json
           cp dist/SIGEL.md /tmp/SIGEL.md
           cp docs/index.html /tmp/index.html
+          cp docs/de.html /tmp/de.html
           python tools/build.py
           cmp /tmp/sigel.json dist/sigel.json
           cmp /tmp/SIGEL.md dist/SIGEL.md
           cmp /tmp/index.html docs/index.html
+          cmp /tmp/de.html docs/de.html
