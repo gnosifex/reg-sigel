@@ -1,0 +1,41 @@
+{
+  "id": "sdm",
+  "sigel": "SDM",
+  "sprache": "de",
+  "name": "Standard-Datenschutzmodell (DSK)",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "version",
+    "wert": "V3.1a",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "Methodenhandbuch V3.1a, 14.05.2024"
+  },
+  "links": [
+    {
+      "label": "DSK, SDM-Methode V3.1 (PDF)",
+      "url": "https://www.datenschutzkonferenz-online.de/media/ah/SDM-Methode-V31.pdf",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "web-abruf"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": null,
+  "referenzform": "SDM V3.1a"
+}

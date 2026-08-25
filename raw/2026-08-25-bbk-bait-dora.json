@@ -1,0 +1,36 @@
+{
+  "herausgeber": "BBK",
+  "quelle": "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/risikomanagement/bait-dora-598580",
+  "abgerufen": "2026-08-25",
+  "methode": "web-abruf",
+  "eintraege": [
+    {
+      "form": "BAIT",
+      "kontext": "Die bankaufsichtlichen Anforderungen an die IT (BAIT, BaFin-Rundschreiben 10/2017 in der Fassung vom 16. Dezember 2024) geben auf der Grundlage des § 25a Abs. 1 Kreditwesengesetz (KWG) einen flexiblen und praxisnahen Rahmen … vor.",
+      "fundstellen": [
+        "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/risikomanagement/bait-dora-598580"
+      ]
+    },
+    {
+      "form": "DORA",
+      "kontext": "Das im Dezember 2024 verabschiedete Finanzmarktdigitalisierungsgesetz (FinmadiG) unterwirft weitere, über das KWG regulierte Nicht-CRR-Institute der DORA …",
+      "fundstellen": [
+        "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/risikomanagement/bait-dora-598580"
+      ]
+    },
+    {
+      "form": "KWG",
+      "kontext": "Ferner präzisieren sie die Anforderungen des § 25b KWG (Auslagerung von Aktivitäten und Prozessen).",
+      "fundstellen": [
+        "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/risikomanagement/bait-dora-598580"
+      ]
+    },
+    {
+      "form": "CRR",
+      "kontext": "… unterwirft weitere, über das KWG regulierte Nicht-CRR-Institute der DORA …",
+      "fundstellen": [
+        "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/risikomanagement/bait-dora-598580"
+      ]
+    }
+  ]
+}

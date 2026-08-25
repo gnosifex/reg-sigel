@@ -1,0 +1,43 @@
+{
+  "id": "crr-ii",
+  "sigel": "CRR II",
+  "sprache": "de",
+  "name": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2019/876 (CRR II)",
+  "haerte": "verkehrsueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-verordnungen",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32013R0575",
+    "geprueft": {
+      "datum": "2026-08-25",
+      "methode": "web-abruf"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2019/876"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32019R0876",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "konstruiert"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [
+    "crr-iii"
+  ],
+  "status": "kuriert",
+  "rang": 1,
+  "referenzform": "Verordnung (EU) 2019/876"
+}

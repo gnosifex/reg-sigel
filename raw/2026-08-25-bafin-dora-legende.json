@@ -1,0 +1,87 @@
+{
+  "id": "2026-08-25-bafin-dora-legende",
+  "herausgeber": "BaFin",
+  "quelle": "Abkuerzungslegende der BaFin-DORA-Publikationen — Aufsichtsmitteilungen 2024 (de, en) und 2025 sowie die beiden Uebersichts-Poster zu den Dokumentationsanforderungen; gelesen als wortgetreue lokale Spiegel der Originalpublikationen im Korpus des Betreibers, Fundstelle = Original-URL je Dokument",
+  "abgerufen": "2026-08-25",
+  "methode": "gezielte Legenden-Erhebung: grep ueber die Spiegel-Bodys, pdftotext ueber die Poster-PDFs",
+  "eintraege": [
+    {
+      "form": "RTS RMF",
+      "kontext": "RTS RMF = RTS ICT Risk Management Framework (IKT-Risikomanagementrahmen)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Uebersicht_Artikel_16_DORA_einseitig.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_anlage_DORA_Dokumentationsanforderungen_1.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "RTS TPPol",
+      "kontext": "RTS TPPol = RTS ICT Third-Party Policy (IKT-Drittdienstleister-Leitlinie)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_anlage_DORA_Dokumentationsanforderungen_1.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "RTS SUB",
+      "kontext": "Delegierte Verordnung (EU) 2025/532 der Kommission vom 24. Maerz 2025 ... zur Praezisierung der Aspekte, die ein Finanzunternehmen bei der Untervergabe von IKT-Dienstleistungen zur Unterstuetzung kritischer oder wichtiger Funktionen bestimmen und bewerten muss (nachfolgend 'RTS SUB')",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "RTS CCI",
+      "kontext": "RTS CCI = RTS Classification Criteria Incidents (Klassifizierungskriterien Vorfaelle)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Uebersicht_Artikel_16_DORA_einseitig.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "RTS CTIR",
+      "kontext": "RTS CTIR = RTS Content and Time limits Incident Reporting (Inhalt und Fristen Vorfallsmeldungen)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Uebersicht_Artikel_16_DORA_einseitig.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "ITS RoI",
+      "kontext": "ITS RoI = ITS Register of Information (Informationsregister)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Uebersicht_Artikel_16_DORA_einseitig.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_anlage_DORA_Dokumentationsanforderungen_1.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "ITS TIR",
+      "kontext": "ITS TIR = ITS Templates Incident Reporting (Vorlagen Vorfallsmeldungen)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Uebersicht_Artikel_16_DORA_einseitig.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    }
+  ]
+}

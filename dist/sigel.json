@@ -1,0 +1,2029 @@
+{
+  "meta": {
+    "stand": "2026-08-25",
+    "quelle_seed": "kuratierter Seed des Betreibers, Stand 2026-08-24",
+    "anzahl": 39,
+    "fundstellen_gesamt": 288,
+    "kernaussage": "Das Register ordnet seine Quellen nach absteigender regulatorischer Verbindlichkeit — von unmittelbar geltendem EU-Recht über europäische und nationale Aufsichtsvorgaben bis zu freiwilligen Standards.",
+    "gruppen": [
+      {
+        "id": "eu-verordnungen",
+        "titel": "EU-Verordnungen",
+        "aussage": "Unmittelbar geltendes EU-Recht — gilt ohne nationalen Umsetzungsakt."
+      },
+      {
+        "id": "eu-richtlinien",
+        "titel": "EU-Richtlinien",
+        "aussage": "Wirken erst über die nationale Umsetzung — maßgeblich für Institute ist das Umsetzungsgesetz (CRD → KWG)."
+      },
+      {
+        "id": "nationale-gesetze",
+        "titel": "Deutsche Gesetze",
+        "aussage": "Verbindliches nationales Recht — gilt neben dem EU-Rahmen und setzt EU-Richtlinien um."
+      },
+      {
+        "id": "eu-durchfuehrung",
+        "titel": "Delegierte und Durchführungsrechtsakte zur DORA",
+        "aussage": "RTS und ITS, erlassen als delegierte bzw. Durchführungsverordnungen — unmittelbar verbindlich wie die Basisverordnung."
+      },
+      {
+        "id": "eu-leitlinien",
+        "titel": "Europäische Aufsichtsleitlinien",
+        "aussage": "Leitlinien der EU-Behörden — nicht unmittelbar rechtsverbindlich, wirken über Comply-or-explain und Aufsichtspraxis."
+      },
+      {
+        "id": "nationale-aufsicht",
+        "titel": "Deutsche Aufsichtspraxis",
+        "aussage": "Verwaltungsauffassung der BaFin — maßgeblich für die Aufsichtspraxis, kein Gesetzesrang."
+      },
+      {
+        "id": "standards-praktiken",
+        "titel": "Standards und führende Praktiken",
+        "aussage": "Nicht rechtsverbindlich — eigenständige Standards und Praxisrahmen, die als Referenz herangezogen werden."
+      }
+    ]
+  },
+  "sigel": [
+    {
+      "id": "ai-act",
+      "sigel": "AI Act",
+      "sprache": "de",
+      "name": "Verordnung (EU) 2024/1689",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-verordnungen",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32024R1689",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": "2026-07-27",
+        "konsolidierung": "02024R1689-20260727",
+        "text": "konsolidiert Stand 27.07.2026, CELEX 02024R1689-20260727"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02024R1689-20240712",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        },
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:02024R1689-20260727",
+          "geprueft": {
+            "datum": null,
+            "methode": "abgeleitet-aus-fassung"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Verordnung (EU) 2024/1689",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "ao",
+      "sigel": "AO",
+      "sprache": "de",
+      "name": "Abgabenordnung",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "nationale-gesetze",
+      "identitaet": {
+        "typ": "jurabk",
+        "wert": "ao_1977",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "§ 147 (Aufbewahrung); Fassung [nachzutragen]"
+      },
+      "links": [
+        {
+          "label": "gesetze-im-internet",
+          "url": "https://www.gesetze-im-internet.de/ao_1977/__147.html",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Abgabenordnung",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "bait",
+      "sigel": "BAIT",
+      "sprache": "de",
+      "name": "Bankaufsichtliche Anforderungen an die IT",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "nationale-aufsicht",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "Rundschreiben 10/2017",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": "2024-12-16",
+        "konsolidierung": null,
+        "text": "BaFin-Rundschreiben 10/2017, Fassung 16.12.2024; Aufhebung zum 31.12.2026"
+      },
+      "links": [
+        {
+          "label": "BaFin (PDF)",
+          "url": "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_1710_ba_BAIT.pdf?__blob=publicationFile&v=2",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "Rundschreiben 10/2017 (BA)",
+      "statistik": {
+        "BAIT": 7
+      },
+      "belegt_durch": [
+        "BBK",
+        "BaFin"
+      ]
+    },
+    {
+      "id": "bsi-c5",
+      "sigel": "BSI C5",
+      "sprache": "de",
+      "name": "BSI, Cloud Computing Compliance Criteria Catalogue",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "version",
+        "wert": "C5:2026",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "C5:2020 und C5:2026 v1.0.1 (verpflichtend ab 01.06.2027)"
+      },
+      "links": [
+        {
+          "label": "BSI, Kriterienkatalog C5",
+          "url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/kriterienkatalog-c5.html",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "web-abruf"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": null,
+      "referenzform": "BSI C5:2026",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "cis-controls",
+      "sigel": "CIS Controls",
+      "sprache": "de",
+      "name": "CIS Critical Security Controls",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "version",
+        "wert": "v8.1",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "v8.1"
+      },
+      "links": [
+        {
+          "label": "cisecurity.org",
+          "url": "https://www.cisecurity.org/cybersecurity-best-practices",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "CIS Controls v8.1",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "crd",
+      "sigel": "CRD",
+      "sprache": "de",
+      "name": "Richtlinie 2013/36/EU",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-richtlinien",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32013L0036",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": "02013L0036-20260711",
+        "text": "i. d. F. CRD VI, konsolidiert, CELEX 02013L0036-20260711"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02013L0036-20260711",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        },
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:02013L0036-20260711",
+          "geprueft": {
+            "datum": null,
+            "methode": "abgeleitet-aus-fassung"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 1,
+      "referenzform": "Richtlinie 2013/36/EU",
+      "statistik": {
+        "CRD": 15
+      },
+      "belegt_durch": [
+        "BaFin",
+        "EBA",
+        "ESAs",
+        "EZB"
+      ]
+    },
+    {
+      "id": "crd-iv",
+      "sigel": "CRD IV",
+      "sprache": "de",
+      "name": "Richtlinie 2013/36/EU (Stammfassung, CRD IV)",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-richtlinien",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32013L0036",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Stammfassung der Richtlinie 2013/36/EU (CRD IV)"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32013L0036",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [
+        "crd-v"
+      ],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Richtlinie 2013/36/EU",
+      "statistik": {
+        "CRD IV": 6
+      },
+      "belegt_durch": [
+        "BaFin",
+        "EBA"
+      ]
+    },
+    {
+      "id": "crd-v",
+      "sigel": "CRD V",
+      "sprache": "de",
+      "name": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2019/878 (CRD V)",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-richtlinien",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32013L0036",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2019/878"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32019L0878",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [
+        "crd-iv"
+      ],
+      "ersetzt_durch": [
+        "crd-vi"
+      ],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Richtlinie (EU) 2019/878",
+      "statistik": {
+        "CRD V": 2
+      },
+      "belegt_durch": [
+        "EBA"
+      ]
+    },
+    {
+      "id": "crd-vi",
+      "sigel": "CRD VI",
+      "sprache": "de",
+      "name": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2024/1619 (CRD VI)",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-richtlinien",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32013L0036",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2024/1619"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024L1619",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [
+        "crd-v"
+      ],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Richtlinie (EU) 2024/1619",
+      "statistik": {
+        "CRD VI": 2
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "crr",
+      "sigel": "CRR",
+      "sprache": "de",
+      "name": "Verordnung (EU) Nr. 575/2013",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-verordnungen",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32013R0575",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": "2026-06-26",
+        "konsolidierung": "02013R0575-20260626",
+        "text": "i. d. F. CRR III, konsolidiert Stand 26.06.2026, CELEX 02013R0575-20260626"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02013R0575-20260626",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        },
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:02013R0575-20260626",
+          "geprueft": {
+            "datum": null,
+            "methode": "abgeleitet-aus-fassung"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 1,
+      "referenzform": "Verordnung (EU) Nr. 575/2013",
+      "statistik": {
+        "CRR": 15
+      },
+      "belegt_durch": [
+        "BBK",
+        "BaFin",
+        "EBA",
+        "ESAs"
+      ]
+    },
+    {
+      "id": "crr-ii",
+      "sigel": "CRR II",
+      "sprache": "de",
+      "name": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2019/876 (CRR II)",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-verordnungen",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32013R0575",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2019/876"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32019R0876",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [
+        "crr-iii"
+      ],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Verordnung (EU) 2019/876",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "crr-iii",
+      "sigel": "CRR III",
+      "sprache": "de",
+      "name": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2024/1623 (CRR III)",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-verordnungen",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32013R0575",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2024/1623"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1623",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [
+        "crr-ii"
+      ],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Verordnung (EU) 2024/1623",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "cvss",
+      "sigel": "CVSS",
+      "sprache": "de",
+      "name": "FIRST, Common Vulnerability Scoring System",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "version",
+        "wert": "v4.0",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "v4.0, Spezifikation v1.2"
+      },
+      "links": [
+        {
+          "label": "first.org",
+          "url": "https://www.first.org/cvss/v4.0/specification-document",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "CVSS v4.0",
+      "statistik": {
+        "CVSS": 3
+      },
+      "belegt_durch": [
+        "CISA",
+        "FIRST",
+        "NIST"
+      ]
+    },
+    {
+      "id": "dora",
+      "sigel": "DORA",
+      "sprache": "de",
+      "name": "Verordnung (EU) 2022/2554 (Digital Operational Resilience Act)",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-verordnungen",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32022R2554",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": "02022R2554-20221227",
+        "text": "Ursprungsfassung, CELEX 02022R2554-20221227"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02022R2554-20221227",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        },
+        {
+          "label": "EN",
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R2554",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        },
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:02022R2554-20221227",
+          "geprueft": {
+            "datum": null,
+            "methode": "abgeleitet-aus-fassung"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 1,
+      "referenzform": "Verordnung (EU) 2022/2554",
+      "statistik": {
+        "DORA": 56
+      },
+      "belegt_durch": [
+        "BBK",
+        "BaFin",
+        "EBA",
+        "ESAs",
+        "EZB"
+      ]
+    },
+    {
+      "id": "dsgvo",
+      "sigel": "DSGVO",
+      "sprache": "de",
+      "name": "Verordnung (EU) 2016/679",
+      "haerte": "verkehrsueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-verordnungen",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32016R0679",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": "02016R0679-20160504",
+        "text": "Ursprungsfassung, CELEX 02016R0679-20160504"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02016R0679-20160504",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        },
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:02016R0679-20160504",
+          "geprueft": {
+            "datum": null,
+            "methode": "abgeleitet-aus-fassung"
+          }
+        }
+      ],
+      "aliasse": [
+        {
+          "form": "GDPR",
+          "sprache": "en",
+          "evidenz": [
+            "2026-08-25-spiegel-en-eba",
+            "2026-08-25-spiegel-en-esas",
+            "2026-08-25-spiegel-en-ezb"
+          ]
+        }
+      ],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Verordnung (EU) 2016/679",
+      "statistik": {
+        "DSGVO": 3,
+        "GDPR": 8
+      },
+      "belegt_durch": [
+        "BaFin",
+        "EBA",
+        "ESAs",
+        "EZB"
+      ]
+    },
+    {
+      "id": "eba-gl-2019-02",
+      "sigel": "EBA/GL/2019/02",
+      "sprache": "de",
+      "name": "EBA, Guidelines on outsourcing arrangements",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-leitlinien",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "EBA/GL/2019/02",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "25.02.2019"
+      },
+      "links": [
+        {
+          "label": "EBA PDF (DE)",
+          "url": "https://www.eba.europa.eu/sites/default/files/documents/10180/2761380/5546a705-bff2-43eb-b382-e5c7bed3a2bc/EBA%20revised%20Guidelines%20on%20outsourcing_DE.pdf",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "EBA/GL/2019/02",
+      "statistik": {
+        "EBA/GL/2019/02": 9
+      },
+      "belegt_durch": [
+        "BaFin",
+        "EBA",
+        "ESAs",
+        "EZB"
+      ]
+    },
+    {
+      "id": "eba-gl-2019-04",
+      "sigel": "EBA/GL/2019/04",
+      "sprache": "de",
+      "name": "EBA, Guidelines on ICT and security risk management",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-leitlinien",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "EBA/GL/2019/04",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "konsolidierte Fassung; IKT-Abschnitte seit 20.05.2025 gestrichen"
+      },
+      "links": [
+        {
+          "label": "EBA PDF (EN)",
+          "url": "https://www.eba.europa.eu/sites/default/files/2026-05/c8fb6168-0aef-42f6-8da9-114a8baf21b9/Consolidated%20version%20of%20EBA%20ameding%20Guidelines%20on%20ICT%20and%20security%20risk%20management.pdf",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "EBA/GL/2019/04",
+      "statistik": {
+        "EBA/GL/2019/04": 3
+      },
+      "belegt_durch": [
+        "EBA",
+        "ESAs"
+      ]
+    },
+    {
+      "id": "eba-gl-2021-05",
+      "sigel": "EBA/GL/2021/05",
+      "sprache": "de",
+      "name": "EBA, Guidelines on internal governance under CRD",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-leitlinien",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "EBA/GL/2021/05",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Final Report 02.07.2021, anwendbar ab 31.12.2021"
+      },
+      "links": [
+        {
+          "label": "EBA (Publikationsseite)",
+          "url": "https://www.eba.europa.eu/activities/single-rulebook/regulatory-activities/internal-governance/guidelines-internal-governance-under-crd",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "EBA/GL/2021/05",
+      "statistik": {
+        "EBA/GL/2021/05": 5
+      },
+      "belegt_durch": [
+        "BaFin",
+        "EBA"
+      ]
+    },
+    {
+      "id": "eba-gl-2022-03",
+      "sigel": "EBA/GL/2022/03",
+      "sprache": "de",
+      "name": "EBA, SREP-Guidelines",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-leitlinien",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "EBA/GL/2022/03",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Final Report 18.03.2022, anwendbar ab 01.01.2023 (Ablösung durch EBA/GL/2026/06 ab 01.01.2027)"
+      },
+      "links": [
+        {
+          "label": "EBA Final Report (EN)",
+          "url": "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2022/EBA-GL-2022-03%20Revised%20SREP%20Guidelines/1028500/Final%20Report%20on%20Guidelines%20on%20common%20procedures%20and%20methodologies%20for%20SREP%20and%20supervisory%20stress%20testing.pdf",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "EBA/GL/2022/03",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "edsa-07-2020",
+      "sigel": "EDSA 07/2020",
+      "sprache": "de",
+      "name": "EDSA, Leitlinien 07/2020 (Verantwortlicher / Auftragsverarbeiter)",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-leitlinien",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "Leitlinien 07/2020",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Version 2.0, angenommen 07.07.2021"
+      },
+      "links": [
+        {
+          "label": "EDSA (DE)",
+          "url": "https://edpb.europa.eu/system/files/documents/2023-10/edpb_guidelines_202007_controllerprocessor_final_de.pdf",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "EDSA, Leitlinien 07/2020",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "enisa-tig",
+      "sigel": "ENISA TIG",
+      "sprache": "de",
+      "name": "ENISA, NIS2 Technical Implementation Guidance",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "version",
+        "wert": "v1.0",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "v1.0, 26.06.2025"
+      },
+      "links": [
+        {
+          "label": "enisa.europa.eu",
+          "url": "https://www.enisa.europa.eu/publications/nis2-technical-implementation-guidance",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "ENISA NIS2 Technical Implementation Guidance v1.0",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "epss",
+      "sigel": "EPSS",
+      "sprache": "de",
+      "name": "FIRST, Exploit Prediction Scoring System",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "version",
+        "wert": "v5",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "v5 seit 15.06.2026"
+      },
+      "links": [
+        {
+          "label": "first.org",
+          "url": "https://www.first.org/epss/",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "EPSS v5",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "hgb",
+      "sigel": "HGB",
+      "sprache": "de",
+      "name": "Handelsgesetzbuch",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "nationale-gesetze",
+      "identitaet": {
+        "typ": "jurabk",
+        "wert": "hgb",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "§ 257 (Aufbewahrung); Fassung [nachzutragen]"
+      },
+      "links": [
+        {
+          "label": "gesetze-im-internet",
+          "url": "https://www.gesetze-im-internet.de/hgb/__257.html",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Handelsgesetzbuch",
+      "statistik": {
+        "HGB": 5
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "iso-iec-27001-2022",
+      "sigel": "ISO/IEC 27001:2022",
+      "sprache": "de",
+      "name": "ISO/IEC 27001:2022, ISMS-Anforderungen",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "ISO/IEC 27001:2022",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "deutsche Übernahme: DIN EN ISO/IEC 27001:2024-01 (kostenpflichtig)"
+      },
+      "links": [
+        {
+          "label": "iso.org",
+          "url": "https://www.iso.org/standard/82875.html",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "ISO/IEC 27001:2022",
+      "statistik": {
+        "ISO/IEC 27001:2022": 1
+      },
+      "belegt_durch": [
+        "ISO"
+      ]
+    },
+    {
+      "id": "iso-iec-27002-2022",
+      "sigel": "ISO/IEC 27002:2022",
+      "sprache": "de",
+      "name": "ISO/IEC 27002:2022, Informationssicherheits-Controls",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "ISO/IEC 27002:2022",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "deutsche Übernahme: DIN EN ISO/IEC 27002:2024-01 (kostenpflichtig)"
+      },
+      "links": [
+        {
+          "label": "iso.org",
+          "url": "https://www.iso.org/standard/75652.html",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "ISO/IEC 27002:2022",
+      "statistik": {
+        "ISO/IEC 27002:2022": 1
+      },
+      "belegt_durch": [
+        "ISO"
+      ]
+    },
+    {
+      "id": "its-roi",
+      "sigel": "ITS RoI",
+      "sprache": "de",
+      "name": "Durchführungsverordnung (EU) 2024/2956",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-durchfuehrung",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "Durchführungsverordnung (EU) 2024/2956",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": "2024-12-02",
+        "konsolidierung": null,
+        "text": "konsolidiert Stand 02.12.2024"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02024R2956-20241202",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [
+        {
+          "form": "ITS Informationsregister",
+          "sprache": "de",
+          "evidenz": [
+            "2026-08-25-spiegel-bafin"
+          ]
+        },
+        {
+          "form": "ITS Register",
+          "sprache": "de",
+          "evidenz": []
+        },
+        {
+          "form": "ITS-INFOREG",
+          "sprache": "de",
+          "evidenz": []
+        },
+        {
+          "form": "ITS-RoI",
+          "sprache": "de",
+          "evidenz": []
+        }
+      ],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 2,
+      "referenzform": "Durchführungsverordnung (EU) 2024/2956",
+      "statistik": {
+        "ITS Informationsregister": 1,
+        "ITS RoI": 2
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "its-tir",
+      "sigel": "ITS TIR",
+      "sprache": "de",
+      "name": "Durchführungsverordnung (EU) 2025/302",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-durchfuehrung",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32025R0302",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": "2025-02-20",
+        "konsolidierung": "02025R0302-20250220",
+        "text": "konsolidiert Stand 20.02.2025, CELEX 02025R0302-20250220"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32025R0302",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        },
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:02025R0302-20250220",
+          "geprueft": {
+            "datum": null,
+            "methode": "abgeleitet-aus-fassung"
+          }
+        }
+      ],
+      "aliasse": [
+        {
+          "form": "ITS Vorfallmeldung",
+          "sprache": "de",
+          "evidenz": []
+        },
+        {
+          "form": "ITS-TIR",
+          "sprache": "de",
+          "evidenz": []
+        },
+        {
+          "form": "ITS-INCREP",
+          "sprache": "de",
+          "evidenz": []
+        }
+      ],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 2,
+      "referenzform": "Durchführungsverordnung (EU) 2025/302",
+      "statistik": {
+        "ITS TIR": 1
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "kwg",
+      "sigel": "KWG",
+      "sprache": "de",
+      "name": "Kreditwesengesetz",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "nationale-gesetze",
+      "identitaet": {
+        "typ": "jurabk",
+        "wert": "kredwg",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": "2026-04-09",
+        "konsolidierung": null,
+        "text": "§§ 25a–25c, Fassung 09.04.2026 (BGBl-Fundstelle [nachzutragen])"
+      },
+      "links": [
+        {
+          "label": "gesetze-im-internet",
+          "url": "https://www.gesetze-im-internet.de/kredwg/__25a.html",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Kreditwesengesetz",
+      "statistik": {
+        "KWG": 23
+      },
+      "belegt_durch": [
+        "BBK",
+        "BaFin"
+      ]
+    },
+    {
+      "id": "marisk",
+      "sigel": "MaRisk",
+      "sprache": "de",
+      "name": "BaFin, Mindestanforderungen an das Risikomanagement",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "nationale-aufsicht",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "Rundschreiben 06/2026 (BA)",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": "2026-06-30",
+        "konsolidierung": null,
+        "text": "Rundschreiben 06/2026 (BA) vom 30.06.2026 (9. Novelle; löst RS 06/2024 ab)"
+      },
+      "links": [
+        {
+          "label": "BaFin PDF",
+          "url": "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "Rundschreiben 06/2026 (BA)",
+      "statistik": {
+        "MaRisk": 93
+      },
+      "belegt_durch": [
+        "BaFin",
+        "EBA"
+      ]
+    },
+    {
+      "id": "nist-sp-800-40r4",
+      "sigel": "NIST SP 800-40r4",
+      "sprache": "de",
+      "name": "NIST SP 800-40 Rev. 4, Guide to Enterprise Patch Management Planning",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "NIST SP 800-40r4",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "04/2022"
+      },
+      "links": [
+        {
+          "label": "csrc.nist.gov",
+          "url": "https://csrc.nist.gov/pubs/sp/800/40/r4/final",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "NIST SP 800-40 Rev. 4",
+      "statistik": {
+        "NIST SP 800-40r4": 1
+      },
+      "belegt_durch": [
+        "NIST"
+      ]
+    },
+    {
+      "id": "pci-dss",
+      "sigel": "PCI DSS",
+      "sprache": "de",
+      "name": "Payment Card Industry Data Security Standard",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "version",
+        "wert": "v4.0.1",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "v4.0.1 (Volltext zugriffsbeschränkt)"
+      },
+      "links": [
+        {
+          "label": "pcisecuritystandards.org",
+          "url": "https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": null,
+      "referenzform": "PCI DSS v4.0.1",
+      "statistik": {
+        "PCI DSS": 1
+      },
+      "belegt_durch": [
+        "PCI SSC"
+      ]
+    },
+    {
+      "id": "rts-cci",
+      "sigel": "RTS CCI",
+      "sprache": "de",
+      "name": "Delegierte Verordnung (EU) 2024/1772 (Klassifizierungskriterien für IKT-bezogene Vorfälle)",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-durchfuehrung",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32024R1772",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "konstruiert"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "13.03.2024, ABl. 25.06.2024"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32024R1772",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 2,
+      "referenzform": "Delegierte Verordnung (EU) 2024/1772",
+      "statistik": {
+        "RTS CCI": 1
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "rts-ctir",
+      "sigel": "RTS CTIR",
+      "sprache": "de",
+      "name": "Delegierte Verordnung (EU) 2025/301 (Inhalt und Fristen der Vorfallsmeldungen)",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-durchfuehrung",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32025R0301",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "konstruiert"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "23.10.2024, ABl. 20.02.2025"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32025R0301",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "konstruiert"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 2,
+      "referenzform": "Delegierte Verordnung (EU) 2025/301",
+      "statistik": {
+        "RTS CTIR": 1
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "rts-rmf",
+      "sigel": "RTS RMF",
+      "sprache": "de",
+      "name": "Delegierte Verordnung (EU) 2024/1774 (IKT-Risikomanagementrahmen)",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-durchfuehrung",
+      "identitaet": {
+        "typ": "celex",
+        "wert": "32024R1774",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": "02024R1774-20240625",
+        "text": "13.03.2024, ABl. 25.06.2024, CELEX 02024R1774-20240625"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02024R1774-20240625",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        },
+        {
+          "label": "EN",
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02024R1774-20240625",
+          "geprueft": {
+            "datum": "2026-08-24",
+            "methode": "seed-doksigel"
+          }
+        },
+        {
+          "label": "EUR-Lex DE (konsolidiert)",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:02024R1774-20240625",
+          "geprueft": {
+            "datum": null,
+            "methode": "abgeleitet-aus-fassung"
+          }
+        }
+      ],
+      "aliasse": [
+        {
+          "form": "RTS Risikomanagement",
+          "sprache": "de",
+          "evidenz": []
+        },
+        {
+          "form": "RTS-RMF",
+          "sprache": "de",
+          "evidenz": []
+        }
+      ],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 2,
+      "referenzform": "Delegierte Verordnung (EU) 2024/1774",
+      "statistik": {
+        "RTS RMF": 11
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "rts-sub",
+      "sigel": "RTS SUB",
+      "sprache": "de",
+      "name": "Delegierte Verordnung (EU) 2025/532 (Weitervergabe)",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-durchfuehrung",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "Delegierte Verordnung (EU) 2025/532",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "24.03.2025"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32025R0532",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [
+        {
+          "form": "RTS Subcontracting",
+          "sprache": "de",
+          "evidenz": []
+        },
+        {
+          "form": "RTS-SUB",
+          "sprache": "de",
+          "evidenz": []
+        },
+        {
+          "form": "RTS-SUBCON",
+          "sprache": "de",
+          "evidenz": []
+        }
+      ],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 2,
+      "referenzform": "Delegierte Verordnung (EU) 2025/532",
+      "statistik": {
+        "RTS SUB": 2
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "rts-tppol",
+      "sigel": "RTS TPPol",
+      "sprache": "de",
+      "name": "Delegierte Verordnung (EU) 2024/1773 (Politik für IKT-Dienstleistungen)",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "eu-durchfuehrung",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "Delegierte Verordnung (EU) 2024/1773",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "13.03.2024, ABl. 25.06.2024"
+      },
+      "links": [
+        {
+          "label": "EUR-Lex DE",
+          "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32024R1773",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [
+        {
+          "form": "RTS-TPPOL",
+          "sprache": "de",
+          "evidenz": []
+        }
+      ],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 2,
+      "referenzform": "Delegierte Verordnung (EU) 2024/1773",
+      "statistik": {
+        "RTS TPPol": 7
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "sdm",
+      "sigel": "SDM",
+      "sprache": "de",
+      "name": "Standard-Datenschutzmodell (DSK)",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "standards-praktiken",
+      "identitaet": {
+        "typ": "version",
+        "wert": "V3.1a",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "Methodenhandbuch V3.1a, 14.05.2024"
+      },
+      "links": [
+        {
+          "label": "DSK, SDM-Methode V3.1 (PDF)",
+          "url": "https://www.datenschutzkonferenz-online.de/media/ah/SDM-Methode-V31.pdf",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "web-abruf"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": null,
+      "referenzform": "SDM V3.1a",
+      "statistik": {},
+      "belegt_durch": []
+    },
+    {
+      "id": "zag",
+      "sigel": "ZAG",
+      "sprache": "de",
+      "name": "Zahlungsdiensteaufsichtsgesetz",
+      "haerte": "amtlich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "nationale-gesetze",
+      "identitaet": {
+        "typ": "jurabk",
+        "wert": "zag_2018",
+        "geprueft": {
+          "datum": "2026-08-25",
+          "methode": "web-abruf"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "§§ 53, 54; Fassung FinmadiG 27.12.2024, m. W. v. 30.12.2024"
+      },
+      "links": [
+        {
+          "label": "gesetze-im-internet",
+          "url": "https://www.gesetze-im-internet.de/zag_2018/__53.html",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "web-abruf"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "kuriert",
+      "rang": 1,
+      "referenzform": "Zahlungsdiensteaufsichtsgesetz",
+      "statistik": {
+        "ZAG": 2
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    },
+    {
+      "id": "zag-marisk",
+      "sigel": "ZAG-MaRisk",
+      "sprache": "de",
+      "name": "BaFin-Rundschreiben 07/2024 (ZAG)",
+      "haerte": "herausgeberueblich",
+      "haerte_geprueft": {
+        "datum": "2026-08-25",
+        "methode": "einschaetzung"
+      },
+      "gruppe": "nationale-aufsicht",
+      "identitaet": {
+        "typ": "doc_ref",
+        "wert": "Rundschreiben 07/2024 (ZAG)",
+        "geprueft": {
+          "datum": "2026-08-24",
+          "methode": "seed-doksigel"
+        }
+      },
+      "fassung": {
+        "stand": null,
+        "konsolidierung": null,
+        "text": "PDF-Fassung v=6"
+      },
+      "links": [
+        {
+          "label": "BaFin (PDF)",
+          "url": "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0724_ZAG_MaRisk.pdf?__blob=publicationFile&v=6",
+          "geprueft": {
+            "datum": "2026-08-25",
+            "methode": "spiegel-provenienz"
+          }
+        }
+      ],
+      "aliasse": [],
+      "ersetzt": [],
+      "ersetzt_durch": [],
+      "status": "pilot-seed",
+      "rang": 3,
+      "referenzform": "Rundschreiben 07/2024 (ZAG)",
+      "statistik": {
+        "ZAG-MaRisk": 1
+      },
+      "belegt_durch": [
+        "BaFin"
+      ]
+    }
+  ]
+}

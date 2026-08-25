@@ -1,0 +1,41 @@
+{
+  "id": "hgb",
+  "sigel": "HGB",
+  "sprache": "de",
+  "name": "Handelsgesetzbuch",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "nationale-gesetze",
+  "identitaet": {
+    "typ": "jurabk",
+    "wert": "hgb",
+    "geprueft": {
+      "datum": "2026-08-25",
+      "methode": "web-abruf"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "§ 257 (Aufbewahrung); Fassung [nachzutragen]"
+  },
+  "links": [
+    {
+      "label": "gesetze-im-internet",
+      "url": "https://www.gesetze-im-internet.de/hgb/__257.html",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 1,
+  "referenzform": "Handelsgesetzbuch"
+}

@@ -1,0 +1,15 @@
+{
+  "herausgeber": "BaFin",
+  "quelle": "https://www.bafin.de/SharedDocs/Veroeffentlichungen/DE/Meldung/2026/meldung_2026_05_06_konsultationsentwurf_wpI_marisk.html",
+  "abgerufen": "2026-08-25",
+  "methode": "web-abruf",
+  "eintraege": [
+    {
+      "form": "MaRisk",
+      "kontext": "Große Wertpapierinstitute müssen weiterhin das Rundschreiben (BA)-MaRisk in der jeweils gültigen Fassung anwenden.",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Veroeffentlichungen/DE/Meldung/2026/meldung_2026_05_06_konsultationsentwurf_wpI_marisk.html"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "enisa-tig",
+  "sigel": "ENISA TIG",
+  "sprache": "de",
+  "name": "ENISA, NIS2 Technical Implementation Guidance",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "version",
+    "wert": "v1.0",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "v1.0, 26.06.2025"
+  },
+  "links": [
+    {
+      "label": "enisa.europa.eu",
+      "url": "https://www.enisa.europa.eu/publications/nis2-technical-implementation-guidance",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": null,
+  "referenzform": "ENISA NIS2 Technical Implementation Guidance v1.0"
+}

@@ -1,0 +1,54 @@
+name: Prüfquelle vorschlagen
+description: Eine Domain für die kuratierte Prüfquellen-Liste vorschlagen
+title: "[pruefquelle] "
+labels:
+  - pruefquelle-vorschlag
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Die Prüfquellen-Liste (`kuration/pruefquellen.json`) entscheidet,
+        welchen Fundstellen der automatische Ingest glaubt. Deshalb ist sie
+        der **einzige Pfad mit Human-in-the-loop**: Die tägliche Routine
+        prüft den Vorschlag und empfiehlt, aufgenommen wird er allein durch
+        den Maintainer.
+
+  - type: input
+    id: domain
+    attributes:
+      label: Domain
+      description: Nur die Domain — kein Schema, kein Pfad. Subdomains gelten mit.
+      placeholder: bafin.de
+    validations:
+      required: true
+
+  - type: input
+    id: herausgeber
+    attributes:
+      label: Herausgeber
+      description: Die Stelle, deren offizielle Präsenz diese Domain ist.
+      placeholder: BaFin
+    validations:
+      required: true
+
+  - type: dropdown
+    id: typ
+    attributes:
+      label: Typ
+      options:
+        - regulator
+        - normungsorganisation
+        - gesetzesportal
+        - eu-amtsveroeffentlichung
+    validations:
+      required: true
+
+  - type: textarea
+    id: begruendung
+    attributes:
+      label: Begründung
+      description: |
+        Warum ist die Domain die offizielle Präsenz dieses Herausgebers, und
+        welche Regulatorik oder Standards publiziert er dort? Belege als URLs.
+    validations:
+      required: true

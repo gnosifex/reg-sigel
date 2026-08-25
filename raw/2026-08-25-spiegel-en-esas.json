@@ -1,0 +1,22 @@
+{
+  "id": "2026-08-25-spiegel-en-esas",
+  "herausgeber": "ESAs",
+  "quelle": "wortgetreue lokale Spiegel der englischsprachigen Originalpublikationen im Korpus des Betreibers (nur Record-Bodys); Fundstelle = Original-URL je Dokument",
+  "abgerufen": "2026-08-25",
+  "methode": "grep ueber die Bodys der englischen Spiegel",
+  "eintraege": [
+    {
+      "form": "GDPR",
+      "kontext": "FE - financial entity FR - Final report GDPR - Regulation (EU) 2016/679 IA - Impact assessment",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2024-01/30b47816-8d6d-432f-8dbd-b900c4306cf4/JC%202023%2085%20-%20Final%20report%20on%20draft%20ITS%20on%20Register%20of%20Information%20(1).pdf",
+        "https://www.eba.europa.eu/sites/default/files/2024-01/4f2654f4-3152-48b6-af01-431215400f9f/JC%202023%2083%20-%20Final%20Report%20on%20draft%20RTS%20on%20classification%20of%20major%20incidents%20and%20significant%20cyber%20threats.pdf",
+        "https://www.eba.europa.eu/sites/default/files/2024-01/bf5a2976-1a48-44f3-b5a7-56acd23ba55c/JC%202023%2086%20-%20Final%20report%20on%20draft%20RTS%20on%20ICT%20Risk%20Management%20Framework%20and%20on%20simplified%20ICT%20Risk%20Management%20Framework.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024-33_-_Final_report_on_the_draft_RTS_and_ITS_on_incident_reporting.pdf"
+      ],
+      "rang_quellen": [
+        "5"
+      ]
+    }
+  ]
+}

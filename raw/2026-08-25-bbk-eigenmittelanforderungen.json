@@ -1,0 +1,22 @@
+{
+  "herausgeber": "BBK",
+  "quelle": "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/eigenmittelanforderungen",
+  "abgerufen": "2026-08-25",
+  "methode": "web-abruf",
+  "eintraege": [
+    {
+      "form": "CRR",
+      "kontext": "Nach den Vorschriften der Capital Requirements Regulation (CRR) müssen die Institute einen Gesamtrisikobetrag berechnen …",
+      "fundstellen": [
+        "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/eigenmittelanforderungen"
+      ]
+    },
+    {
+      "form": "KWG",
+      "kontext": "Die Eigenmittelanforderungen gelten sowohl auf Ebene des Einzelinstitutes als auch (nach § 10a KWG i.V.m. Artikel 11 CRR) für Institutsgruppen und Finanzholding-Gruppen auf konsolidierter Basis.",
+      "fundstellen": [
+        "https://www.bundesbank.de/de/aufgaben/finanzaufsicht/einzelaspekte/eigenmittelanforderungen"
+      ]
+    }
+  ]
+}

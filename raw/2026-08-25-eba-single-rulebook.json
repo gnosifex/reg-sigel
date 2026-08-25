@@ -1,0 +1,22 @@
+{
+  "herausgeber": "EBA",
+  "quelle": "https://www.eba.europa.eu/single-rulebook",
+  "abgerufen": "2026-08-25",
+  "methode": "web-abruf",
+  "eintraege": [
+    {
+      "form": "CRD IV",
+      "kontext": "The EBA is mandated to produce a large number of Binding Technical Standards (BTS) for the implementation of the CRD IV package, the BRRD and the DGSD.",
+      "fundstellen": [
+        "https://www.eba.europa.eu/single-rulebook"
+      ]
+    },
+    {
+      "form": "CRR",
+      "kontext": "European Commission website / FAQs on CRD IV/CRR",
+      "fundstellen": [
+        "https://www.eba.europa.eu/single-rulebook"
+      ]
+    }
+  ]
+}

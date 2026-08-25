@@ -1,0 +1,41 @@
+{
+  "id": "eba-gl-2022-03",
+  "sigel": "EBA/GL/2022/03",
+  "sprache": "de",
+  "name": "EBA, SREP-Guidelines",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-leitlinien",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "EBA/GL/2022/03",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "Final Report 18.03.2022, anwendbar ab 01.01.2023 (Ablösung durch EBA/GL/2026/06 ab 01.01.2027)"
+  },
+  "links": [
+    {
+      "label": "EBA Final Report (EN)",
+      "url": "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2022/EBA-GL-2022-03%20Revised%20SREP%20Guidelines/1028500/Final%20Report%20on%20Guidelines%20on%20common%20procedures%20and%20methodologies%20for%20SREP%20and%20supervisory%20stress%20testing.pdf",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "spiegel-provenienz"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 3,
+  "referenzform": "EBA/GL/2022/03"
+}

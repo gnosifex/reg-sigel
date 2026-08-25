@@ -1,0 +1,41 @@
+{
+  "id": "eba-gl-2019-04",
+  "sigel": "EBA/GL/2019/04",
+  "sprache": "de",
+  "name": "EBA, Guidelines on ICT and security risk management",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-leitlinien",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "EBA/GL/2019/04",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "konsolidierte Fassung; IKT-Abschnitte seit 20.05.2025 gestrichen"
+  },
+  "links": [
+    {
+      "label": "EBA PDF (EN)",
+      "url": "https://www.eba.europa.eu/sites/default/files/2026-05/c8fb6168-0aef-42f6-8da9-114a8baf21b9/Consolidated%20version%20of%20EBA%20ameding%20Guidelines%20on%20ICT%20and%20security%20risk%20management.pdf",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 3,
+  "referenzform": "EBA/GL/2019/04"
+}

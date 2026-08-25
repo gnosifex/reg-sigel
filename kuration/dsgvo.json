@@ -1,0 +1,51 @@
+{
+  "id": "dsgvo",
+  "sigel": "DSGVO",
+  "sprache": "de",
+  "name": "Verordnung (EU) 2016/679",
+  "haerte": "verkehrsueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-verordnungen",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32016R0679",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": "02016R0679-20160504",
+    "text": "Ursprungsfassung, CELEX 02016R0679-20160504"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02016R0679-20160504",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "konstruiert"
+      }
+    }
+  ],
+  "aliasse": [
+    {
+      "form": "GDPR",
+      "sprache": "en",
+      "evidenz": [
+        "2026-08-25-spiegel-en-eba",
+        "2026-08-25-spiegel-en-esas",
+        "2026-08-25-spiegel-en-ezb"
+      ]
+    }
+  ],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 1,
+  "referenzform": "Verordnung (EU) 2016/679"
+}

@@ -1,0 +1,895 @@
+#!/usr/bin/env python3
+"""Ingest einer Sigel-Meldung aus einem GitHub-Issue — in zwei Modi.
+
+Der Weg ist dreistufig und die beiden Modi teilen ihn auf:
+
+* ``--vorpruefung`` laeuft in der Action. Sie prueft deterministisch
+  (Pflichtfelder, Feldlaengen, Syntax), ruft die gemeldete Quelle ab und
+  belegt den Wortlaut, haelt die Domain gegen `kuration/pruefquellen.json`
+  — und **schreibt nichts**. Ergebnis ist das **Artefakt**: ein
+  maschinenlesbares JSON plus menschlicher Pruefbericht.
+* ``--uebernehmen`` laeuft in der taeglichen Aufnahme-Routine. Ihre
+  Eingabe ist **das Artefakt, nie der Issue-Text**: Der Rohtext ist
+  angreifergesteuert, das Artefakt ist geprueft und quellenverifiziert.
+  Sie erzeugt den kuration- und den raw-Record, **additiv-only**, und ruft
+  ``build.py`` als letztes Gate. Committet wird nicht hier.
+
+Aufruf:
+    python3 tools/intake.py --vorpruefung [--body-datei X] [--ergebnis Y]
+    python3 tools/intake.py --uebernehmen --artefakt A [--gruppe G]
+                            [--rang N] [--dry-run] [--ergebnis Y]
+
+Eingabe der Vorpruefung ist der Issue-Body: aus ``ISSUE_BODY`` (Action) oder
+aus ``--body-datei`` (lokale Tests); Issue-Nummer aus ``ISSUE_NUMBER``.
+Eingabe der Uebernahme ist ``--artefakt`` — die Datei traegt entweder das
+nackte Artefakt-JSON oder den Kommentartext der Action samt Marker.
+``--dry-run`` arbeitet auf einer Kopie des Repos in einem Temp-Verzeichnis
+und laesst den Bestand unberuehrt.
+
+Nur Stdlib; Netzzugriff ausschliesslich auf die gemeldete Quelle.
+"""
+
+import argparse
+import datetime
+import glob
+import html
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import unicodedata
+import urllib.error
+import urllib.parse
+import urllib.request
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# --- Meldeformular ---------------------------------------------------------
+# Zwei Felder, mehr nicht. Alles Weitere — Referenzform, Vollbezeichnung,
+# Identitaetsanker, Herausgeber, Einordnung — ermittelt die Kette selbst aus
+# der verifizierten Quelle bzw. aus `kuration/pruefquellen.json`. Was ein
+# Fremder schreiben darf, ist damit auf das Noetigste zusammengezogen: eine
+# Kurzform und die URL, an der sie steht.
+# Die Schluessel sind die Labels des Issue-Formulars; GitHub schreibt sie als
+# "### <Label>" in den Body. Wer ein Label im Formular aendert, aendert es hier.
+FELDER = {
+    "sigel": "Kurzform (Sigel)",
+    "quelle": "Quelle-URL",
+}
+PFLICHTFELDER = tuple(FELDER)
+LEERMARKER = ("_No response_", "_Keine Angabe_", "_No response_.")
+
+# --- Feldlaengen -----------------------------------------------------------
+# Melder-Input ist die Angriffsflaeche der Automatik. 25 Zeichen tragen jedes
+# Bestandssigel (laengstes: „ISO/IEC 27002:2022“, 18) und auch beschreibende
+# Formen wie „ITS Informationsregister“ (24); 200 tragen jede Herausgeber-URL.
+# Ein Verstoss ist eine Ablehnung, keine Nachfrage.
+FELD_LIMITS = {
+    "sigel": 25,
+    "quelle": 200,
+}
+MELDER_FLAECHE = sum(FELD_LIMITS.values())
+
+# --- Syntax der Identitaetsanker -------------------------------------------
+# Den Anker liefert nicht mehr der Melder, sondern die Aufnahme-Routine aus
+# gezielten Lookups. Geprueft wird er trotzdem — auch die Routine irrt.
+CELEX_BASIS = re.compile(r"^\d{5}[A-Z]{1,2}\d{4}(\(\d{2}\))?$")
+CELEX_KONSOLIDIERT = re.compile(r"^0\d{4}[A-Z]{1,2}\d{4}-\d{8}$")
+ANKER_TYPEN = ("celex", "jurabk", "doc_ref", "version")
+ANKER_SYNTAX = {
+    "jurabk": re.compile(r"^[a-z0-9_]{2,40}$"),
+    "doc_ref": re.compile(r"^[\w\s./()–—:,-]{2,120}$"),
+    "version": re.compile(r"^[\w.:–—\s-]{1,40}$"),
+}
+SIGEL_SYNTAX = re.compile(r"^[^\n\r|]{2,25}$")
+
+# Die Domain-Allowlist steht nicht im Code, sondern in
+# `kuration/pruefquellen.json` — sie ist kuratierte Vertrauensentscheidung
+# und wird wie die Gliederung gepflegt, nicht wie eine Konstante.
+
+# Wie viele Fundstellen-Ausschnitte das Artefakt traegt. Die Ausschnitte
+# stammen aus dem abgerufenen Quelltext, nicht aus der Meldung.
+MAX_KONTEXTE = 3
+
+UA = ("reg-sigel-intake/1.0 (+https://github.com/gnosifex/reg-sigel; "
+      "Quellpruefung einer gemeldeten Kurzform)")
+MAX_BYTES = 8 * 1024 * 1024
+RATE_GRENZE = 10
+COMMIT_MARKER = "auto-intake:"
+
+# --- Das Artefakt ----------------------------------------------------------
+# Die Routine arbeitet nie mit dem Issue, sondern ausschliesslich mit dem
+# Ergebnis der Vorpruefung: Der Rohtext ist angreifergesteuert, das Artefakt
+# ist syntaxgeprueft, laengenbegrenzt und an der Quelle verifiziert. Die
+# Action postet es unter diesem Marker als eigenen Bot-Kommentar; nur ein
+# Kommentar mit diesem Marker und dem Autor `github-actions[bot]` gilt.
+ARTEFAKT_MARKER = "<!-- intake-artefakt v1 -->"
+ARTEFAKT_AUTOR = "github-actions[bot]"
+
+
+# --- Hilfen ----------------------------------------------------------------
+
+def heute():
+    return datetime.date.today().isoformat()
+
+
+def slug(text):
+    """kebab-case-ID aus einem Sigel — dieselbe Form wie die Bestands-IDs."""
+    ersetzt = (text.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
+               .replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue")
+               .replace("ß", "ss"))
+    ersetzt = unicodedata.normalize("NFKD", ersetzt)
+    ersetzt = "".join(c for c in ersetzt if not unicodedata.combining(c))
+    ersetzt = re.sub(r"[^0-9A-Za-z]+", "-", ersetzt).strip("-").lower()
+    return ersetzt
+
+
+def body_lesen(args):
+    if args.body_datei:
+        with open(args.body_datei, encoding="utf-8") as f:
+            return f.read()
+    return os.environ.get("ISSUE_BODY", "")
+
+
+def felder_lesen(body):
+    """Issue-Forms-Markdown ("### Label\\n\\nWert") in ein Feld-Dict."""
+    roh = {}
+    label = None
+    puffer = []
+    for zeile in body.replace("\r\n", "\n").split("\n"):
+        if zeile.startswith("### "):
+            if label is not None:
+                roh[label] = "\n".join(puffer).strip()
+            label = zeile[4:].strip()
+            puffer = []
+        elif label is not None:
+            puffer.append(zeile)
+    if label is not None:
+        roh[label] = "\n".join(puffer).strip()
+
+    felder = {}
+    for schluessel, beschriftung in FELDER.items():
+        wert = roh.get(beschriftung)
+        if wert is None or wert.strip() in LEERMARKER or not wert.strip():
+            felder[schluessel] = None
+        else:
+            felder[schluessel] = re.sub(r"\s+", " ", wert.strip())
+    return felder
+
+
+KONFIG_DATEIEN = ("gruppen.json", "pruefquellen.json")
+
+
+def records_lesen(kuration):
+    out = []
+    for pfad in sorted(glob.glob(os.path.join(kuration, "*.json"))):
+        if os.path.basename(pfad) in KONFIG_DATEIEN:
+            continue
+        with open(pfad, encoding="utf-8") as f:
+            out.append((pfad, json.load(f)))
+    return out
+
+
+def gruppen_lesen(kuration):
+    with open(os.path.join(kuration, "gruppen.json"), encoding="utf-8") as f:
+        return [g["id"] for g in json.load(f)["gruppen"]]
+
+
+def pruefquellen_lesen(kuration):
+    """Die kuratierte Liste vertrauenswuerdiger Pruefquellen."""
+    with open(os.path.join(kuration, "pruefquellen.json"),
+              encoding="utf-8") as f:
+        return json.load(f)["pruefquellen"]
+
+
+# --- Stufe 1: deterministische Pruefung ------------------------------------
+
+def deterministisch_pruefen(felder):
+    """Formale Maengel der Meldung — jeder davon ist eine Ablehnung."""
+    fehler = []
+    for schluessel in PFLICHTFELDER:
+        if not felder.get(schluessel):
+            fehler.append(f"Pflichtfeld „{FELDER[schluessel]}“ fehlt.")
+    if fehler:
+        return fehler
+
+    for schluessel, grenze in FELD_LIMITS.items():
+        wert = felder.get(schluessel) or ""
+        if len(wert) > grenze:
+            fehler.append(f"Feld „{FELDER[schluessel]}“ ist {len(wert)} "
+                          f"Zeichen lang, erlaubt sind {grenze}.")
+    if fehler:
+        return fehler
+
+    sigel = felder["sigel"]
+    if not SIGEL_SYNTAX.match(sigel):
+        fehler.append(f"Kurzform „{sigel}“ ist keine zulaessige Sigel-Form "
+                      f"(2–25 Zeichen, keine Zeilenumbrueche, kein `|`).")
+
+    url = felder["quelle"]
+    zerlegt = urllib.parse.urlsplit(url)
+    if zerlegt.scheme not in ("http", "https") or not zerlegt.netloc:
+        fehler.append(f"Quelle-URL „{url}“ ist keine absolute http(s)-URL.")
+    return fehler
+
+
+def anker_pruefen(typ, wert):
+    """Syntax des Identitaetsankers — geliefert von der Routine, nicht vom Melder."""
+    if typ not in ANKER_TYPEN:
+        return (f"Identitätsanker-Typ `{typ}` ist keiner der vier "
+                f"zulaessigen Typen ({', '.join(ANKER_TYPEN)}).")
+    if not wert:
+        return "Identitätsanker-Wert fehlt."
+    if typ == "celex":
+        if CELEX_KONSOLIDIERT.match(wert):
+            basis = "3" + wert[1:].split("-")[0]
+            return (f"`{wert}` ist eine konsolidierte CELEX. Das Register "
+                    f"verankert auf die Basis-CELEX — hier vermutlich "
+                    f"`{basis}`; die Konsolidierung gehoert in "
+                    f"`fassung.konsolidierung`.")
+        if not CELEX_BASIS.match(wert):
+            return f"`{wert}` ist keine CELEX-Kennung (Muster `32013L0036`)."
+        return None
+    if not ANKER_SYNTAX[typ].match(wert):
+        return (f"Identitätsanker-Wert `{wert}` passt nicht zur Syntax des "
+                f"Typs `{typ}`.")
+    return None
+
+
+def zugang_bestimmen(felder, records):
+    """Bekannte Kurzform, neuer Record — oder ein Fall fuer Menschen.
+
+    Die Meldung nennt nur Kurzform und Quelle; der Kollisionscheck laeuft
+    deshalb allein ueber Sigel, Aliasse und die abgeleitete Record-ID.
+    Existiert die Kurzform bereits, ist die Meldung **nie** eine Aenderung,
+    sondern zusaetzliche Evidenz zum bestehenden Record.
+    """
+    sigel = felder["sigel"]
+    neue_id = slug(sigel)
+
+    for pfad, r in records:
+        if r.get("sigel") == sigel:
+            return {"art": "evidenz", "ziel": r["id"], "pfad": pfad,
+                    "grund": f"Sigel `{sigel}` ist als Record `{r['id']}` "
+                             f"erfasst; die Meldung zaehlt als zusaetzliche "
+                             f"Evidenz."}
+        for alias in r.get("aliasse") or []:
+            if alias.get("form") == sigel:
+                return {"art": "evidenz", "ziel": r["id"], "pfad": pfad,
+                        "grund": f"`{sigel}` ist bereits Alias des Records "
+                                 f"`{r['id']}`; die Meldung belegt ihn."}
+
+    for pfad, r in records:
+        if r.get("id") == neue_id:
+            return {"art": "maintainer", "ziel": r["id"], "pfad": pfad,
+                    "grund": f"Die abgeleitete Record-ID `{neue_id}` ist "
+                             f"vergeben, das Sigel aber ein anderes."}
+    return {"art": "neu", "ziel": neue_id, "pfad": None,
+            "grund": f"`{sigel}` ist im Bestand unbekannt — neuer Record "
+                     f"`{neue_id}`."}
+
+
+def anker_ziel(records, typ, wert):
+    """Traegt ein Record den Anker schon? Dann ist die Kurzform dort Alias."""
+    for pfad, r in records:
+        ident = r.get("identitaet") or {}
+        if ident.get("typ") == typ and ident.get("wert") == wert:
+            return pfad, r
+    return None, None
+
+
+# --- Stufe 2: Quellpruefung ------------------------------------------------
+
+def abrufen(url):
+    """Quelle holen; Rueckgabe (text, methode, fehler)."""
+    anfrage = urllib.request.Request(url, headers={
+        "User-Agent": UA,
+        "Accept": "text/html,application/pdf,application/xhtml+xml,*/*",
+        "Accept-Language": "de,en;q=0.8",
+    })
+    try:
+        with urllib.request.urlopen(anfrage, timeout=45) as antwort:
+            rohdaten = antwort.read(MAX_BYTES + 1)
+            content_type = (antwort.headers.get("Content-Type") or "").lower()
+    except urllib.error.HTTPError as e:
+        return None, None, f"HTTP {e.code} beim Abruf der Quelle."
+    except Exception as e:                      # Netz, DNS, TLS, Timeout
+        return None, None, f"Quelle nicht abrufbar: {type(e).__name__}: {e}"
+
+    if len(rohdaten) > MAX_BYTES:
+        return None, None, (f"Quelle groesser als "
+                            f"{MAX_BYTES // (1024 * 1024)} MB — nicht geprueft.")
+
+    ist_pdf = rohdaten[:5] == b"%PDF-" or "application/pdf" in content_type
+    if ist_pdf:
+        if not shutil.which("pdftotext"):
+            return None, None, ("PDF-Quelle, aber `pdftotext` ist in dieser "
+                                "Umgebung nicht verfuegbar.")
+        with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+            tmp.write(rohdaten)
+            pfad = tmp.name
+        try:
+            lauf = subprocess.run(["pdftotext", "-q", "-enc", "UTF-8",
+                                   pfad, "-"],
+                                  capture_output=True, timeout=180)
+        finally:
+            os.unlink(pfad)
+        if lauf.returncode != 0:
+            return None, None, "pdftotext konnte die Quelle nicht lesen."
+        return lauf.stdout.decode("utf-8", "replace"), "web-abruf, pdftotext", None
+
+    text = rohdaten.decode("utf-8", "replace")
+    text = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", text)
+    text = re.sub(r"(?s)<[^>]+>", " ", text)
+    return html.unescape(text), "web-abruf", None
+
+
+def normalisieren(text):
+    """Weiche Trennstriche und Sonderleerzeichen weg, Weissraum vereinheitlicht.
+
+    PDF-Extrakte und HTML streuen unsichtbare Zeichen zwischen die Buchstaben;
+    ohne diesen Schritt scheitert der Wortlaut-Vergleich an Zeichen, die
+    niemand sieht.
+    """
+    for unsichtbar in ("\u00ad", "\u200b", "\ufeff"):
+        text = text.replace(unsichtbar, "")
+    for leerzeichen in ("\u00a0", "\u2007", "\u202f", "\u2009"):
+        text = text.replace(leerzeichen, " ")
+    return re.sub(r"\s+", " ", text)
+
+
+def ausschnitt_bauen(text, start, ende):
+    """Ein lesbarer Kontextausschnitt um eine Fundstelle."""
+    a = max(0, start - 110)
+    b = min(len(text), ende + 110)
+    stueck = text[a:b].strip()
+    if a > 0:
+        stueck = "… " + stueck.split(" ", 1)[-1]
+    if b < len(text):
+        stueck = stueck.rsplit(" ", 1)[0] + " …"
+    return stueck
+
+
+def wortlaut_finden(text, form, max_kontexte=MAX_KONTEXTE):
+    """Wie oft kommt `form` wortgenau vor, und wie liest sie sich dort?
+
+    Rueckgabe (anzahl, kontexte). Die Kontexte schneidet **das Skript** aus
+    dem abgerufenen Quelltext — sie sind damit Extraktion aus einer
+    verifizierten Quelle und nicht Melder-Input.
+    """
+    teile = [re.escape(t) for t in form.split(" ") if t]
+    if not teile:
+        return 0, []
+    muster = re.compile(r"(?<![0-9A-Za-zÄÖÜäöüß])" + r"\s+".join(teile)
+                        + r"(?![0-9A-Za-zÄÖÜäöüß])")
+    anzahl = 0
+    kontexte = []
+    for treffer in muster.finditer(text):
+        anzahl += 1
+        if len(kontexte) < max_kontexte:
+            kontexte.append(ausschnitt_bauen(text, treffer.start(),
+                                             treffer.end()))
+    return anzahl, kontexte
+
+
+def quelle_pruefen(felder):
+    """Die Quelle abrufen und den Wortlaut belegen — oder eben nicht."""
+    text, methode, fehler = abrufen(felder["quelle"])
+    if fehler:
+        return {"ok": False, "fehler": fehler, "methode": None,
+                "treffer": 0, "kontexte": [], "zeichen": 0}
+    text = normalisieren(text)
+    anzahl, kontexte = wortlaut_finden(text, felder["sigel"])
+    ergebnis = {"ok": anzahl > 0, "methode": methode, "treffer": anzahl,
+                "kontexte": kontexte, "zeichen": len(text), "fehler": None,
+                "volltext": text}
+    if not anzahl:
+        ergebnis["fehler"] = (
+            f"Die Kurzform „{felder['sigel']}“ kommt im abgerufenen Text der "
+            f"Quelle nicht wortgenau vor ({len(text)} Zeichen geprueft, "
+            f"gross-/kleinschreibungsgenau).")
+    return ergebnis
+
+
+def pruefquelle_fuer(url, pruefquellen):
+    """Steht die Fundstelle auf der kuratierten Pruefquellen-Liste?"""
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    for eintrag in pruefquellen:
+        d = eintrag["domain"].lower()
+        if host == d or host.endswith("." + d):
+            return eintrag
+    return None
+
+
+# --- Einordnung ------------------------------------------------------------
+# Gruppe und Rang stehen nicht mehr in der Meldung: Sie sind kuratorische
+# Urteile und kommen deshalb von der Aufnahme-Routine, die sie an der Quelle
+# begruendet. Geraten wird nichts — fehlt die Ansage, entscheidet der
+# Maintainer.
+
+def einordnung_pruefen(gruppe, rang, gruppen):
+    """Gruppe und Rang der Routine gegen die Gliederung halten."""
+    if not gruppe:
+        return ("Die Routine hat keine Gruppe zugeordnet; die Einordnung "
+                "wird nicht geraten.")
+    if gruppe not in gruppen:
+        return f"Gruppe `{gruppe}` ist in `kuration/gruppen.json` unbekannt."
+    if rang is not None and not 1 <= rang <= 7:
+        return f"Rang `{rang}` liegt ausserhalb 1–7."
+    return None
+
+
+# --- Stufe 3: Record-Erzeugung (nur --uebernehmen) -------------------------
+
+def json_schreiben(pfad, daten):
+    with open(pfad, "w", encoding="utf-8") as f:
+        json.dump(daten, f, ensure_ascii=False, indent=2, sort_keys=False)
+        f.write("\n")
+
+
+def raw_record(felder, herausgeber, quellbefund, nummer, autor):
+    """Der Evidenzbeleg — Herausgeber aus der Pruefquellen-Liste, nie vom Melder."""
+    return {
+        "herausgeber": herausgeber,
+        "quelle": felder["quelle"],
+        "abgerufen": heute(),
+        "methode": quellbefund["methode"],
+        "meldung": {"issue": nummer, "melder": autor},
+        "eintraege": [{
+            "form": felder["sigel"],
+            "kontext": (quellbefund.get("kontexte") or [None])[0],
+            "fundstellen": [felder["quelle"]],
+        }],
+    }
+
+
+def kuration_record(felder, herausgeber, quellbefund, anker, gruppe, rang,
+                    referenzform, name, nummer):
+    """Der Registereintrag aus dem Artefakt plus den Zuarbeiten der Routine."""
+    geprueft = {"datum": heute(), "methode": "web-abruf"}
+    anker_belegt = bool(
+        anker["wert"]
+        and wortlaut_finden(quellbefund.get("volltext") or "",
+                            anker["wert"], 1)[0])
+    return {
+        "id": slug(felder["sigel"]),
+        "sigel": felder["sigel"],
+        # Der Ingest belegt Formen aus deutschsprachigen Aufsichtsquellen;
+        # eine englische Kurzform traegt der Maintainer nach.
+        "sprache": "de",
+        "referenzform": referenzform,
+        "name": name,
+        "haerte": "verkehrsueblich",
+        "haerte_geprueft": {"datum": heute(), "methode": "einschaetzung"},
+        "gruppe": gruppe,
+        "rang": rang,
+        "identitaet": {
+            "typ": anker["typ"],
+            "wert": anker["wert"],
+            # Der Abruf belegt den Anker nur, wenn er im Quelltext steht;
+            # sonst bleibt er ungeprueft statt scheinbar geprueft.
+            "geprueft": dict(geprueft) if anker_belegt else None,
+        },
+        "fassung": {
+            "stand": None,
+            "konsolidierung": None,
+            "text": f"Fassung nicht erhoben — Auto-Intake aus Meldung "
+                    f"#{nummer} vom {heute()}",
+        },
+        "links": [{
+            "label": f"{herausgeber} (Meldungsquelle)",
+            "url": felder["quelle"],
+            "geprueft": dict(geprueft),
+        }],
+        "aliasse": [],
+        "ersetzt": [],
+        "ersetzt_durch": [],
+        "status": "auto-intake",
+    }
+
+
+def alias_ergaenzen(pfad, form, raw_id):
+    """Additiv-only: nur `aliasse` darf wachsen, kein anderes Feld sich ruehren."""
+    with open(pfad, encoding="utf-8") as f:
+        vorher = json.load(f)
+    nachher = json.loads(json.dumps(vorher))
+    aliasse = nachher.setdefault("aliasse", [])
+    treffer = next((a for a in aliasse if a.get("form") == form), None)
+    if treffer is None:
+        aliasse.append({"form": form, "sprache": "de", "evidenz": [raw_id]})
+    elif raw_id not in (treffer.get("evidenz") or []):
+        treffer.setdefault("evidenz", []).append(raw_id)
+    else:
+        return vorher, None
+    ohne_a = {k: v for k, v in vorher.items() if k != "aliasse"}
+    ohne_b = {k: v for k, v in nachher.items() if k != "aliasse"}
+    if ohne_a != ohne_b:
+        raise AssertionError("Additiv-Verletzung: ausserhalb von `aliasse` "
+                             "wurde etwas geaendert.")
+    return vorher, nachher
+
+
+def ratenbremse(repo):
+    """Wie viele auto-intake-Commits traegt der heutige Tag schon?"""
+    try:
+        lauf = subprocess.run(
+            ["git", "-C", repo, "log", "--since", f"{heute()} 00:00:00",
+             "--format=%s"],
+            capture_output=True, text=True, timeout=30)
+    except Exception:
+        return 0
+    if lauf.returncode != 0:
+        return 0
+    return sum(1 for z in lauf.stdout.splitlines()
+               if z.startswith(COMMIT_MARKER))
+
+
+def build_laufen(repo):
+    lauf = subprocess.run([sys.executable, os.path.join(repo, "tools",
+                                                        "build.py")],
+                          capture_output=True, text=True, cwd=repo,
+                          timeout=300)
+    return lauf.returncode, (lauf.stdout + lauf.stderr).strip()
+
+
+def arbeitskopie(repo):
+    ziel = tempfile.mkdtemp(prefix="sigel-intake-")
+    for teil in ("kuration", "raw", "dist", "tools"):
+        quelle = os.path.join(repo, teil)
+        if os.path.isdir(quelle):
+            shutil.copytree(quelle, os.path.join(ziel, teil))
+    return ziel
+
+
+# --- Berichte --------------------------------------------------------------
+
+def bericht(ergebnis):
+    """Der Artefakt-Kommentar: Marker, Prüfbericht, Artefakt-JSON.
+
+    Der Marker in der ersten Zeile macht den Kommentar maschinell
+    auffindbar. Die Routine liest genau diesen Block — nie Titel, Body oder
+    Fremdkommentare des Issues.
+    """
+    kopf = {
+        "vorgeprueft-ok": "**Vorprüfung bestanden.**",
+        "aufgenommen": "**Aufgenommen.**",
+        "abgelehnt": "**Abgelehnt.**",
+        "wartet-maintainer": "**Wartet auf den Maintainer.**",
+    }[ergebnis["entscheidung"]]
+    zeilen = [ARTEFAKT_MARKER, "", kopf, ""]
+    for befund in ergebnis["befunde"]:
+        zeilen.append(f"- {befund}")
+    if ergebnis.get("dateien"):
+        zeilen += ["", "Geschriebene Dateien:"]
+        zeilen += [f"- `{d}`" for d in ergebnis["dateien"]]
+    zeilen += ["", "<details><summary>Artefakt (JSON)</summary>", "",
+               "```json",
+               json.dumps({k: v for k, v in ergebnis.items()
+                           if k != "kommentar"},
+                          ensure_ascii=False, indent=2),
+               "```", "", "</details>", "",
+               "_Erzeugt von `tools/intake.py`. Die Aufnahme-Routine "
+               "verarbeitet ausschliesslich dieses Artefakt, nicht den "
+               "Issue-Text._"]
+    return "\n".join(zeilen)
+
+
+def artefakt_lesen(pfad):
+    """Das Artefakt der Vorprüfung — Eingabe von `--uebernehmen`.
+
+    Angenommen wird der Kommentar-Text der Action ebenso wie das nackte
+    JSON: Aus dem Kommentar wird der ```json-Block hinter dem Marker
+    gezogen. Alles andere ist kein Artefakt und wird abgewiesen.
+    """
+    with open(pfad, encoding="utf-8") as f:
+        roh = f.read()
+    text = roh.strip()
+    if not text.startswith("{"):
+        if ARTEFAKT_MARKER not in roh:
+            raise ValueError(f"`{pfad}` traegt den Artefakt-Marker "
+                             f"`{ARTEFAKT_MARKER}` nicht.")
+        block = re.search(r"```json\n(.*?)\n```", roh, re.S)
+        if not block:
+            raise ValueError(f"`{pfad}` enthaelt keinen json-Block.")
+        text = block.group(1)
+    daten = json.loads(text)
+    if daten.get("modus") != "vorpruefung":
+        raise ValueError("Das Artefakt stammt nicht aus `--vorpruefung`.")
+    if daten.get("entscheidung") != "vorgeprueft-ok":
+        raise ValueError(f"Das Artefakt traegt die Entscheidung "
+                         f"`{daten.get('entscheidung')}`, nicht "
+                         f"`vorgeprueft-ok`.")
+    if not isinstance(daten.get("felder"), dict):
+        raise ValueError("Das Artefakt fuehrt keinen Feldbestand.")
+    return daten
+
+
+def abschliessen(ergebnis, args):
+    ergebnis["kommentar"] = bericht(ergebnis)
+    ergebnis["schliessen"] = ergebnis["entscheidung"] in ("abgelehnt",
+                                                          "aufgenommen")
+    ergebnis["label"] = {
+        "vorgeprueft-ok": "vorgeprueft-ok",
+        "aufgenommen": None,
+        "abgelehnt": "abgelehnt",
+        "wartet-maintainer": "wartet-maintainer",
+    }[ergebnis["entscheidung"]]
+    if args.ergebnis:
+        with open(args.ergebnis, "w", encoding="utf-8") as f:
+            json.dump(ergebnis, f, ensure_ascii=False, indent=2)
+    json.dump(ergebnis, sys.stdout, ensure_ascii=False, indent=2)
+    sys.stdout.write("\n")
+    return 0
+
+
+# --- Ablauf ----------------------------------------------------------------
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    modus = p.add_mutually_exclusive_group(required=True)
+    modus.add_argument("--vorpruefung", action="store_true",
+                       help="Prüfen ohne zu schreiben (Action)")
+    modus.add_argument("--uebernehmen", action="store_true",
+                       help="Records erzeugen und bauen (Routine)")
+    p.add_argument("--body-datei", help="Issue-Body aus Datei statt ISSUE_BODY")
+    p.add_argument("--artefakt",
+                   help="Artefakt der Vorpruefung (Datei); Pflichteingabe "
+                        "von --uebernehmen im Routinebetrieb")
+    p.add_argument("--ergebnis", help="Ergebnis-JSON zusätzlich hierhin")
+    # Zuarbeiten der Aufnahme-Routine. Sie stehen nicht im Meldeformular:
+    # Die Routine leitet sie aus der verifizierten Quelle und gezielten
+    # Anker-Lookups ab und verantwortet sie.
+    p.add_argument("--referenzform", help="amtliche Referenzform (Routine)")
+    p.add_argument("--name", help="Vollbezeichnung (Routine)")
+    p.add_argument("--anker-typ", dest="anker_typ",
+                   choices=ANKER_TYPEN, help="Identitätsanker-Typ (Routine)")
+    p.add_argument("--anker-wert", dest="anker_wert",
+                   help="Identitätsanker-Wert (Routine)")
+    p.add_argument("--gruppe", help="Gruppen-ID (Routine)")
+    p.add_argument("--rang", help="Rang 1–7 oder 'null' (Routine)")
+    p.add_argument("--dry-run", action="store_true",
+                   help="auf einer Kopie arbeiten, Bestand unberührt lassen")
+    args = p.parse_args()
+
+    nummer = os.environ.get("ISSUE_NUMBER", "0")
+    autor = os.environ.get("ISSUE_AUTHOR", "unbekannt")
+    artefakt = None
+    if args.artefakt:
+        try:
+            artefakt = artefakt_lesen(args.artefakt)
+        except (OSError, ValueError, json.JSONDecodeError) as e:
+            print(f"FEHLER: {e}", file=sys.stderr)
+            return 1
+        nummer = str(artefakt.get("issue") or nummer)
+        autor = artefakt.get("melder") or autor
+    ergebnis = {
+        "modus": "vorpruefung" if args.vorpruefung else "uebernehmen",
+        "issue": nummer,
+        "melder": autor,
+        "entscheidung": None,
+        "sigel": None,
+        "zugang": None,
+        "quelle": None,
+        "allowlist": None,
+        "befunde": [],
+        "dateien": [],
+        "felder": None,
+    }
+
+    vorgabe_rang = None
+    if args.rang not in (None, "", "null", "keiner"):
+        if not str(args.rang).isdigit() or not 1 <= int(args.rang) <= 7:
+            ergebnis["entscheidung"] = "wartet-maintainer"
+            ergebnis["befunde"].append(f"Rang-Vorgabe `{args.rang}` ist "
+                                       f"unzulaessig (1–7 oder `null`).")
+            return abschliessen(ergebnis, args)
+        vorgabe_rang = int(args.rang)
+
+    if artefakt is not None:
+        felder = {k: artefakt["felder"].get(k) for k in FELDER}
+    else:
+        felder = felder_lesen(body_lesen(args))
+    ergebnis["sigel"] = felder.get("sigel")
+    ergebnis["felder"] = felder
+
+    # Stufe 1 — Form der Meldung
+    fehler = deterministisch_pruefen(felder)
+    if fehler:
+        ergebnis["entscheidung"] = "abgelehnt"
+        ergebnis["befunde"] = fehler
+        ergebnis["befunde"].append(
+            "Die Aufnahme-Regel des Registers ist eine Quellen-Regel: Ohne "
+            "vollstaendige, syntaktisch saubere Meldung samt Fundstelle wird "
+            "nicht geprueft.")
+        return abschliessen(ergebnis, args)
+
+    repo = arbeitskopie(REPO) if (args.uebernehmen and args.dry_run) else REPO
+    kuration = os.path.join(repo, "kuration")
+    records = records_lesen(kuration)
+    gruppen = gruppen_lesen(kuration)
+    pruefquellen = pruefquellen_lesen(kuration)
+
+    zugang = zugang_bestimmen(felder, records)
+    ergebnis["zugang"] = zugang["art"]
+    ergebnis["befunde"].append(zugang["grund"])
+    if zugang["art"] == "maintainer":
+        ergebnis["entscheidung"] = "wartet-maintainer"
+        return abschliessen(ergebnis, args)
+
+    # Stufe 2 — die Quelle belegt den Wortlaut oder nichts gilt
+    quellbefund = quelle_pruefen(felder)
+    ergebnis["quelle"] = {k: quellbefund[k] for k in
+                          ("ok", "methode", "treffer", "kontexte", "zeichen",
+                           "fehler")}
+    if not quellbefund["ok"]:
+        ergebnis["entscheidung"] = "abgelehnt"
+        ergebnis["befunde"].append(quellbefund["fehler"])
+        return abschliessen(ergebnis, args)
+    ergebnis["befunde"].append(
+        f"Quelle abgerufen ({quellbefund['methode']}, "
+        f"{quellbefund['zeichen']} Zeichen); „{felder['sigel']}“ kommt "
+        f"{quellbefund['treffer']}× wortgenau vor. Erste Fundstelle: "
+        f"„{quellbefund['kontexte'][0]}“")
+
+    # Stufe 3 — Herkunft entscheidet ueber Automatik
+    quelle_eintrag = pruefquelle_fuer(felder["quelle"], pruefquellen)
+    ergebnis["pruefquelle"] = quelle_eintrag
+    ergebnis["allowlist"] = quelle_eintrag is not None
+    if quelle_eintrag is None:
+        ergebnis["entscheidung"] = "abgelehnt"
+        host = urllib.parse.urlsplit(felder["quelle"]).hostname
+        ergebnis["befunde"].append(
+            f"`{host}` steht nicht in `kuration/pruefquellen.json`. Belegt "
+            f"ist eine Kurzform nur durch eine freigegebene Pruefquelle — "
+            f"die Meldung wird abgelehnt, nicht geparkt. Wer die Domain fuer "
+            f"eine Pruefquelle haelt, schlaegt sie mit dem Formular "
+            f"`pruefquelle-vorschlag` vor; ueber die Vertrauensebene "
+            f"entscheidet allein der Maintainer.")
+        return abschliessen(ergebnis, args)
+    ergebnis["befunde"].append(
+        f"Quelle ist eine kuratierte Pruefquelle: `{quelle_eintrag['domain']}` "
+        f"({quelle_eintrag['herausgeber']}, {quelle_eintrag['typ']}).")
+
+    if args.vorpruefung:
+        ergebnis["entscheidung"] = "vorgeprueft-ok"
+        ergebnis["befunde"].append(
+            "Die taegliche Aufnahme-Routine uebernimmt den Eintrag; "
+            "geschrieben hat die Vorpruefung nichts.")
+        return abschliessen(ergebnis, args)
+
+    # --- ab hier nur --uebernehmen ---
+    # Die Zuarbeiten der Routine kommen erst hier ins Spiel — die Action
+    # kennt sie nicht und braucht sie nicht.
+    gruppe, rang = args.gruppe, vorgabe_rang
+    anker = {"typ": args.anker_typ, "wert": args.anker_wert}
+    if zugang["art"] == "neu":
+        maengel = [m for m in (
+            anker_pruefen(anker["typ"], anker["wert"]),
+            einordnung_pruefen(gruppe, rang, gruppen),
+            None if args.referenzform else
+            "Die Routine hat keine amtliche Referenzform ermittelt.",
+            None if args.name else
+            "Die Routine hat keine Vollbezeichnung ermittelt.",
+        ) if m]
+        if maengel:
+            ergebnis["entscheidung"] = "wartet-maintainer"
+            ergebnis["befunde"] += maengel
+            ergebnis["befunde"].append(
+                "Ein neuer Record braucht Anker, Einordnung und Bezeichnung. "
+                "Was die Routine nicht sicher an der Quelle ermitteln kann, "
+                "raet sie nicht — das entscheidet der Maintainer.")
+            return abschliessen(ergebnis, args)
+        # Traegt ein Bestandsrecord denselben Anker, ist die gemeldete
+        # Kurzform dort eine weitere Schreibform, kein neues Dokument.
+        alias_pfad, alias_record = anker_ziel(records, anker["typ"],
+                                              anker["wert"])
+        if alias_record is not None:
+            zugang = {"art": "alias", "ziel": alias_record["id"],
+                      "pfad": alias_pfad,
+                      "grund": f"Anker `{anker['typ']}:{anker['wert']}` "
+                               f"gehoert zu Record `{alias_record['id']}`; "
+                               f"`{felder['sigel']}` wird dort Alias."}
+            ergebnis["zugang"] = "alias"
+            ergebnis["befunde"].append(zugang["grund"])
+        else:
+            ergebnis["befunde"].append(
+                f"Einordnung durch die Routine: Gruppe `{gruppe}`, Rang "
+                f"{'—' if rang is None else rang}, Anker "
+                f"`{anker['typ']}:{anker['wert']}`.")
+
+    getan = ratenbremse(REPO)
+    if getan >= RATE_GRENZE:
+        ergebnis["entscheidung"] = "wartet-maintainer"
+        ergebnis["befunde"].append(
+            f"Ratenbremse: heute liegen bereits {getan} auto-intake-Commits "
+            f"vor (Grenze {RATE_GRENZE}).")
+        return abschliessen(ergebnis, args)
+
+    raw_id = f"{heute()}-intake-{nummer}-{slug(felder['sigel'])}"
+    raw_pfad = os.path.join(repo, "raw", raw_id + ".json")
+    if os.path.exists(raw_pfad):
+        ergebnis["entscheidung"] = "wartet-maintainer"
+        ergebnis["befunde"].append(
+            f"`raw/{raw_id}.json` existiert bereits — die Meldung wurde heute "
+            f"schon verarbeitet.")
+        return abschliessen(ergebnis, args)
+
+    # Rueckabwicklung vorbereiten: Originalzustaende merken
+    protokoll = []
+
+    def merken(pfad):
+        alt = None
+        if os.path.exists(pfad):
+            with open(pfad, "rb") as f:
+                alt = f.read()
+        protokoll.append((pfad, alt))
+
+    for name in ("sigel.json", "SIGEL.md"):
+        merken(os.path.join(repo, "dist", name))
+
+    try:
+        merken(raw_pfad)
+        json_schreiben(raw_pfad, raw_record(
+            felder, quelle_eintrag["herausgeber"], quellbefund, nummer,
+            autor))
+        ergebnis["dateien"].append(os.path.relpath(raw_pfad, repo))
+
+        if zugang["art"] == "neu":
+            neu = kuration_record(
+                felder, quelle_eintrag["herausgeber"], quellbefund, anker,
+                gruppe, rang, args.referenzform, args.name, nummer)
+            kur_pfad = os.path.join(kuration, zugang["ziel"] + ".json")
+            merken(kur_pfad)
+            json_schreiben(kur_pfad, neu)
+            ergebnis["dateien"].append(os.path.relpath(kur_pfad, repo))
+        elif zugang["art"] == "alias":
+            ziel = os.path.join(kuration, zugang["ziel"] + ".json")
+            merken(ziel)
+            _, nachher = alias_ergaenzen(ziel, felder["sigel"], raw_id)
+            if nachher is not None:
+                json_schreiben(ziel, nachher)
+                ergebnis["dateien"].append(os.path.relpath(ziel, repo))
+        # "evidenz": der raw-Record allein genuegt — die Statistik des Builds
+        # zaehlt ihn dem bestehenden Record von selbst zu.
+
+        code, ausgabe = build_laufen(repo)
+        if code != 0:
+            raise RuntimeError(f"build.py bricht ab (Exit {code}):\n{ausgabe}")
+        ergebnis["build"] = ausgabe.splitlines()[-1] if ausgabe else ""
+        for name in ("sigel.json", "SIGEL.md"):
+            ergebnis["dateien"].append(f"dist/{name}")
+    except Exception as e:
+        for pfad, alt in reversed(protokoll):
+            if alt is None:
+                if os.path.exists(pfad):
+                    os.unlink(pfad)
+            else:
+                with open(pfad, "wb") as f:
+                    f.write(alt)
+        ergebnis["entscheidung"] = "wartet-maintainer"
+        ergebnis["dateien"] = []
+        ergebnis["befunde"].append(
+            f"Aufnahme zurueckgenommen, der Bestand ist unveraendert: {e}")
+        if args.dry_run and repo != REPO:
+            shutil.rmtree(repo, ignore_errors=True)
+        return abschliessen(ergebnis, args)
+
+    ergebnis["entscheidung"] = "aufgenommen"
+    ergebnis["commit_betreff"] = (f"{COMMIT_MARKER} {felder['sigel']} "
+                                  f"(#{nummer})")
+    if args.dry_run:
+        ergebnis["befunde"].append(
+            f"Probelauf auf einer Kopie ({repo}); der Bestand ist unberuehrt.")
+        shutil.rmtree(repo, ignore_errors=True)
+    else:
+        ergebnis["befunde"].append(
+            "Records geschrieben und `build.py` gruen — die Routine committet "
+            "den Stand.")
+    return abschliessen(ergebnis, args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

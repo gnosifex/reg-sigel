@@ -1,0 +1,49 @@
+{
+  "id": "dora",
+  "sigel": "DORA",
+  "sprache": "de",
+  "name": "Verordnung (EU) 2022/2554 (Digital Operational Resilience Act)",
+  "haerte": "verkehrsueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-verordnungen",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32022R2554",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": "02022R2554-20221227",
+    "text": "Ursprungsfassung, CELEX 02022R2554-20221227"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02022R2554-20221227",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    },
+    {
+      "label": "EN",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022R2554",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 1,
+  "referenzform": "Verordnung (EU) 2022/2554"
+}

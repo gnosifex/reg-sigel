@@ -1,0 +1,41 @@
+{
+  "id": "zag-marisk",
+  "sigel": "ZAG-MaRisk",
+  "sprache": "de",
+  "name": "BaFin-Rundschreiben 07/2024 (ZAG)",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "nationale-aufsicht",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "Rundschreiben 07/2024 (ZAG)",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "PDF-Fassung v=6"
+  },
+  "links": [
+    {
+      "label": "BaFin (PDF)",
+      "url": "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0724_ZAG_MaRisk.pdf?__blob=publicationFile&v=6",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "spiegel-provenienz"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 3,
+  "referenzform": "Rundschreiben 07/2024 (ZAG)"
+}

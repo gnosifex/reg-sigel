@@ -1,0 +1,41 @@
+{
+  "id": "eba-gl-2019-02",
+  "sigel": "EBA/GL/2019/02",
+  "sprache": "de",
+  "name": "EBA, Guidelines on outsourcing arrangements",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-leitlinien",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "EBA/GL/2019/02",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "25.02.2019"
+  },
+  "links": [
+    {
+      "label": "EBA PDF (DE)",
+      "url": "https://www.eba.europa.eu/sites/default/files/documents/10180/2761380/5546a705-bff2-43eb-b382-e5c7bed3a2bc/EBA%20revised%20Guidelines%20on%20outsourcing_DE.pdf",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 3,
+  "referenzform": "EBA/GL/2019/02"
+}

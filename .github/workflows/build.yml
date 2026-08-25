@@ -1,0 +1,37 @@
+name: build
+
+# Der Build ist die einzige Instanz, die dist/ und docs/ schreiben darf.
+# CI beweist
+# zweierlei: der committete dist-Stand entspricht der Kuration, und zwei
+# Laeufe liefern byte-gleiche Ausgaben. Kein watch — der braucht Netz zum
+# Cellar und laeuft deshalb von Hand.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build
+        run: python tools/build.py
+
+      - name: Committeter Ausgabestand entspricht der Kuration
+        run: git diff --exit-code dist/ docs/
+
+      - name: Zweiter Lauf ist byte-gleich
+        run: |
+          cp dist/sigel.json /tmp/sigel.json
+          cp dist/SIGEL.md /tmp/SIGEL.md
+          cp docs/index.html /tmp/index.html
+          python tools/build.py
+          cmp /tmp/sigel.json dist/sigel.json
+          cmp /tmp/SIGEL.md dist/SIGEL.md
+          cmp /tmp/index.html docs/index.html

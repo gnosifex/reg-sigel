@@ -1,0 +1,41 @@
+{
+  "id": "iso-iec-27002-2022",
+  "sigel": "ISO/IEC 27002:2022",
+  "sprache": "de",
+  "name": "ISO/IEC 27002:2022, Informationssicherheits-Controls",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "ISO/IEC 27002:2022",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "deutsche Übernahme: DIN EN ISO/IEC 27002:2024-01 (kostenpflichtig)"
+  },
+  "links": [
+    {
+      "label": "iso.org",
+      "url": "https://www.iso.org/standard/75652.html",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": null,
+  "referenzform": "ISO/IEC 27002:2022"
+}

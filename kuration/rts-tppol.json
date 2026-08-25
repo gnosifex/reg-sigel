@@ -1,0 +1,47 @@
+{
+  "id": "rts-tppol",
+  "sigel": "RTS TPPol",
+  "sprache": "de",
+  "name": "Delegierte Verordnung (EU) 2024/1773 (Politik für IKT-Dienstleistungen)",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-durchfuehrung",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "Delegierte Verordnung (EU) 2024/1773",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "13.03.2024, ABl. 25.06.2024"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32024R1773",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "spiegel-provenienz"
+      }
+    }
+  ],
+  "aliasse": [
+    {
+      "form": "RTS-TPPOL",
+      "sprache": "de",
+      "evidenz": []
+    }
+  ],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 2,
+  "referenzform": "Delegierte Verordnung (EU) 2024/1773"
+}

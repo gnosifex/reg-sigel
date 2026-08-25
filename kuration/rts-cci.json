@@ -1,0 +1,41 @@
+{
+  "id": "rts-cci",
+  "sigel": "RTS CCI",
+  "sprache": "de",
+  "name": "Delegierte Verordnung (EU) 2024/1772 (Klassifizierungskriterien für IKT-bezogene Vorfälle)",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-durchfuehrung",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32024R1772",
+    "geprueft": {
+      "datum": "2026-08-25",
+      "methode": "konstruiert"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "13.03.2024, ABl. 25.06.2024"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32024R1772",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "konstruiert"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 2,
+  "referenzform": "Delegierte Verordnung (EU) 2024/1772"
+}

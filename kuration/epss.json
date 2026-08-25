@@ -1,0 +1,41 @@
+{
+  "id": "epss",
+  "sigel": "EPSS",
+  "sprache": "de",
+  "name": "FIRST, Exploit Prediction Scoring System",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "version",
+    "wert": "v5",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "v5 seit 15.06.2026"
+  },
+  "links": [
+    {
+      "label": "first.org",
+      "url": "https://www.first.org/epss/",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": null,
+  "referenzform": "EPSS v5"
+}

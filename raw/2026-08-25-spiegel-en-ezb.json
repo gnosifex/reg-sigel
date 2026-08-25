@@ -1,0 +1,19 @@
+{
+  "id": "2026-08-25-spiegel-en-ezb",
+  "herausgeber": "EZB",
+  "quelle": "wortgetreue lokale Spiegel der englischsprachigen Originalpublikationen im Korpus des Betreibers (nur Record-Bodys); Fundstelle = Original-URL je Dokument",
+  "abgerufen": "2026-08-25",
+  "methode": "grep ueber die Bodys der englischen Spiegel",
+  "eintraege": [
+    {
+      "form": "GDPR",
+      "kontext": "the General Data Protection Regulation (GDPR) [^8] and the guidelines [^9] of the European Data Protection Board for personal data",
+      "fundstellen": [
+        "https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202507.en.pdf"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    }
+  ]
+}

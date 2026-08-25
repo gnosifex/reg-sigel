@@ -1,0 +1,23 @@
+{
+  "id": "2026-08-25-spiegel-en-eba",
+  "herausgeber": "EBA",
+  "quelle": "wortgetreue lokale Spiegel der englischsprachigen Originalpublikationen im Korpus des Betreibers (nur Record-Bodys); Fundstelle = Original-URL je Dokument",
+  "abgerufen": "2026-08-25",
+  "methode": "grep ueber die Bodys der englischen Spiegel",
+  "eintraege": [
+    {
+      "form": "GDPR",
+      "kontext": "in accordance with Regulation (EU) 2016/679 [^42] (GDPR)",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2025-08/654f1ca6-0cad-4a2a-b85c-dd2abfae5fe6/Consultation%20Paper%20on%20draft%20amended%20Guidelines%20on%20internal%20governance.pdf",
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/1016721/Final%20report%20on%20Guidelines%20on%20internal%20governance%20under%20CRD.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2551996/38c80601-f5d7-4855-8ba3-702423665479/EBA%20revised%20Guidelines%20on%20outsourcing%20arrangements.pdf"
+      ],
+      "rang_quellen": [
+        "3",
+        "5",
+        "6"
+      ]
+    }
+  ]
+}

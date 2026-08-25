@@ -1,0 +1,41 @@
+{
+  "id": "ai-act",
+  "sigel": "AI Act",
+  "sprache": "de",
+  "name": "Verordnung (EU) 2024/1689",
+  "haerte": "verkehrsueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-verordnungen",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32024R1689",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": "2026-07-27",
+    "konsolidierung": "02024R1689-20260727",
+    "text": "konsolidiert Stand 27.07.2026, CELEX 02024R1689-20260727"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02024R1689-20240712",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "konstruiert"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 1,
+  "referenzform": "Verordnung (EU) 2024/1689"
+}

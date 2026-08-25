@@ -1,0 +1,64 @@
+{
+  "id": "its-roi",
+  "sigel": "ITS RoI",
+  "sprache": "de",
+  "name": "Durchführungsverordnung (EU) 2024/2956",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-durchfuehrung",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "Durchführungsverordnung (EU) 2024/2956",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": "2024-12-02",
+    "konsolidierung": null,
+    "text": "konsolidiert Stand 02.12.2024"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE (konsolidiert)",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02024R2956-20241202",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "spiegel-provenienz"
+      }
+    }
+  ],
+  "aliasse": [
+    {
+      "form": "ITS Informationsregister",
+      "sprache": "de",
+      "evidenz": [
+        "2026-08-25-spiegel-bafin"
+      ]
+    },
+    {
+      "form": "ITS Register",
+      "sprache": "de",
+      "evidenz": []
+    },
+    {
+      "form": "ITS-INFOREG",
+      "sprache": "de",
+      "evidenz": []
+    },
+    {
+      "form": "ITS-RoI",
+      "sprache": "de",
+      "evidenz": []
+    }
+  ],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 2,
+  "referenzform": "Durchführungsverordnung (EU) 2024/2956"
+}

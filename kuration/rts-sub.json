@@ -1,0 +1,57 @@
+{
+  "id": "rts-sub",
+  "sigel": "RTS SUB",
+  "sprache": "de",
+  "name": "Delegierte Verordnung (EU) 2025/532 (Weitervergabe)",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-durchfuehrung",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "Delegierte Verordnung (EU) 2025/532",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "24.03.2025"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32025R0532",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "spiegel-provenienz"
+      }
+    }
+  ],
+  "aliasse": [
+    {
+      "form": "RTS Subcontracting",
+      "sprache": "de",
+      "evidenz": []
+    },
+    {
+      "form": "RTS-SUB",
+      "sprache": "de",
+      "evidenz": []
+    },
+    {
+      "form": "RTS-SUBCON",
+      "sprache": "de",
+      "evidenz": []
+    }
+  ],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 2,
+  "referenzform": "Delegierte Verordnung (EU) 2025/532"
+}

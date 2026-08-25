@@ -1,0 +1,124 @@
+{
+  "id": "2026-08-25-spiegel-eba",
+  "herausgeber": "EBA",
+  "quelle": "wortgetreue lokale Spiegel der Originalpublikationen im Korpus des Betreibers (nur Record-Bodys mit issuer-Frontmatter); Fundstelle = Original-URL je Dokument",
+  "abgerufen": "2026-08-25",
+  "methode": "grep, lokaler Spiegel",
+  "eintraege": [
+    {
+      "form": "CRD",
+      "kontext": "Revisions made to EBA Guidelines on internal governance under CRD EBA/GL/2021/05 are shown in track changes",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2025-08/654f1ca6-0cad-4a2a-b85c-dd2abfae5fe6/Consultation%20Paper%20on%20draft%20amended%20Guidelines%20on%20internal%20governance.pdf",
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/1016721/Final%20report%20on%20Guidelines%20on%20internal%20governance%20under%20CRD.pdf",
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/EBA-GL-2021-05%20Guidelines%20on%20internal%20governance/translations/1021314/GL%20on%20internal%20governance%20under%20CRD_DE%20-%20updated.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2551996/38c80601-f5d7-4855-8ba3-702423665479/EBA%20revised%20Guidelines%20on%20outsourcing%20arrangements.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2761380/5546a705-bff2-43eb-b382-e5c7bed3a2bc/EBA%20revised%20Guidelines%20on%20outsourcing_DE.pdf"
+      ],
+      "rang_quellen": [
+        "3",
+        "5"
+      ]
+    },
+    {
+      "form": "CRD IV",
+      "kontext": "| Paragraph 9 Application on the solo level for firms within the scope of prudential consolidation | Several respondents noted that it should be explicitly stat",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/1016721/Final%20report%20on%20Guidelines%20on%20internal%20governance%20under%20CRD.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2551996/38c80601-f5d7-4855-8ba3-702423665479/EBA%20revised%20Guidelines%20on%20outsourcing%20arrangements.pdf"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "CRD V",
+      "kontext": "| Regulatory changes | A few respondents suggested that upcoming regulatory changes (CRD V, CRR2, investment firms) should be taken into account. | The EBA can ",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/1016721/Final%20report%20on%20Guidelines%20on%20internal%20governance%20under%20CRD.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2551996/38c80601-f5d7-4855-8ba3-702423665479/EBA%20revised%20Guidelines%20on%20outsourcing%20arrangements.pdf"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "CRR",
+      "kontext": "21. Article 109(2) CRD requires that parent undertakings and subsidiaries subject to this Directive meet the governance requirements not only on a solo basis bu",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/1016721/Final%20report%20on%20Guidelines%20on%20internal%20governance%20under%20CRD.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2551996/38c80601-f5d7-4855-8ba3-702423665479/EBA%20revised%20Guidelines%20on%20outsourcing%20arrangements.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2761380/5546a705-bff2-43eb-b382-e5c7bed3a2bc/EBA%20revised%20Guidelines%20on%20outsourcing_DE.pdf"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "DORA",
+      "kontext": "- ==90h. Third-country branches should manage their ICT risks in accordance with Article 48g (4) of Directive 2013/36/EU and Regulation (EU) 2022/2554 (DORA). I",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2025-08/654f1ca6-0cad-4a2a-b85c-dd2abfae5fe6/Consultation%20Paper%20on%20draft%20amended%20Guidelines%20on%20internal%20governance.pdf",
+        "https://www.eba.europa.eu/sites/default/files/2026-05/c8fb6168-0aef-42f6-8da9-114a8baf21b9/Consolidated%20version%20of%20EBA%20ameding%20Guidelines%20on%20ICT%20and%20security%20risk%20management.pdf"
+      ],
+      "rang_quellen": [
+        "3",
+        "5"
+      ]
+    },
+    {
+      "form": "DSGVO",
+      "kontext": "133. Zur Vermeidung von Interessenkonflikten sollte für die Mitarbeiter eine Möglichkeit bestehen, Verstöße außerhalb der regulären Berichtswege zu melden (z. B",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/EBA-GL-2021-05%20Guidelines%20on%20internal%20governance/translations/1021314/GL%20on%20internal%20governance%20under%20CRD_DE%20-%20updated.pdf"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "EBA/GL/2019/02",
+      "kontext": "EBA/GL/2019/02",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2551996/38c80601-f5d7-4855-8ba3-702423665479/EBA%20revised%20Guidelines%20on%20outsourcing%20arrangements.pdf",
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2761380/5546a705-bff2-43eb-b382-e5c7bed3a2bc/EBA%20revised%20Guidelines%20on%20outsourcing_DE.pdf"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "EBA/GL/2019/04",
+      "kontext": "| | EBA/GL/2019/04 (consolidated version) | 19.05.2026 |",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2026-05/c8fb6168-0aef-42f6-8da9-114a8baf21b9/Consolidated%20version%20of%20EBA%20ameding%20Guidelines%20on%20ICT%20and%20security%20risk%20management.pdf"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "EBA/GL/2021/05",
+      "kontext": "Revisions made to EBA Guidelines on internal governance under CRD EBA/GL/2021/05 are shown in track changes",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2025-08/654f1ca6-0cad-4a2a-b85c-dd2abfae5fe6/Consultation%20Paper%20on%20draft%20amended%20Guidelines%20on%20internal%20governance.pdf",
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/1016721/Final%20report%20on%20Guidelines%20on%20internal%20governance%20under%20CRD.pdf",
+        "https://www.eba.europa.eu/sites/default/files/document_library/Publications/Guidelines/2021/EBA-GL-2021-05%20Guidelines%20on%20internal%20governance/translations/1021314/GL%20on%20internal%20governance%20under%20CRD_DE%20-%20updated.pdf"
+      ],
+      "rang_quellen": [
+        "3",
+        "5"
+      ]
+    },
+    {
+      "form": "MaRisk",
+      "kontext": "| Definition Cloud | Respondents, while pointing out that cloud outsourcing and the types of it are defined terms, urged the EBA to take a more technologically ",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/documents/10180/2551996/38c80601-f5d7-4855-8ba3-702423665479/EBA%20revised%20Guidelines%20on%20outsourcing%20arrangements.pdf"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    }
+  ]
+}

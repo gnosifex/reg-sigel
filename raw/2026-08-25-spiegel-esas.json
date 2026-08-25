@@ -1,0 +1,86 @@
+{
+  "id": "2026-08-25-spiegel-esas",
+  "herausgeber": "ESAs",
+  "quelle": "wortgetreue lokale Spiegel der Originalpublikationen im Korpus des Betreibers (nur Record-Bodys mit issuer-Frontmatter); Fundstelle = Original-URL je Dokument",
+  "abgerufen": "2026-08-25",
+  "methode": "grep, lokaler Spiegel",
+  "eintraege": [
+    {
+      "form": "CRD",
+      "kontext": "| Article 2 | One respondent called for the deletion of Article 2, stating that it goes beyond DORA's mandate. One respondent asked for clarification on whether",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2024-01/88355b09-d6e6-4d39-a3e6-c710549cc717/JC%202023%2084%20-%20Final%20report%20on%20draft%20RTS%20to%20specify%20the%20policy%20on%20ICT%20services%20supporting%20critical%20or%20important%20functions.pdf"
+      ],
+      "rang_quellen": [
+        "5"
+      ]
+    },
+    {
+      "form": "CRR",
+      "kontext": "- Reporting requirements under the CRR operational risk framework and DORA should be harmonised;",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2024-01/30b47816-8d6d-432f-8dbd-b900c4306cf4/JC%202023%2085%20-%20Final%20report%20on%20draft%20ITS%20on%20Register%20of%20Information%20(1).pdf",
+        "https://www.esma.europa.eu/sites/default/files/2023-09/Joint-ESAs__response_to_the_Call_for_advice_on_the_designation_criteria_and_fees_for_the_DORA_oversight_framework_final.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024-34_-_Final_report_GL_on_costs_and_losses.pdf"
+      ],
+      "rang_quellen": [
+        "5"
+      ]
+    },
+    {
+      "form": "DORA",
+      "kontext": "Joint-ESA report under Article 22 of DORA",
+      "fundstellen": [
+        "https://www.eba.europa.eu/sites/default/files/2024-01/30b47816-8d6d-432f-8dbd-b900c4306cf4/JC%202023%2085%20-%20Final%20report%20on%20draft%20ITS%20on%20Register%20of%20Information%20(1).pdf",
+        "https://www.eba.europa.eu/sites/default/files/2024-01/4f2654f4-3152-48b6-af01-431215400f9f/JC%202023%2083%20-%20Final%20Report%20on%20draft%20RTS%20on%20classification%20of%20major%20incidents%20and%20significant%20cyber%20threats.pdf",
+        "https://www.eba.europa.eu/sites/default/files/2024-01/88355b09-d6e6-4d39-a3e6-c710549cc717/JC%202023%2084%20-%20Final%20report%20on%20draft%20RTS%20to%20specify%20the%20policy%20on%20ICT%20services%20supporting%20critical%20or%20important%20functions.pdf",
+        "https://www.eba.europa.eu/sites/default/files/2024-01/bf5a2976-1a48-44f3-b5a7-56acd23ba55c/JC%202023%2086%20-%20Final%20report%20on%20draft%20RTS%20on%20ICT%20Risk%20Management%20Framework%20and%20on%20simplified%20ICT%20Risk%20Management%20Framework.pdf",
+        "https://www.eba.europa.eu/sites/default/files/2024-11/e0701aa1-d1a5-4996-8b30-5a933d15058e/JC%20GL%20on%20oversight%20cooperation_DE%20Final.pdf",
+        "https://www.eba.europa.eu/sites/default/files/2025-03/31bb6e60-7d10-4405-a8c5-9f04934630ac/20250328%20-%20DORA%20RoI%20reporting%20FAQ%20(updated).pdf",
+        "https://www.eba.europa.eu/sites/default/files/2026-06/29b60c21-4ff3-4e1e-9308-7c8225d5cc01/ESAs%202025%20report%20on%20major%20ICT-related%20incidents.pdf",
+        "https://www.eiopa.europa.eu/document/download/f92c9ae0-889f-45ed-89bc-7123012e0417_de",
+        "https://www.eiopa.europa.eu/document/download/f92c9ae0-889f-45ed-89bc-7123012e0417_en",
+        "https://www.esma.europa.eu/sites/default/files/2023-09/Joint-ESAs__response_to_the_Call_for_advice_on_the_designation_criteria_and_fees_for_the_DORA_oversight_framework_final.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024-29_-_Final_report_DORA_RTS_on_TLPT.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024-33_-_Final_report_on_the_draft_RTS_and_ITS_on_incident_reporting.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024-34_-_Final_report_GL_on_costs_and_losses.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024-35_-_Final_report_on_RTS_on_harmonisation_of_conditions_for_OVS_conduct.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024-36_-_Final_report_on_GL_on_oversight_cooperation.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024_53_Final_report_DORA_RTS_on_subcontracting.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-07/JC_2024_54_-_Final_Report_RTS_on_JET.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-10/JC_2024_75_-_Opinion_on_the_rejection_of_the_ITS_on_RoI_under_DORA.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-11/JC-GL-2024-36_Guidelines_on_DORA_oversight_cooperation.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-12/ESA_2024_35_DORA_Dry_Run_exercise_summary_report.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2024-12/JC_2024_99_ESAs_Statement_on_DORA_application.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2025-03/JC_2025_06_-_ESAs_Opinion_on_the_rejection_of_the_RTS_on_subcontracting_under_DORA.pdf",
+        "https://www.esma.europa.eu/sites/default/files/2025-07/JC_2025_29__DORA_Guide_on_oversight_activities.pdf"
+      ],
+      "rang_quellen": [
+        "3",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "form": "EBA/GL/2019/02",
+      "kontext": "[^4]: For example, EBA guidelines on ICT security risk management (EBA/GL/2019/04), EBA Guidelines on outsourcing arrangements (EBA/GL/2019/02), EBA Guidelines ",
+      "fundstellen": [
+        "https://www.esma.europa.eu/sites/default/files/2024-12/JC_2024_99_ESAs_Statement_on_DORA_application.pdf"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "EBA/GL/2019/04",
+      "kontext": "[^4]: For example, EBA guidelines on ICT security risk management (EBA/GL/2019/04), EBA Guidelines on outsourcing arrangements (EBA/GL/2019/02), EBA Guidelines ",
+      "fundstellen": [
+        "https://www.esma.europa.eu/sites/default/files/2024-12/JC_2024_99_ESAs_Statement_on_DORA_application.pdf"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    }
+  ]
+}

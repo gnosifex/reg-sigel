@@ -1,0 +1,41 @@
+{
+  "id": "edsa-07-2020",
+  "sigel": "EDSA 07/2020",
+  "sprache": "de",
+  "name": "EDSA, Leitlinien 07/2020 (Verantwortlicher / Auftragsverarbeiter)",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-leitlinien",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "Leitlinien 07/2020",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "Version 2.0, angenommen 07.07.2021"
+  },
+  "links": [
+    {
+      "label": "EDSA (DE)",
+      "url": "https://edpb.europa.eu/system/files/documents/2023-10/edpb_guidelines_202007_controllerprocessor_final_de.pdf",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "spiegel-provenienz"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 3,
+  "referenzform": "EDSA, Leitlinien 07/2020"
+}

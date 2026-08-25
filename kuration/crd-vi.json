@@ -1,0 +1,43 @@
+{
+  "id": "crd-vi",
+  "sigel": "CRD VI",
+  "sprache": "de",
+  "name": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2024/1619 (CRD VI)",
+  "haerte": "verkehrsueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-richtlinien",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32013L0036",
+    "geprueft": {
+      "datum": "2026-08-25",
+      "methode": "web-abruf"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2024/1619"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024L1619",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "konstruiert"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [
+    "crd-v"
+  ],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 1,
+  "referenzform": "Richtlinie (EU) 2024/1619"
+}

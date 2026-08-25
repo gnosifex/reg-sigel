@@ -1,0 +1,445 @@
+{
+  "pruefquellen": [
+    {
+      "domain": "eur-lex.europa.eu",
+      "herausgeber": "Amt für Veröffentlichungen der EU",
+      "typ": "eu-amtsveroeffentlichung",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "publications.europa.eu",
+      "herausgeber": "Amt für Veröffentlichungen der EU",
+      "typ": "eu-amtsveroeffentlichung",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "eba.europa.eu",
+      "herausgeber": "EBA",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "esma.europa.eu",
+      "herausgeber": "ESMA",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "eiopa.europa.eu",
+      "herausgeber": "EIOPA",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "enisa.europa.eu",
+      "herausgeber": "ENISA",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "edpb.europa.eu",
+      "herausgeber": "EDSA",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "ecb.europa.eu",
+      "herausgeber": "EZB",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bafin.de",
+      "herausgeber": "BaFin",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bundesbank.de",
+      "herausgeber": "Deutsche Bundesbank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bsi.bund.de",
+      "herausgeber": "BSI",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "recht.bund.de",
+      "herausgeber": "Bundesministerium der Justiz",
+      "typ": "gesetzesportal",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "gesetze-im-internet.de",
+      "herausgeber": "Bundesministerium der Justiz",
+      "typ": "gesetzesportal",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "iso.org",
+      "herausgeber": "ISO",
+      "typ": "normungsorganisation",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "nist.gov",
+      "herausgeber": "NIST",
+      "typ": "normungsorganisation",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "cisa.gov",
+      "herausgeber": "CISA",
+      "typ": "us-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "first.org",
+      "herausgeber": "FIRST",
+      "typ": "normungsorganisation",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "cisecurity.org",
+      "herausgeber": "Center for Internet Security",
+      "typ": "normungsorganisation",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "pcisecuritystandards.org",
+      "herausgeber": "PCI Security Standards Council",
+      "typ": "normungsorganisation",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bankingsupervision.europa.eu",
+      "herausgeber": "EZB-Bankenaufsicht (SSM)",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "esrb.europa.eu",
+      "herausgeber": "ESRB",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "srb.europa.eu",
+      "herausgeber": "SRB",
+      "typ": "eu-behoerde",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "acpr.banque-france.fr",
+      "herausgeber": "ACPR",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "banque-france.fr",
+      "herausgeber": "Banque de France",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bancaditalia.it",
+      "herausgeber": "Banca d'Italia",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bde.es",
+      "herausgeber": "Banco de España",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "dnb.nl",
+      "herausgeber": "De Nederlandsche Bank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "nbb.be",
+      "herausgeber": "Nationale Bank van België",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "fma.gv.at",
+      "herausgeber": "FMA Österreich",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "oenb.at",
+      "herausgeber": "Oesterreichische Nationalbank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "cssf.lu",
+      "herausgeber": "CSSF",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bcl.lu",
+      "herausgeber": "Banque centrale du Luxembourg",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "centralbank.ie",
+      "herausgeber": "Central Bank of Ireland",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bportugal.pt",
+      "herausgeber": "Banco de Portugal",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bankofgreece.gr",
+      "herausgeber": "Bank of Greece",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "finanssivalvonta.fi",
+      "herausgeber": "Finanssivalvonta",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "suomenpankki.fi",
+      "herausgeber": "Suomen Pankki",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "fi.se",
+      "herausgeber": "Finansinspektionen",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "riksbank.se",
+      "herausgeber": "Sveriges Riksbank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "finanstilsynet.dk",
+      "herausgeber": "Finanstilsynet",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "nationalbanken.dk",
+      "herausgeber": "Danmarks Nationalbank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "knf.gov.pl",
+      "herausgeber": "KNF",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "nbp.pl",
+      "herausgeber": "Narodowy Bank Polski",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "cnb.cz",
+      "herausgeber": "Česká národní banka",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "mnb.hu",
+      "herausgeber": "Magyar Nemzeti Bank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bnr.ro",
+      "herausgeber": "Banca Națională a României",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bnb.bg",
+      "herausgeber": "Bulgarian National Bank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "hnb.hr",
+      "herausgeber": "Hrvatska narodna banka",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bsi.si",
+      "herausgeber": "Banka Slovenije",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "nbs.sk",
+      "herausgeber": "Národná banka Slovenska",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "fi.ee",
+      "herausgeber": "Finantsinspektsioon",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "eestipank.ee",
+      "herausgeber": "Eesti Pank",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bank.lv",
+      "herausgeber": "Latvijas Banka",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "lb.lt",
+      "herausgeber": "Lietuvos bankas",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "mfsa.mt",
+      "herausgeber": "MFSA",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "centralbankmalta.org",
+      "herausgeber": "Central Bank of Malta",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "centralbank.cy",
+      "herausgeber": "Central Bank of Cyprus",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "bankofengland.co.uk",
+      "herausgeber": "Bank of England (mit PRA)",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "fca.org.uk",
+      "herausgeber": "FCA",
+      "typ": "nationale-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "legislation.gov.uk",
+      "herausgeber": "The National Archives (UK)",
+      "typ": "gesetzesportal",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "federalreserve.gov",
+      "herausgeber": "Federal Reserve Board",
+      "typ": "notenbank",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "occ.gov",
+      "herausgeber": "OCC",
+      "typ": "us-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    },
+    {
+      "domain": "fdic.gov",
+      "herausgeber": "FDIC",
+      "typ": "us-aufsicht",
+      "aufgenommen": "2026-08-25",
+      "freigabe": "maintainer-seed"
+    }
+  ]
+}

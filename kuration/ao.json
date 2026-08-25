@@ -1,0 +1,41 @@
+{
+  "id": "ao",
+  "sigel": "AO",
+  "sprache": "de",
+  "name": "Abgabenordnung",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "nationale-gesetze",
+  "identitaet": {
+    "typ": "jurabk",
+    "wert": "ao_1977",
+    "geprueft": {
+      "datum": "2026-08-25",
+      "methode": "web-abruf"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "§ 147 (Aufbewahrung); Fassung [nachzutragen]"
+  },
+  "links": [
+    {
+      "label": "gesetze-im-internet",
+      "url": "https://www.gesetze-im-internet.de/ao_1977/__147.html",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 1,
+  "referenzform": "Abgabenordnung"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "marisk",
+  "sigel": "MaRisk",
+  "sprache": "de",
+  "referenzform": "Rundschreiben 06/2024 (BA)",
+  "name": "Mindestanforderungen an das Risikomanagement",
+  "haerte": "verkehrsueblich",
+  "gruppe": "nationale-aufsicht",
+  "rang": 3,
+  "aliasse": [
+    {
+      "form": "MaRisk BA",
+      "sprache": "de",
+      "evidenz": [
+        "2026-08-25-spiegel-bafin",
+        "2026-08-26-intake-7-marisk"
+      ]
+    },
+    {
+      "form": "MaRisk 2024",
+      "sprache": "de",
+      "evidenz": [
+        "2026-08-26-intake-7-marisk"
+      ]
+    }
+  ],
+  "status": "kuriert"
+}

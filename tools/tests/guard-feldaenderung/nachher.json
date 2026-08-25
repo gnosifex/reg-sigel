@@ -1,0 +1,20 @@
+{
+  "id": "marisk",
+  "sigel": "MaRisk",
+  "sprache": "de",
+  "referenzform": "Rundschreiben 06/2024 (BA)",
+  "name": "Mindestanforderungen an das Risikomanagement",
+  "haerte": "amtlich",
+  "gruppe": "nationale-aufsicht",
+  "rang": 3,
+  "aliasse": [
+    {
+      "form": "MaRisk BA",
+      "sprache": "de",
+      "evidenz": [
+        "2026-08-25-spiegel-bafin"
+      ]
+    }
+  ],
+  "status": "auto-intake"
+}

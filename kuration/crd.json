@@ -1,0 +1,41 @@
+{
+  "id": "crd",
+  "sigel": "CRD",
+  "sprache": "de",
+  "name": "Richtlinie 2013/36/EU",
+  "haerte": "verkehrsueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-richtlinien",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32013L0036",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": "02013L0036-20260711",
+    "text": "i. d. F. CRD VI, konsolidiert, CELEX 02013L0036-20260711"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02013L0036-20260711",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 1,
+  "referenzform": "Richtlinie 2013/36/EU"
+}

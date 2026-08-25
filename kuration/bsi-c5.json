@@ -1,0 +1,41 @@
+{
+  "id": "bsi-c5",
+  "sigel": "BSI C5",
+  "sprache": "de",
+  "name": "BSI, Cloud Computing Compliance Criteria Catalogue",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "version",
+    "wert": "C5:2026",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "C5:2020 und C5:2026 v1.0.1 (verpflichtend ab 01.06.2027)"
+  },
+  "links": [
+    {
+      "label": "BSI, Kriterienkatalog C5",
+      "url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Empfehlungen-nach-Angriffszielen/Cloud-Computing/Kriterienkatalog-C5/kriterienkatalog-c5.html",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "web-abruf"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": null,
+  "referenzform": "BSI C5:2026"
+}

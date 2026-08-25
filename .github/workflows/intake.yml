@@ -1,0 +1,110 @@
+name: intake-vorpruefung
+
+# Die Action prueft, sie nimmt nicht auf. Sie stellt deterministisch fest,
+# ob die Meldung vollstaendig und laengenkonform ist, ob die genannte Quelle
+# die Kurzform woertlich traegt und ob sie auf der kuratierten
+# Pruefquellen-Liste steht — und postet das Ergebnis als **Artefakt**:
+# ein Bot-Kommentar mit dem Marker `<!-- intake-artefakt v1 -->` und dem
+# Pruefergebnis als JSON. Geschrieben wird nichts.
+#
+# Das Artefakt ist die einzige Eingabe der taeglichen Aufnahme-Routine
+# (tools/routine-intake.md). Der Issue-Text selbst wird von ihr nie gelesen:
+# Er ist angreifergesteuert, das Artefakt ist syntaxgeprueft,
+# laengenbegrenzt und an der Quelle verifiziert.
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  vorpruefung:
+    if: >-
+      github.event.issue.state == 'open' &&
+      (contains(github.event.issue.labels.*.name, 'sigel-meldung') ||
+       startsWith(github.event.issue.title, '[sigel] '))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: PDF-Quellen lesbar machen
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Vorpruefung
+        env:
+          # Der Issue-Body ist Fremdtext und kommt ausschliesslich ueber die
+          # Umgebung ins Skript — nie in eine Shell-Zeile interpoliert.
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+        run: python tools/intake.py --vorpruefung --ergebnis ergebnis.json
+
+      - name: Ergebnis lesen
+        id: ergebnis
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          e = json.load(open("ergebnis.json", encoding="utf-8"))
+          print("entscheidung=" + e["entscheidung"])
+          print("label=" + (e["label"] or ""))
+          print("schliessen=" + str(e["schliessen"]).lower())
+          with open("kommentar.md", "w", encoding="utf-8") as f:
+              f.write(e["kommentar"])
+          PY
+
+      - name: Labels sicherstellen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create vorgeprueft-ok --color 0E8A16 \
+            --description "Vorpruefung bestanden; Aufnahme durch die Routine" || true
+          gh label create abgelehnt --color B60205 \
+            --description "Meldung erfuellt die Aufnahme-Regel nicht" || true
+          gh label create wartet-maintainer --color FBCA04 \
+            --description "Entscheidung liegt beim Maintainer" || true
+
+      - name: Artefakt ans Issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMMER: ${{ github.event.issue.number }}
+          LABEL: ${{ steps.ergebnis.outputs.label }}
+          SCHLIESSEN: ${{ steps.ergebnis.outputs.schliessen }}
+        run: |
+          gh issue comment "$NUMMER" --body-file kommentar.md
+          gh issue edit "$NUMMER" \
+            --remove-label vorgeprueft-ok \
+            --remove-label wartet-maintainer \
+            --remove-label abgelehnt || true
+          if [ -n "$LABEL" ]; then
+            gh issue edit "$NUMMER" --add-label "$LABEL"
+          fi
+          if [ "$SCHLIESSEN" = "true" ]; then
+            gh issue close "$NUMMER" --reason "not planned"
+          fi
+
+  # Pruefquellen-Vorschlaege beruehrt keine Automatik — auch keine
+  # Vorpruefung. Wer die Pruefquellen kontrolliert, kontrolliert das
+  # Register; diese Ebene arbeitet allein der Maintainer in einer eigenen
+  # Session ab. Die Action tut hier nichts als kennzeichnen.
+  pruefquelle:
+    if: >-
+      github.event.issue.state == 'open' &&
+      contains(github.event.issue.labels.*.name, 'pruefquelle-vorschlag')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Als Maintainer-Sache kennzeichnen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMMER: ${{ github.event.issue.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh label create wartet-maintainer --repo "$REPO" --color FBCA04 \
+            --description "Entscheidung liegt beim Maintainer" || true
+          gh issue edit "$NUMMER" --repo "$REPO" --add-label wartet-maintainer

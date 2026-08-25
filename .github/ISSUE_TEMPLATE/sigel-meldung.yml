@@ -1,0 +1,56 @@
+name: Sigel-Meldung
+description: Eine Quelle mit ihrer Kurzform zur Aufnahme ins Register melden
+title: "[sigel] "
+labels:
+  - sigel-meldung
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Zwei Felder, mehr braucht es nicht.** Alles Weitere — amtliche
+        Referenzform, Vollbezeichnung, Identitätsanker, Herausgeber,
+        Einordnung — ermittelt die Aufnahme-Kette selbst aus der Quelle.
+        Was hier steht, ist der einzige Fremdtext, der in die Verarbeitung
+        gelangt; deshalb ist er kurz und längenbegrenzt.
+
+        **Die Quelle ist Pflicht und wird abgerufen.** Die Vorprüfung holt
+        die genannte URL und sucht dort die Kurzform — **groß-/kleinschreibungsgenau**.
+        Kommt sie nicht wörtlich vor, wird die Meldung abgelehnt.
+
+        **Die Quelle muss eine freigegebene Prüfquelle sein.** Nur die
+        Domains aus `kuration/pruefquellen.json` zählen als Beleg. Eine
+        Meldung von einer anderen Domain wird abgelehnt, nicht geparkt —
+        wer die Domain für eine Prüfquelle hält, schlägt sie mit dem
+        Formular *Prüfquelle vorschlagen* vor.
+
+        **Nur Quellen-Sigel.** Registereintrag wird nur, was auf ein
+        zitierfähiges Dokument mit Identitätsanker auflöst. Reine
+        Fachbegriffs-Abkürzungen (SBOM, IKT, ISMS) bezeichnen keine Quelle
+        und werden nie aufgenommen.
+
+        **Nur Zugänge, keine Änderungen.** Meldungen zu bereits erfassten
+        Sigeln laufen als zusätzliche Evidenz. Umbenennungen und Korrekturen
+        an Bestehendem übernimmt der Maintainer von Hand.
+
+  - type: input
+    id: sigel
+    attributes:
+      label: Kurzform (Sigel)
+      description: |
+        Wörtlich so, wie die Quelle sie schreibt. **Höchstens 25 Zeichen** —
+        längere Meldungen werden automatisch abgelehnt.
+      placeholder: MaRisk
+    validations:
+      required: true
+
+  - type: input
+    id: quelle
+    attributes:
+      label: Quelle-URL
+      description: |
+        Originalfundstelle, an der die Kurzform wörtlich vorkommt — HTML-Seite
+        oder PDF des Herausgebers. Eigentexte Dritter zählen nicht als Evidenz.
+        **Höchstens 200 Zeichen.**
+      placeholder: https://www.bafin.de/…
+    validations:
+      required: true

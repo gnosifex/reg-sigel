@@ -1,0 +1,41 @@
+{
+  "id": "cis-controls",
+  "sigel": "CIS Controls",
+  "sprache": "de",
+  "name": "CIS Critical Security Controls",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "version",
+    "wert": "v8.1",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "v8.1"
+  },
+  "links": [
+    {
+      "label": "cisecurity.org",
+      "url": "https://www.cisecurity.org/cybersecurity-best-practices",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": null,
+  "referenzform": "CIS Controls v8.1"
+}

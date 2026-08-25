@@ -1,0 +1,41 @@
+{
+  "id": "crr",
+  "sigel": "CRR",
+  "sprache": "de",
+  "name": "Verordnung (EU) Nr. 575/2013",
+  "haerte": "verkehrsueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-verordnungen",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32013R0575",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": "2026-06-26",
+    "konsolidierung": "02013R0575-20260626",
+    "text": "i. d. F. CRR III, konsolidiert Stand 26.06.2026, CELEX 02013R0575-20260626"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02013R0575-20260626",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 1,
+  "referenzform": "Verordnung (EU) Nr. 575/2013"
+}

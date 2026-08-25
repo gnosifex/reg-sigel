@@ -1,0 +1,243 @@
+{
+  "id": "2026-08-25-spiegel-bafin",
+  "herausgeber": "BaFin",
+  "quelle": "wortgetreue lokale Spiegel der Originalpublikationen im Korpus des Betreibers (nur Record-Bodys mit issuer-Frontmatter); Fundstelle = Original-URL je Dokument",
+  "abgerufen": "2026-08-25",
+  "methode": "grep, lokaler Spiegel",
+  "eintraege": [
+    {
+      "form": "BAIT",
+      "kontext": "Zu diesen Regeln gehören Anforderungen an den 'regulären IKT-Risikomanagementrahmen' und an die 'Schlüsselprinzipien für ein solides Management des IKT-Drittpar",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_250110_Informationsschreiben.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_1710_ba_BAIT.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Veroeffentlichungen/DE/Meldung/2025/meldung_2025_01_09_DORA.html"
+      ],
+      "rang_quellen": [
+        "3",
+        "6"
+      ]
+    },
+    {
+      "form": "CRD",
+      "kontext": "| CRD | Capital Requirements Directive - EU-Bankenregulierung |",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2"
+      ],
+      "rang_quellen": [
+        "3",
+        "6"
+      ]
+    },
+    {
+      "form": "CRD IV",
+      "kontext": "- 2 Das Rundschreiben gibt zudem einen qualitativen Rahmen für die Auslegung maßgeblicher Artikel der Richtlinie 2013/36/EU (Bankenrichtlinie - 'CRD IV', zuletz",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_06_2024_MaRisk_pdf_BA.pdf?__blob=publicationFile&v=3"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "CRD VI",
+      "kontext": "- 2 Das Rundschreiben gibt zudem einen qualitativen Rahmen für die Auslegung maßgeblicher Artikel der Richtlinie 2013/36/EU (Bankenrichtlinie - 'CRD IV', zuletz",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "CRR",
+      "kontext": "Kleine Institute im Sinne der MaRisk sind Institute, die als kleine und nicht-komplexe Institute (Small and non-complex institutions - SNCI) gemäß Art. 4 Abs. 1",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "DORA",
+      "kontext": "ein Paradigmenwechsel steht bevor: Ab dem 17.01.2025 findet die Verordnung (EU) 2022/2554 über die digitale operationale Resilienz im Finanzsektor (Digital Oper",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/IKT_Risikomanagement/FAQ/FAQ_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationen_Cyberkrisen_Notfalluebungen/FAQ/FAQ.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationsregister_und_Anzeigepflichten/FAQ/FAQ_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Management_IKT_Drittparteienrisikos/FAQ/FAQ_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Meldewesen_IKT_Vorfaelle/FAQ/FAQ_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Meldewesen_IKT_Vorfaelle/meldewesen_ikt_vorfaelle_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Ueberwachungsrahmen_IKT_Drittdienstleister/FAQ/FAQ_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Ueberwachungsrahmen_IKT_Drittdienstleister/Ueberwachungsrahmen_IKT_Drittdienstleister_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/digitale_resilienz/FAQ/FAQ_node.html",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Hinweise_Uebersicht_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Uebersicht_Artikel_16_DORA_einseitig.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_250110_Informationsschreiben.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_Mindestvertragsinhalte_DORA_DE_EN.xlsx?__blob=publicationFile&v=1",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_anlage_DORA_Dokumentationsanforderungen_1.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_anlage_DORA_Hinweise_Dokumentationsanforderungen.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_1710_ba_BAIT.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_anlage_DORA_Dokumentationsanforderungen_1_en.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_anlage_DORA_Hinweise_Dokumentationsanforderungen_en.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Veroeffentlichungen/DE/Meldung/2025/meldung_2025_01_09_DORA.html"
+      ],
+      "rang_quellen": [
+        "3",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "form": "DSGVO",
+      "kontext": "DORA ist eine unmittelbar geltende europäische Verordnung, die das Meldewesen für Finanzunternehmen in Bezug auf IKT-Resilienz harmonisiert. Deshalb hat der eur",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Meldewesen_IKT_Vorfaelle/FAQ/FAQ_node.html"
+      ],
+      "rang_quellen": [
+        "7"
+      ]
+    },
+    {
+      "form": "EBA/GL/2019/02",
+      "kontext": "Derartige Pläne sind uns derzeit nicht bekannt und ist aufgrund des unterschiedlichen Fokus der Register auch nicht ohne weiteres möglich. Da die Pflicht zur Fü",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationsregister_und_Anzeigepflichten/FAQ/FAQ_node.html",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_06_2024_MaRisk_pdf_BA.pdf?__blob=publicationFile&v=3"
+      ],
+      "rang_quellen": [
+        "3",
+        "7"
+      ]
+    },
+    {
+      "form": "EBA/GL/2021/05",
+      "kontext": "- -EBA-Leitlinien zur internen Governance (EBA/GL/2021/05)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "HGB",
+      "kontext": "Neben den direkten Immobiliengeschäften gelten auch auf eigene Rechnung betriebene Immobiliengeschäfte von Tochterunternehmen des Instituts gemäß § 290 Handelsg",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_06_2024_MaRisk_pdf_BA.pdf?__blob=publicationFile&v=3"
+      ],
+      "rang_quellen": [
+        "3"
+      ]
+    },
+    {
+      "form": "ITS Informationsregister",
+      "kontext": "Das Finanzunternehmen muss alle Unterauftragnehmer, die IKT-Dienstleistungen erbringen, die kritische oder wichtige Funktionen oder wesentliche Teile davon unte",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Management_IKT_Drittparteienrisikos/FAQ/FAQ_node.html"
+      ],
+      "rang_quellen": [
+        "7"
+      ]
+    },
+    {
+      "form": "KWG",
+      "kontext": "Gemäß § 1a Absatz 2 KWG, der durch das Gesetz über die Digitalisierung des Finanzmarktes (Finanzmarktdigitalisierungsgesetz - FinmaDiG) neu gefasst wurde, falle",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationen_Cyberkrisen_Notfalluebungen/FAQ/FAQ.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationsregister_und_Anzeigepflichten/FAQ/FAQ_node.html",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_250110_Informationsschreiben.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_06_2024_MaRisk_pdf_BA.pdf?__blob=publicationFile&v=3",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_1710_ba_BAIT.pdf?__blob=publicationFile&v=2"
+      ],
+      "rang_quellen": [
+        "3",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "form": "MaRisk",
+      "kontext": "Derartige Pläne sind uns derzeit nicht bekannt und ist aufgrund des unterschiedlichen Fokus der Register auch nicht ohne weiteres möglich. Da die Pflicht zur Fü",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationsregister_und_Anzeigepflichten/FAQ/FAQ_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Management_IKT_Drittparteienrisikos/FAQ/FAQ_node.html",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk_uebersendungsschreiben.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_06_2024_MaRisk_pdf_BA.pdf?__blob=publicationFile&v=3",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_1710_ba_BAIT.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "3",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "form": "RTS RMF",
+      "kontext": "-  Kapitel I Artikel 1-5 DORA sowie Titel I Artikel 1 und Titel II Kapitel I Abschnitt 1 Artikel 2 RTS RMF:",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2025_08_21_Aufsichtsmitteilung_Hinweise_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_2025_08_21_Hinweise_Uebersicht_Artikel_16_DORA.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_anlage_DORA_Hinweise_Dokumentationsanforderungen.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_anlage_DORA_Hinweise_Dokumentationsanforderungen_en.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "RTS TPPol",
+      "kontext": "-  RTS TPPol = RTS ICT Third-Party Policy (IKT-Drittdienstleister-Leitlinie)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/Aufsichtsmitteilung/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA.pdf?__blob=publicationFile&v=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Anlage/dl_anlage_DORA_Hinweise_Dokumentationsanforderungen.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_2024_07_08_Aufsichtsmitteilung_Umsetzungshinweise_DORA_en.pdf?__blob=publicationFile",
+        "https://www.bafin.de/SharedDocs/Downloads/EN/Anlage/dl_anlage_DORA_Hinweise_Dokumentationsanforderungen_en.pdf?__blob=publicationFile"
+      ],
+      "rang_quellen": [
+        "6"
+      ]
+    },
+    {
+      "form": "ZAG",
+      "kontext": "Die Führung des Auslagerungsregisters ist eine bestehende regulatorische Pflicht für nach dem KWG und ZAG beaufsichtigte Institute. Die Pflicht zur Führung eine",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationsregister_und_Anzeigepflichten/FAQ/FAQ_node.html",
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Meldewesen_IKT_Vorfaelle/FAQ/FAQ_node.html"
+      ],
+      "rang_quellen": [
+        "7"
+      ]
+    },
+    {
+      "form": "ZAG-MaRisk",
+      "kontext": "Derartige Pläne sind uns derzeit nicht bekannt und ist aufgrund des unterschiedlichen Fokus der Register auch nicht ohne weiteres möglich. Da die Pflicht zur Fü",
+      "fundstellen": [
+        "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/dora/Informationsregister_und_Anzeigepflichten/FAQ/FAQ_node.html"
+      ],
+      "rang_quellen": [
+        "7"
+      ]
+    }
+  ]
+}

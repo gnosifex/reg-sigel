@@ -1,0 +1,57 @@
+{
+  "id": "its-tir",
+  "sigel": "ITS TIR",
+  "sprache": "de",
+  "name": "Durchführungsverordnung (EU) 2025/302",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-durchfuehrung",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32025R0302",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": "2025-02-20",
+    "konsolidierung": "02025R0302-20250220",
+    "text": "konsolidiert Stand 20.02.2025, CELEX 02025R0302-20250220"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32025R0302",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [
+    {
+      "form": "ITS Vorfallmeldung",
+      "sprache": "de",
+      "evidenz": []
+    },
+    {
+      "form": "ITS-TIR",
+      "sprache": "de",
+      "evidenz": []
+    },
+    {
+      "form": "ITS-INCREP",
+      "sprache": "de",
+      "evidenz": []
+    }
+  ],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 2,
+  "referenzform": "Durchführungsverordnung (EU) 2025/302"
+}

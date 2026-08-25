@@ -1,0 +1,41 @@
+{
+  "id": "nist-sp-800-40r4",
+  "sigel": "NIST SP 800-40r4",
+  "sprache": "de",
+  "name": "NIST SP 800-40 Rev. 4, Guide to Enterprise Patch Management Planning",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "NIST SP 800-40r4",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "04/2022"
+  },
+  "links": [
+    {
+      "label": "csrc.nist.gov",
+      "url": "https://csrc.nist.gov/pubs/sp/800/40/r4/final",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": null,
+  "referenzform": "NIST SP 800-40 Rev. 4"
+}

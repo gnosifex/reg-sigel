@@ -1,0 +1,41 @@
+{
+  "id": "kwg",
+  "sigel": "KWG",
+  "sprache": "de",
+  "name": "Kreditwesengesetz",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "nationale-gesetze",
+  "identitaet": {
+    "typ": "jurabk",
+    "wert": "kredwg",
+    "geprueft": {
+      "datum": "2026-08-25",
+      "methode": "web-abruf"
+    }
+  },
+  "fassung": {
+    "stand": "2026-04-09",
+    "konsolidierung": null,
+    "text": "§§ 25a–25c, Fassung 09.04.2026 (BGBl-Fundstelle [nachzutragen])"
+  },
+  "links": [
+    {
+      "label": "gesetze-im-internet",
+      "url": "https://www.gesetze-im-internet.de/kredwg/__25a.html",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 1,
+  "referenzform": "Kreditwesengesetz"
+}

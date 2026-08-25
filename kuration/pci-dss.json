@@ -1,0 +1,41 @@
+{
+  "id": "pci-dss",
+  "sigel": "PCI DSS",
+  "sprache": "de",
+  "name": "Payment Card Industry Data Security Standard",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "standards-praktiken",
+  "identitaet": {
+    "typ": "version",
+    "wert": "v4.0.1",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "v4.0.1 (Volltext zugriffsbeschränkt)"
+  },
+  "links": [
+    {
+      "label": "pcisecuritystandards.org",
+      "url": "https://www.pcisecuritystandards.org/document_library/?category=pcidss&document=pci_dss",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": null,
+  "referenzform": "PCI DSS v4.0.1"
+}

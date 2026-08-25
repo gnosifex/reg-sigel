@@ -1,0 +1,41 @@
+{
+  "id": "rts-ctir",
+  "sigel": "RTS CTIR",
+  "sprache": "de",
+  "name": "Delegierte Verordnung (EU) 2025/301 (Inhalt und Fristen der Vorfallsmeldungen)",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-durchfuehrung",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32025R0301",
+    "geprueft": {
+      "datum": "2026-08-25",
+      "methode": "konstruiert"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "23.10.2024, ABl. 20.02.2025"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32025R0301",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "konstruiert"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 2,
+  "referenzform": "Delegierte Verordnung (EU) 2025/301"
+}

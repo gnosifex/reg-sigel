@@ -1,0 +1,60 @@
+{
+  "id": "rts-rmf",
+  "sigel": "RTS RMF",
+  "sprache": "de",
+  "name": "Delegierte Verordnung (EU) 2024/1774 (IKT-Risikomanagementrahmen)",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-durchfuehrung",
+  "identitaet": {
+    "typ": "celex",
+    "wert": "32024R1774",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": "02024R1774-20240625",
+    "text": "13.03.2024, ABl. 25.06.2024, CELEX 02024R1774-20240625"
+  },
+  "links": [
+    {
+      "label": "EUR-Lex DE",
+      "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02024R1774-20240625",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    },
+    {
+      "label": "EN",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02024R1774-20240625",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [
+    {
+      "form": "RTS Risikomanagement",
+      "sprache": "de",
+      "evidenz": []
+    },
+    {
+      "form": "RTS-RMF",
+      "sprache": "de",
+      "evidenz": []
+    }
+  ],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "kuriert",
+  "rang": 2,
+  "referenzform": "Delegierte Verordnung (EU) 2024/1774"
+}

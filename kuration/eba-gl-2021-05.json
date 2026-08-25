@@ -1,0 +1,41 @@
+{
+  "id": "eba-gl-2021-05",
+  "sigel": "EBA/GL/2021/05",
+  "sprache": "de",
+  "name": "EBA, Guidelines on internal governance under CRD",
+  "haerte": "amtlich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "eu-leitlinien",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "EBA/GL/2021/05",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": null,
+    "konsolidierung": null,
+    "text": "Final Report 02.07.2021, anwendbar ab 31.12.2021"
+  },
+  "links": [
+    {
+      "label": "EBA (Publikationsseite)",
+      "url": "https://www.eba.europa.eu/activities/single-rulebook/regulatory-activities/internal-governance/guidelines-internal-governance-under-crd",
+      "geprueft": {
+        "datum": "2026-08-25",
+        "methode": "spiegel-provenienz"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 3,
+  "referenzform": "EBA/GL/2021/05"
+}

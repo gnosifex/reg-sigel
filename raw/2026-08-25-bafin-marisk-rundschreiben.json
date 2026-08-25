@@ -1,0 +1,182 @@
+{
+  "herausgeber": "BaFin",
+  "quelle": "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+  "abgerufen": "2026-08-25",
+  "methode": "web-abruf, pdftotext, grep",
+  "eintraege": [
+    {
+      "form": "MaRisk",
+      "kontext": "Rundschreiben 06/2026 (BA) Mindestanforderungen an das Risikomanagement - MaRisk, Stand: 30.06.2026",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=1",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=2",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=3",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=4",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=5",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=6",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=7",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=8",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=9",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=10",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=11",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=12",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=13",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=14",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=15",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=16",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=17",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=18",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=19",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=20",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=21",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=22",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=23",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=24",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=25",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=26",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=27",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=28",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=29",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=30",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=31",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=32",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=33",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=34",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=35",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=36",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=37",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=38",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=39",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=40",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=41",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=42",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=43",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=44",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=45",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=46",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=47",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=48",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=49",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=50",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=51",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=52",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=53",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=54",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=55",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=56",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=57",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=58",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=59",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=60",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=61",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=62",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=63",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=64",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=65",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=66",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=67",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=68",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=69",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=70",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=71",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=72",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=73",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=74",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=75",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=76",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=77",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=78",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=79",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=80",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=81",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=82"
+      ]
+    },
+    {
+      "form": "KWG",
+      "kontext": "Es präzisiert ferner die Anforderungen des § 25b KWG (Auslagerung) und des § 26c KWG (ESG-Risiken).",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=7",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=8",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=9",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=10",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=12",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=29",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=34",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=35",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=36",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=37",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=38",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=42",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=64",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=81"
+      ]
+    },
+    {
+      "form": "CRD",
+      "kontext": "Da bei CRD-Drittstaatenzweigstellen kein Aufsichtsorgan vorhanden ist, haben diese Institute stattdessen in angemessener Form ihre Unternehmenszentralen einzubeziehen.",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=7",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=8",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=9",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=41",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=80"
+      ]
+    },
+    {
+      "form": "CRD IV",
+      "kontext": "… Artikel der Richtlinie 2013/36/EU (Bankenrichtlinie – „CRD IV“, zuletzt geändert durch Richtlinie (EU) 2024/1619 vom 31. Mai 2024, „CRD VI“) …",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=7"
+      ]
+    },
+    {
+      "form": "CRD VI",
+      "kontext": "… Richtlinie 2013/36/EU (Bankenrichtlinie – „CRD IV“, zuletzt geändert durch Richtlinie (EU) 2024/1619 vom 31. Mai 2024, „CRD VI“) …",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=7"
+      ]
+    },
+    {
+      "form": "CRR",
+      "kontext": "Modelle, die in den Anwendungsbereich der CRR fallen, gehören hingegen nicht dazu.",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=8",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=23",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=72",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=76",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=80"
+      ]
+    },
+    {
+      "form": "HGB",
+      "kontext": "Diese anteilige Anrechnung gilt auch für Immobiliengeschäfte, die bei Tochterunternehmen gemäß § 290 HGB gehalten werden.",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=13",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=64",
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=81"
+      ]
+    },
+    {
+      "form": "DORA",
+      "kontext": "Ausgelagerte oder fremdbezogene IKT-Dienstleistungen gemäß Art. 3 Nr. 21 DORA, die dem IKT-Drittparteienrisikomanagement gemäß Art. 28-30 DORA unterliegen, fallen nicht in den Anwendungsbereich des AT 9.",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=34"
+      ]
+    },
+    {
+      "form": "EBA/GL/2019/02",
+      "kontext": "EBA-Leitlinien zu Auslagerungen (EBA/GL/2019/02)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=7"
+      ]
+    },
+    {
+      "form": "EBA/GL/2021/05",
+      "kontext": "EBA-Leitlinien zur internen Governance (EBA/GL/2021/05)",
+      "fundstellen": [
+        "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2#page=7"
+      ]
+    }
+  ]
+}

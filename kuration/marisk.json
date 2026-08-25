@@ -1,0 +1,41 @@
+{
+  "id": "marisk",
+  "sigel": "MaRisk",
+  "sprache": "de",
+  "name": "BaFin, Mindestanforderungen an das Risikomanagement",
+  "haerte": "herausgeberueblich",
+  "haerte_geprueft": {
+    "datum": "2026-08-25",
+    "methode": "einschaetzung"
+  },
+  "gruppe": "nationale-aufsicht",
+  "identitaet": {
+    "typ": "doc_ref",
+    "wert": "Rundschreiben 06/2026 (BA)",
+    "geprueft": {
+      "datum": "2026-08-24",
+      "methode": "seed-doksigel"
+    }
+  },
+  "fassung": {
+    "stand": "2026-06-30",
+    "konsolidierung": null,
+    "text": "Rundschreiben 06/2026 (BA) vom 30.06.2026 (9. Novelle; löst RS 06/2024 ab)"
+  },
+  "links": [
+    {
+      "label": "BaFin PDF",
+      "url": "https://www.bafin.de/SharedDocs/Downloads/DE/Rundschreiben/dl_rs_0626_9_marisk.pdf?__blob=publicationFile&v=2",
+      "geprueft": {
+        "datum": "2026-08-24",
+        "methode": "seed-doksigel"
+      }
+    }
+  ],
+  "aliasse": [],
+  "ersetzt": [],
+  "ersetzt_durch": [],
+  "status": "pilot-seed",
+  "rang": 3,
+  "referenzform": "Rundschreiben 06/2026 (BA)"
+}
