@@ -447,7 +447,8 @@ def raw_record(felder, herausgeber, quellbefund, nummer, autor):
 
 
 def curation_record(felder, herausgeber, quellbefund, anker, gruppe, rang,
-                    referenzform, name, nummer):
+                    referenzform, name, nummer, sprache="de",
+                    referenzform_en=None, name_en=None):
     """Der Registereintrag aus dem Artefakt plus den Zuarbeiten der Routine."""
     geprueft = {"datum": heute(), "methode": "web-abruf"}
     anker_belegt = bool(
@@ -457,11 +458,14 @@ def curation_record(felder, herausgeber, quellbefund, anker, gruppe, rang,
     return {
         "id": slug(felder["sigel"]),
         "sigel": felder["sigel"],
-        # Der Ingest belegt Formen aus deutschsprachigen Aufsichtsquellen;
-        # eine englische Kurzform traegt der Maintainer nach.
-        "sprache": "de",
+        # Die Sprache der gemeldeten Form bestimmt die Routine aus der
+        # Quelle; amtliche englische Bezeichnungen (EU-Akte) reicht sie
+        # ueber die _en-Parameter mit.
+        "sprache": sprache,
         "referenzform": referenzform,
+        **({"referenzform_en": referenzform_en} if referenzform_en else {}),
         "name": name,
+        **({"name_en": name_en} if name_en else {}),
         "haerte": "verkehrsueblich",
         "haerte_geprueft": {"datum": heute(), "methode": "einschaetzung"},
         "gruppe": gruppe,
@@ -491,7 +495,7 @@ def curation_record(felder, herausgeber, quellbefund, anker, gruppe, rang,
     }
 
 
-def alias_ergaenzen(pfad, form, raw_id):
+def alias_ergaenzen(pfad, form, raw_id, sprache="de"):
     """Additiv-only: nur `aliasse` darf wachsen, kein anderes Feld sich ruehren."""
     with open(pfad, encoding="utf-8") as f:
         vorher = json.load(f)
@@ -499,7 +503,8 @@ def alias_ergaenzen(pfad, form, raw_id):
     aliasse = nachher.setdefault("aliasse", [])
     treffer = next((a for a in aliasse if a.get("form") == form), None)
     if treffer is None:
-        aliasse.append({"form": form, "sprache": "de", "evidenz": [raw_id]})
+        aliasse.append({"form": form, "sprache": sprache,
+                        "evidenz": [raw_id]})
     elif raw_id not in (treffer.get("evidenz") or []):
         treffer.setdefault("evidenz", []).append(raw_id)
     else:
@@ -647,6 +652,12 @@ def main():
                    choices=ANKER_TYPEN, help="Identitätsanker-Typ (Routine)")
     p.add_argument("--anker-wert", dest="anker_wert",
                    help="Identitätsanker-Wert (Routine)")
+    p.add_argument("--sprache", choices=("de", "en"), default="de",
+                   help="Sprache der gemeldeten Form (Routine)")
+    p.add_argument("--referenzform-en", dest="referenzform_en",
+                   help="amtliche englische Referenzform, nur EU-Akte (Routine)")
+    p.add_argument("--name-en", dest="name_en",
+                   help="amtliche englische Vollbezeichnung (Routine)")
     p.add_argument("--gruppe", help="Gruppen-ID (Routine)")
     p.add_argument("--rang", help="Rang 1–7 oder 'null' (Routine)")
     p.add_argument("--dry-run", action="store_true",
@@ -838,7 +849,9 @@ def main():
         if zugang["art"] == "neu":
             neu = curation_record(
                 felder, quelle_eintrag["herausgeber"], quellbefund, anker,
-                gruppe, rang, args.referenzform, args.name, nummer)
+                gruppe, rang, args.referenzform, args.name, nummer,
+                sprache=args.sprache, referenzform_en=args.referenzform_en,
+                name_en=args.name_en)
             kur_pfad = os.path.join(curation, zugang["ziel"] + ".json")
             merken(kur_pfad)
             json_schreiben(kur_pfad, neu)
@@ -846,7 +859,8 @@ def main():
         elif zugang["art"] == "alias":
             ziel = os.path.join(curation, zugang["ziel"] + ".json")
             merken(ziel)
-            _, nachher = alias_ergaenzen(ziel, felder["sigel"], raw_id)
+            _, nachher = alias_ergaenzen(ziel, felder["sigel"], raw_id,
+                                            sprache=args.sprache)
             if nachher is not None:
                 json_schreiben(ziel, nachher)
                 ergebnis["dateien"].append(os.path.relpath(ziel, repo))

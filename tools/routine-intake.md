@@ -101,3 +101,7 @@ python tools/watch.py --json watch.json
 - Edit `dist/` or `docs/` by hand — that is written by `build.py` alone.
 - Commit when `build.py` does not complete with exit 0.
 - Guess. An unclear case is `wartet-maintainer`.
+
+## Language of forms and official English designations
+
+Determine the language of the reported short form from the verified source: a German supervisory or statutory source yields `de`, an English source `en` — pass it as `--sprache`. For new records of EU acts, also supply the official English designation via `--referenzform-en` and `--name-en` (patterns: "Regulation (EU) …", "Directive …/…/EU", "Commission Delegated Regulation (EU) …", "Commission Implementing Regulation (EU) …" — these are official language versions of the same act, never invented translations). German statutes and circulars carry no official English designation; leave the `_en` parameters unset so the English page falls back to the German name.
