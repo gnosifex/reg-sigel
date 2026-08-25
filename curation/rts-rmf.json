@@ -3,6 +3,7 @@
   "sigel": "RTS RMF",
   "sprache": "de",
   "name": "Delegierte Verordnung (EU) 2024/1774 (IKT-Risikomanagementrahmen)",
+  "name_en": "Commission Delegated Regulation (EU) 2024/1774 (ICT Risk Management Framework)",
   "haerte": "herausgeberueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -56,5 +57,6 @@
   "ersetzt_durch": [],
   "status": "kuriert",
   "rang": 2,
-  "referenzform": "Delegierte Verordnung (EU) 2024/1774"
+  "referenzform": "Delegierte Verordnung (EU) 2024/1774",
+  "referenzform_en": "Commission Delegated Regulation (EU) 2024/1774"
 }

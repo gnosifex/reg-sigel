@@ -3,6 +3,7 @@
   "sigel": "CRD IV",
   "sprache": "de",
   "name": "Richtlinie 2013/36/EU (Stammfassung, CRD IV)",
+  "name_en": "Directive 2013/36/EU (original 2013 act, CRD IV)",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -39,5 +40,6 @@
   ],
   "status": "kuriert",
   "rang": 1,
-  "referenzform": "Richtlinie 2013/36/EU"
+  "referenzform": "Richtlinie 2013/36/EU",
+  "referenzform_en": "Directive 2013/36/EU"
 }

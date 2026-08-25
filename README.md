@@ -37,6 +37,7 @@ Field names are data, not prose — they are never translated, in either directi
 | `sprache` | language of the canonical form (`de` or `en`) |
 | `referenzform` | official reference form — how legal acts cite the source (regulation number, guideline ID) |
 | `name` | full title of the document |
+| `referenzform_en`, `name_en` | the official English designations, optional — set where the source carries one (EU acts), absent where it does not (German statutes, supervisory circulars) |
 | `haerte` | hardness: how firmly the short form is bound to its source (four grades, below) |
 | `haerte_geprueft` | `{datum, methode}` for the hardness grade; `methode` is always `einschaetzung` (curated judgement) |
 | `gruppe` | group ID from `curation/groups.json` |
@@ -255,7 +256,7 @@ Alongside these lie the migration scripts (`migrate_v2.py`, `migrate_haerte.py`,
 
 ### The static page is the same table without a renderer, in two languages
 
-`docs/index.html` (English) and `docs/de.html` (German) are produced in the same run: each a single file, no script, no external asset — title, core statement, then per group a heading, a statement and a table with clickable source links, plus date and licence in the footer. A plain link at the top right switches between the two, which is why no JavaScript is needed. Language-dependent is the frame only — title, core statement, column heads, group titles and statements, footer, and the display labels of the hardness grade; the data cells are identical in both versions and stay in the language of their sources, as does the schema. Both come from the same build: `curation/groups.json` carries each group in both languages, and the build refuses a group that is missing one. What the browser loads is fully contained in the one file; the tables scroll horizontally inside their own frame instead of breaking the page. To view them locally:
+`docs/index.html` (English) and `docs/de.html` (German) are produced in the same run: each a single file, no script, no external asset — title, core statement, then per group a heading, a statement and a table with clickable source links, plus date and licence in the footer. A plain link at the top right switches between the two, which is why no JavaScript is needed. Language-dependent are the frame — title, core statement, column heads, group titles and statements, footer, and the display labels of the hardness grade — and the reference form and full title of each record: EU acts appear under their official English designations, while German statutes and supervisory circulars keep their German names, having none. All other data cells are identical in both versions and stay in the language of their sources, as does the schema. Both come from the same build: `curation/groups.json` carries each group in both languages, and the build refuses a group that is missing one. What the browser loads is fully contained in the one file; the tables scroll horizontally inside their own frame instead of breaking the page. To view them locally:
 
 ```sh
 python3 -m http.server --directory docs 8000

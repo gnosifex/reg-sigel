@@ -3,6 +3,7 @@
   "sigel": "DORA",
   "sprache": "de",
   "name": "Verordnung (EU) 2022/2554 (Digital Operational Resilience Act)",
+  "name_en": "Regulation (EU) 2022/2554 (Digital Operational Resilience Act)",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -45,5 +46,6 @@
   "ersetzt_durch": [],
   "status": "pilot-seed",
   "rang": 1,
-  "referenzform": "Verordnung (EU) 2022/2554"
+  "referenzform": "Verordnung (EU) 2022/2554",
+  "referenzform_en": "Regulation (EU) 2022/2554"
 }

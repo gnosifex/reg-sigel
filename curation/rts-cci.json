@@ -3,6 +3,7 @@
   "sigel": "RTS CCI",
   "sprache": "de",
   "name": "Delegierte Verordnung (EU) 2024/1772 (Klassifizierungskriterien für IKT-bezogene Vorfälle)",
+  "name_en": "Commission Delegated Regulation (EU) 2024/1772 (classification criteria for ICT incidents)",
   "haerte": "herausgeberueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -37,5 +38,6 @@
   "ersetzt_durch": [],
   "status": "kuriert",
   "rang": 2,
-  "referenzform": "Delegierte Verordnung (EU) 2024/1772"
+  "referenzform": "Delegierte Verordnung (EU) 2024/1772",
+  "referenzform_en": "Commission Delegated Regulation (EU) 2024/1772"
 }

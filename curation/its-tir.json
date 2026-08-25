@@ -3,6 +3,7 @@
   "sigel": "ITS TIR",
   "sprache": "de",
   "name": "Durchführungsverordnung (EU) 2025/302",
+  "name_en": "Commission Implementing Regulation (EU) 2025/302 (templates for incident reporting)",
   "haerte": "herausgeberueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -53,5 +54,6 @@
   "ersetzt_durch": [],
   "status": "kuriert",
   "rang": 2,
-  "referenzform": "Durchführungsverordnung (EU) 2025/302"
+  "referenzform": "Durchführungsverordnung (EU) 2025/302",
+  "referenzform_en": "Commission Implementing Regulation (EU) 2025/302"
 }

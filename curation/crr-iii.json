@@ -3,6 +3,7 @@
   "sigel": "CRR III",
   "sprache": "de",
   "name": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2024/1623 (CRR III)",
+  "name_en": "Regulation (EU) No 575/2013 as amended by Regulation (EU) 2024/1623 (CRR III)",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -39,5 +40,6 @@
   "ersetzt_durch": [],
   "status": "kuriert",
   "rang": 1,
-  "referenzform": "Verordnung (EU) 2024/1623"
+  "referenzform": "Verordnung (EU) 2024/1623",
+  "referenzform_en": "Regulation (EU) 2024/1623"
 }

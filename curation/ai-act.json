@@ -3,6 +3,7 @@
   "sigel": "AI Act",
   "sprache": "de",
   "name": "Verordnung (EU) 2024/1689",
+  "name_en": "Regulation (EU) 2024/1689",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -37,5 +38,6 @@
   "ersetzt_durch": [],
   "status": "kuriert",
   "rang": 1,
-  "referenzform": "Verordnung (EU) 2024/1689"
+  "referenzform": "Verordnung (EU) 2024/1689",
+  "referenzform_en": "Regulation (EU) 2024/1689"
 }

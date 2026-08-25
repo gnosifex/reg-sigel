@@ -3,6 +3,7 @@
   "sigel": "CRD",
   "sprache": "de",
   "name": "Richtlinie 2013/36/EU",
+  "name_en": "Directive 2013/36/EU",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -37,5 +38,6 @@
   "ersetzt_durch": [],
   "status": "pilot-seed",
   "rang": 1,
-  "referenzform": "Richtlinie 2013/36/EU"
+  "referenzform": "Richtlinie 2013/36/EU",
+  "referenzform_en": "Directive 2013/36/EU"
 }

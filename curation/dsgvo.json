@@ -3,6 +3,7 @@
   "sigel": "DSGVO",
   "sprache": "de",
   "name": "Verordnung (EU) 2016/679",
+  "name_en": "Regulation (EU) 2016/679 (General Data Protection Regulation)",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -47,5 +48,6 @@
   "ersetzt_durch": [],
   "status": "kuriert",
   "rang": 1,
-  "referenzform": "Verordnung (EU) 2016/679"
+  "referenzform": "Verordnung (EU) 2016/679",
+  "referenzform_en": "Regulation (EU) 2016/679"
 }

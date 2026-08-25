@@ -3,6 +3,7 @@
   "sigel": "CRR II",
   "sprache": "de",
   "name": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2019/876 (CRR II)",
+  "name_en": "Regulation (EU) No 575/2013 as amended by Regulation (EU) 2019/876 (CRR II)",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -39,5 +40,6 @@
   ],
   "status": "kuriert",
   "rang": 1,
-  "referenzform": "Verordnung (EU) 2019/876"
+  "referenzform": "Verordnung (EU) 2019/876",
+  "referenzform_en": "Regulation (EU) 2019/876"
 }

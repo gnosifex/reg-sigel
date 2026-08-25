@@ -3,6 +3,7 @@
   "sigel": "ITS RoI",
   "sprache": "de",
   "name": "Durchführungsverordnung (EU) 2024/2956",
+  "name_en": "Commission Implementing Regulation (EU) 2024/2956 (register of information)",
   "haerte": "herausgeberueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -60,5 +61,6 @@
   "ersetzt_durch": [],
   "status": "kuriert",
   "rang": 2,
-  "referenzform": "Durchführungsverordnung (EU) 2024/2956"
+  "referenzform": "Durchführungsverordnung (EU) 2024/2956",
+  "referenzform_en": "Commission Implementing Regulation (EU) 2024/2956"
 }

@@ -3,6 +3,7 @@
   "sigel": "CRD V",
   "sprache": "de",
   "name": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2019/878 (CRD V)",
+  "name_en": "Directive 2013/36/EU as amended by Directive (EU) 2019/878 (CRD V)",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -41,5 +42,6 @@
   ],
   "status": "kuriert",
   "rang": 1,
-  "referenzform": "Richtlinie (EU) 2019/878"
+  "referenzform": "Richtlinie (EU) 2019/878",
+  "referenzform_en": "Directive (EU) 2019/878"
 }

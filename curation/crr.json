@@ -3,6 +3,7 @@
   "sigel": "CRR",
   "sprache": "de",
   "name": "Verordnung (EU) Nr. 575/2013",
+  "name_en": "Regulation (EU) No 575/2013",
   "haerte": "verkehrsueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -37,5 +38,6 @@
   "ersetzt_durch": [],
   "status": "pilot-seed",
   "rang": 1,
-  "referenzform": "Verordnung (EU) Nr. 575/2013"
+  "referenzform": "Verordnung (EU) Nr. 575/2013",
+  "referenzform_en": "Regulation (EU) No 575/2013"
 }

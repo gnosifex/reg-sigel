@@ -63,6 +63,7 @@
       "sigel": "AI Act",
       "sprache": "de",
       "name": "Verordnung (EU) 2024/1689",
+      "name_en": "Regulation (EU) 2024/1689",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -106,6 +107,7 @@
       "status": "kuriert",
       "rang": 1,
       "referenzform": "Verordnung (EU) 2024/1689",
+      "referenzform_en": "Regulation (EU) 2024/1689",
       "statistik": {},
       "belegt_durch": []
     },
@@ -291,6 +293,7 @@
       "sigel": "CRD",
       "sprache": "de",
       "name": "Richtlinie 2013/36/EU",
+      "name_en": "Directive 2013/36/EU",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -334,6 +337,7 @@
       "status": "pilot-seed",
       "rang": 1,
       "referenzform": "Richtlinie 2013/36/EU",
+      "referenzform_en": "Directive 2013/36/EU",
       "statistik": {
         "CRD": 15
       },
@@ -349,6 +353,7 @@
       "sigel": "CRD IV",
       "sprache": "de",
       "name": "Richtlinie 2013/36/EU (Stammfassung, CRD IV)",
+      "name_en": "Directive 2013/36/EU (original 2013 act, CRD IV)",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -386,6 +391,7 @@
       "status": "kuriert",
       "rang": 1,
       "referenzform": "Richtlinie 2013/36/EU",
+      "referenzform_en": "Directive 2013/36/EU",
       "statistik": {
         "CRD IV": 6
       },
@@ -399,6 +405,7 @@
       "sigel": "CRD V",
       "sprache": "de",
       "name": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2019/878 (CRD V)",
+      "name_en": "Directive 2013/36/EU as amended by Directive (EU) 2019/878 (CRD V)",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -438,6 +445,7 @@
       "status": "kuriert",
       "rang": 1,
       "referenzform": "Richtlinie (EU) 2019/878",
+      "referenzform_en": "Directive (EU) 2019/878",
       "statistik": {
         "CRD V": 2
       },
@@ -450,6 +458,7 @@
       "sigel": "CRD VI",
       "sprache": "de",
       "name": "Richtlinie 2013/36/EU in der Fassung der Änderungsrichtlinie (EU) 2024/1619 (CRD VI)",
+      "name_en": "Directive 2013/36/EU as amended by Directive (EU) 2024/1619 (CRD VI)",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -487,6 +496,7 @@
       "status": "kuriert",
       "rang": 1,
       "referenzform": "Richtlinie (EU) 2024/1619",
+      "referenzform_en": "Directive (EU) 2024/1619",
       "statistik": {
         "CRD VI": 2
       },
@@ -499,6 +509,7 @@
       "sigel": "CRR",
       "sprache": "de",
       "name": "Verordnung (EU) Nr. 575/2013",
+      "name_en": "Regulation (EU) No 575/2013",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -542,6 +553,7 @@
       "status": "pilot-seed",
       "rang": 1,
       "referenzform": "Verordnung (EU) Nr. 575/2013",
+      "referenzform_en": "Regulation (EU) No 575/2013",
       "statistik": {
         "CRR": 15
       },
@@ -557,6 +569,7 @@
       "sigel": "CRR II",
       "sprache": "de",
       "name": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2019/876 (CRR II)",
+      "name_en": "Regulation (EU) No 575/2013 as amended by Regulation (EU) 2019/876 (CRR II)",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -594,6 +607,7 @@
       "status": "kuriert",
       "rang": 1,
       "referenzform": "Verordnung (EU) 2019/876",
+      "referenzform_en": "Regulation (EU) 2019/876",
       "statistik": {},
       "belegt_durch": []
     },
@@ -602,6 +616,7 @@
       "sigel": "CRR III",
       "sprache": "de",
       "name": "Verordnung (EU) Nr. 575/2013 in der Fassung der Änderungsverordnung (EU) 2024/1623 (CRR III)",
+      "name_en": "Regulation (EU) No 575/2013 as amended by Regulation (EU) 2024/1623 (CRR III)",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -639,6 +654,7 @@
       "status": "kuriert",
       "rang": 1,
       "referenzform": "Verordnung (EU) 2024/1623",
+      "referenzform_en": "Regulation (EU) 2024/1623",
       "statistik": {},
       "belegt_durch": []
     },
@@ -696,6 +712,7 @@
       "sigel": "DORA",
       "sprache": "de",
       "name": "Verordnung (EU) 2022/2554 (Digital Operational Resilience Act)",
+      "name_en": "Regulation (EU) 2022/2554 (Digital Operational Resilience Act)",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -747,6 +764,7 @@
       "status": "pilot-seed",
       "rang": 1,
       "referenzform": "Verordnung (EU) 2022/2554",
+      "referenzform_en": "Regulation (EU) 2022/2554",
       "statistik": {
         "DORA": 56
       },
@@ -763,6 +781,7 @@
       "sigel": "DSGVO",
       "sprache": "de",
       "name": "Verordnung (EU) 2016/679",
+      "name_en": "Regulation (EU) 2016/679 (General Data Protection Regulation)",
       "haerte": "verkehrsueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -816,6 +835,7 @@
       "status": "kuriert",
       "rang": 1,
       "referenzform": "Verordnung (EU) 2016/679",
+      "referenzform_en": "Regulation (EU) 2016/679",
       "statistik": {
         "DSGVO": 3,
         "GDPR": 8
@@ -1021,6 +1041,7 @@
       "sigel": "EDSA 07/2020",
       "sprache": "de",
       "name": "EDSA, Leitlinien 07/2020 (Verantwortlicher / Auftragsverarbeiter)",
+      "name_en": "EDPB, Guidelines 07/2020 on the concepts of controller and processor",
       "haerte": "amtlich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1056,6 +1077,7 @@
       "status": "pilot-seed",
       "rang": 3,
       "referenzform": "EDSA, Leitlinien 07/2020",
+      "referenzform_en": "EDPB Guidelines 07/2020",
       "statistik": {},
       "belegt_durch": []
     },
@@ -1291,6 +1313,7 @@
       "sigel": "ITS RoI",
       "sprache": "de",
       "name": "Durchführungsverordnung (EU) 2024/2956",
+      "name_en": "Commission Implementing Regulation (EU) 2024/2956 (register of information)",
       "haerte": "herausgeberueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1349,6 +1372,7 @@
       "status": "kuriert",
       "rang": 2,
       "referenzform": "Durchführungsverordnung (EU) 2024/2956",
+      "referenzform_en": "Commission Implementing Regulation (EU) 2024/2956",
       "statistik": {
         "ITS Informationsregister": 1,
         "ITS RoI": 2
@@ -1362,6 +1386,7 @@
       "sigel": "ITS TIR",
       "sprache": "de",
       "name": "Durchführungsverordnung (EU) 2025/302",
+      "name_en": "Commission Implementing Regulation (EU) 2025/302 (templates for incident reporting)",
       "haerte": "herausgeberueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1421,6 +1446,7 @@
       "status": "kuriert",
       "rang": 2,
       "referenzform": "Durchführungsverordnung (EU) 2025/302",
+      "referenzform_en": "Commission Implementing Regulation (EU) 2025/302",
       "statistik": {
         "ITS TIR": 1
       },
@@ -1623,6 +1649,7 @@
       "sigel": "RTS CCI",
       "sprache": "de",
       "name": "Delegierte Verordnung (EU) 2024/1772 (Klassifizierungskriterien für IKT-bezogene Vorfälle)",
+      "name_en": "Commission Delegated Regulation (EU) 2024/1772 (classification criteria for ICT incidents)",
       "haerte": "herausgeberueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1658,6 +1685,7 @@
       "status": "kuriert",
       "rang": 2,
       "referenzform": "Delegierte Verordnung (EU) 2024/1772",
+      "referenzform_en": "Commission Delegated Regulation (EU) 2024/1772",
       "statistik": {
         "RTS CCI": 1
       },
@@ -1670,6 +1698,7 @@
       "sigel": "RTS CTIR",
       "sprache": "de",
       "name": "Delegierte Verordnung (EU) 2025/301 (Inhalt und Fristen der Vorfallsmeldungen)",
+      "name_en": "Commission Delegated Regulation (EU) 2025/301 (content and time limits for incident reporting)",
       "haerte": "herausgeberueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1705,6 +1734,7 @@
       "status": "kuriert",
       "rang": 2,
       "referenzform": "Delegierte Verordnung (EU) 2025/301",
+      "referenzform_en": "Commission Delegated Regulation (EU) 2025/301",
       "statistik": {
         "RTS CTIR": 1
       },
@@ -1717,6 +1747,7 @@
       "sigel": "RTS RMF",
       "sprache": "de",
       "name": "Delegierte Verordnung (EU) 2024/1774 (IKT-Risikomanagementrahmen)",
+      "name_en": "Commission Delegated Regulation (EU) 2024/1774 (ICT Risk Management Framework)",
       "haerte": "herausgeberueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1779,6 +1810,7 @@
       "status": "kuriert",
       "rang": 2,
       "referenzform": "Delegierte Verordnung (EU) 2024/1774",
+      "referenzform_en": "Commission Delegated Regulation (EU) 2024/1774",
       "statistik": {
         "RTS RMF": 11
       },
@@ -1791,6 +1823,7 @@
       "sigel": "RTS SUB",
       "sprache": "de",
       "name": "Delegierte Verordnung (EU) 2025/532 (Weitervergabe)",
+      "name_en": "Commission Delegated Regulation (EU) 2025/532 (subcontracting)",
       "haerte": "herausgeberueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1842,6 +1875,7 @@
       "status": "kuriert",
       "rang": 2,
       "referenzform": "Delegierte Verordnung (EU) 2025/532",
+      "referenzform_en": "Commission Delegated Regulation (EU) 2025/532",
       "statistik": {
         "RTS SUB": 2
       },
@@ -1854,6 +1888,7 @@
       "sigel": "RTS TPPol",
       "sprache": "de",
       "name": "Delegierte Verordnung (EU) 2024/1773 (Politik für IKT-Dienstleistungen)",
+      "name_en": "Commission Delegated Regulation (EU) 2024/1773 (ICT Third-Party Policy)",
       "haerte": "herausgeberueblich",
       "haerte_geprueft": {
         "datum": "2026-08-25",
@@ -1895,6 +1930,7 @@
       "status": "pilot-seed",
       "rang": 2,
       "referenzform": "Delegierte Verordnung (EU) 2024/1773",
+      "referenzform_en": "Commission Delegated Regulation (EU) 2024/1773",
       "statistik": {
         "RTS TPPol": 7
       },

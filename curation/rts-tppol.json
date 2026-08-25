@@ -3,6 +3,7 @@
   "sigel": "RTS TPPol",
   "sprache": "de",
   "name": "Delegierte Verordnung (EU) 2024/1773 (Politik für IKT-Dienstleistungen)",
+  "name_en": "Commission Delegated Regulation (EU) 2024/1773 (ICT Third-Party Policy)",
   "haerte": "herausgeberueblich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -43,5 +44,6 @@
   "ersetzt_durch": [],
   "status": "pilot-seed",
   "rang": 2,
-  "referenzform": "Delegierte Verordnung (EU) 2024/1773"
+  "referenzform": "Delegierte Verordnung (EU) 2024/1773",
+  "referenzform_en": "Commission Delegated Regulation (EU) 2024/1773"
 }

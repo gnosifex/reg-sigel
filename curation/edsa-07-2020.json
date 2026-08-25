@@ -3,6 +3,7 @@
   "sigel": "EDSA 07/2020",
   "sprache": "de",
   "name": "EDSA, Leitlinien 07/2020 (Verantwortlicher / Auftragsverarbeiter)",
+  "name_en": "EDPB, Guidelines 07/2020 on the concepts of controller and processor",
   "haerte": "amtlich",
   "haerte_geprueft": {
     "datum": "2026-08-25",
@@ -37,5 +38,6 @@
   "ersetzt_durch": [],
   "status": "pilot-seed",
   "rang": 3,
-  "referenzform": "EDSA, Leitlinien 07/2020"
+  "referenzform": "EDSA, Leitlinien 07/2020",
+  "referenzform_en": "EDPB Guidelines 07/2020"
 }

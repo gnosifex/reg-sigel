@@ -43,6 +43,12 @@ PFLICHTFELDER = ("id", "sigel", "sprache", "referenzform", "name",
 # und englische Kurzform derselben Quelle sind damit unterscheidbar,
 # ohne dass die Form selbst geraten werden muss.
 SPRACHEN = ("de", "en")
+# EU-Akte tragen amtliche Bezeichnungen in jeder Amtssprache; das Register
+# fuehrt neben der deutschen die englische, wo sie amtlich existiert.
+# Deutsche Gesetze und Aufsichtsrundschreiben haben keine — dort bleibt das
+# Feld weg, und die englische Seite zeigt bewusst die deutsche Form:
+# eine Uebersetzung waere keine Referenzform mehr.
+EN_FORMEN = {"referenzform": "referenzform_en", "name": "name_en"}
 # Verbindlichkeits-Rang: 1 bindendes
 # Recht der eigenen Rechtsordnung … 7 rollende Webkommunikation; null ist
 # die "—"-Zeile der Hierarchie (Standards ohne Rechtsbindung).
@@ -257,6 +263,13 @@ def validieren(records, bekannte_raw, gruppen):
             fehler.append(f"{datei}: sprache '{r.get('sprache')}' unzulaessig "
                           f"(erlaubt: {', '.join(SPRACHEN)})")
 
+        # Amtliche englische Bezeichnung, wo die Quelle eine fuehrt: optional
+        # und, wenn gesetzt, ein nichtleerer Text.
+        for feld in EN_FORMEN.values():
+            wert = r.get(feld)
+            if wert is not None and not (isinstance(wert, str) and wert.strip()):
+                fehler.append(f"{datei}: {feld} ist kein nichtleerer Text")
+
         # Haertegrad: Pflichtfeld, geschlossene Werteliste, eigener Pruefstand
         haerte = r.get("haerte")
         if haerte not in HAERTE_STUFEN:
@@ -456,10 +469,11 @@ def md_schreiben(records, gruppen):
 # Tabelle wie `dist/SIGEL.md`, nur lesbar ohne Markdown-Renderer: je eine
 # Datei, kein Skript, kein externes Asset — was der Browser laedt, steht
 # vollstaendig in dieser Datei; der Umschalter ist ein schlichter Link.
-# Deterministisch wie jede andere Build-Ausgabe. Sprachabhaengig ist allein
-# das Geruest — Titel, Kernaussage, Spaltenkoepfe, Gruppentexte, Fusszeile
-# und die Anzeigelabels des Haertegrads; der Registerinhalt bleibt in beiden
-# Fassungen identisch, in der Sprache seiner Quellen.
+# Deterministisch wie jede andere Build-Ausgabe. Sprachabhaengig sind das
+# Geruest — Titel, Kernaussage, Spaltenkoepfe, Gruppentexte, Fusszeile und
+# die Anzeigelabels des Haertegrads — sowie Referenz- und Vollbezeichnung
+# der Records, soweit die Quelle eine amtliche englische Bezeichnung fuehrt
+# (siehe EN_FORMEN); alles Uebrige steht in der Sprache seiner Quellen.
 
 SEITEN = {
     "en": {
@@ -471,10 +485,12 @@ SEITEN = {
             "bindingness — from directly applicable EU law through European "
             "and national supervisory instruments to voluntary standards."),
         "sprachhinweis": (
-            "Record content is given in the language of the sources it "
-            "describes, which for this registry is largely German; the field "
-            "names of the machine-readable data are German as well and are "
-            "explained in the README."),
+            "EU acts appear under their official English designations; German "
+            "statutes and supervisory circulars keep their German names, "
+            "having none. Remaining record content is given in the language "
+            "of the sources it describes, and the field names of the "
+            "machine-readable data are German as well and are explained in "
+            "the README."),
         "meta": ("As of {stand} — {anzahl} entries, {fundstellen} "
                  "attestations. Curated and growing; the registry makes no "
                  "promise of completeness."),
@@ -487,6 +503,7 @@ SEITEN = {
                    "hausform": "house form"},
         "gruppe_titel": "titel_en",
         "gruppe_aussage": "aussage_en",
+        "en_formen": True,
         "wechsel_ziel": "de.html",
         "wechsel_lang": "de",
         "wechsel_text": "Deutsch",
@@ -590,10 +607,23 @@ def html_links(links):
                       for l in links)
 
 
+def sprachform(r, feld, seite):
+    """Anzeigeform eines Feldes in der Sprache der Seite.
+
+    Die englische Seite zeigt die amtliche englische Bezeichnung, wo eine
+    hinterlegt ist; sonst faellt sie auf die deutsche Form zurueck. Die
+    deutsche Seite zeigt immer die deutsche.
+    """
+    if seite.get("en_formen"):
+        return r.get(EN_FORMEN[feld]) or r[feld]
+    return r[feld]
+
+
 def html_zeile(r, seite):
     aliasse = ", ".join(a["form"] for a in r.get("aliasse", [])) or "—"
     zellen = [
-        h(r["sigel"]), h(r["referenzform"]), h(r["name"]),
+        h(r["sigel"]), h(sprachform(r, "referenzform", seite)),
+        h(sprachform(r, "name", seite)),
         "—" if r.get("rang") is None else str(r["rang"]),
         h(seite["haerte"][r["haerte"]]), h(md_identitaet(r["identitaet"])),
         h(r["fassung"]["text"]), html_links(r.get("links", [])),
