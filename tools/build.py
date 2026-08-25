@@ -600,11 +600,25 @@ def h(text):
             .replace(">", "&gt;").replace('"', "&quot;"))
 
 
-def html_links(links):
+def html_links(links, seite=None):
+    """Links der Zelle; die englische Seite dreht EUR-Lex-URLs auf /EN/.
+
+    Das Sprachsegment im legal-content-Pfad ist der einzige Unterschied
+    der Sprachfassungen derselben CELEX — die Umstellung ist mechanisch,
+    kein neuer Abruf. Nicht-EUR-Lex-Links bleiben unveraendert (deutsche
+    Quellen haben keine englische Fassung).
+    """
     if not links:
         return "—"
-    return " · ".join(f'<a href="{h(l["url"])}">{h(l["label"])}</a>'
-                      for l in links)
+    teile = []
+    for l in links:
+        url, label = l["url"], l["label"]
+        if seite and seite.get("en_formen") and \
+                "eur-lex.europa.eu/legal-content/DE/" in url:
+            url = url.replace("/legal-content/DE/", "/legal-content/EN/")
+            label = label.replace("EUR-Lex DE", "EUR-Lex EN")
+        teile.append(f'<a href="{h(url)}">{h(label)}</a>')
+    return " · ".join(teile)
 
 
 def sprachform(r, feld, seite):
@@ -626,7 +640,7 @@ def html_zeile(r, seite):
         h(sprachform(r, "name", seite)),
         "—" if r.get("rang") is None else str(r["rang"]),
         h(seite["haerte"][r["haerte"]]), h(md_identitaet(r["identitaet"])),
-        h(r["fassung"]["text"]), html_links(r.get("links", [])),
+        h(r["fassung"]["text"]), html_links(r.get("links", []), seite),
         h(aliasse), h(", ".join(r.get("belegt_durch") or []) or "—"),
     ]
     tds = [f'<td{" class=\"weit\"" if i in WEITE_SPALTEN else ""}>{z}</td>'
